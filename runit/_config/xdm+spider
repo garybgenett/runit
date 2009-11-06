@@ -1,0 +1,11 @@
+#!/bin/sh
+exec 2>&1
+#>>>killall -9 xdm
+rm -frv /var/run/xdm.pid
+modprobe -v nvidia
+export X_CMD="$(which X)"
+exec xdm \
+	-nodaemon		\
+	-error /dev/stderr	\
+	-server ":0 local ${X_CMD} -keeptty -logfile /dev/stderr"
+# end of file

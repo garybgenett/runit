@@ -1,0 +1,23 @@
+#!/bin/sh
+exec 2>&1
+killall -9 dhcpcd
+cat >/etc/resolv.conf.head <<END_OF_CONF
+domain example.net
+nameserver 10.255.255.254
+END_OF_CONF
+exec dhcpcd \
+	--nobackground				\
+	--debug					\
+	--config /dev/null			\
+	--require dhcp_server_identifier	\
+	--option domain_name_servers		\
+	--option domain_name			\
+	--option domain_search			\
+	--option ntp_servers			\
+	--option interface_mtu			\
+	--nooption host_name			\
+	--nohook lookup-hostname		\
+	--hostname ""				\
+	--timeout 0				\
+	eth0
+# end of file

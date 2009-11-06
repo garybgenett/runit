@@ -1,0 +1,4 @@
+#!/bin/sh
+pkill -9 -f "agetty ttyS0 9600 vt100"
+exec agetty ttyS0 9600 vt100
+# end of file

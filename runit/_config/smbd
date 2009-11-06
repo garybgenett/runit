@@ -1,0 +1,18 @@
+#!/bin/sh
+# edit: /etc/samba/smb.conf
+# change: force group = nobody
+exec 2>&1
+sv start /.runit/services/syslogd || exit 1
+sv start /.runit/services/klogd || exit 1
+sv start /.runit/services/cupsd || exit 1
+killall -9 smbd
+rm -frv /var/run/samba/smbd.pid
+mkdir -pv /var/lib/samba/printers
+mkdir -pv /var/run/samba
+mkdir -pv /var/spool/samba
+exec smbd \
+	-F	\
+	-i	\
+	-S	\
+	-d 2
+# end of file

@@ -1,0 +1,28 @@
+#!/bin/sh
+# run: vipw && vigr
+# add: pulse, /var/run/pulse
+exec 2>&1
+sv start /.runit/services/syslogd || exit 1
+sv start /.runit/services/klogd || exit 1
+sv start /.runit/services/dbus || exit 1
+sv start /.runit/services/hald || exit 1
+killall -9 pulseaudio
+rm -frv /var/run/pulse/pid
+mkdir -pv /var/run/pulse
+chown -vR pulse:pulse /var/run/pulse
+#>>>exec pulseaudio \
+#>>>	--system			\
+#>>>	--daemonize=0			\
+#>>>	--high-priority			\
+#>>>	--disallow-exit			\
+#>>>	--disallow-module-loading
+export DISPLAY=":0"
+export PULSE_CMD="$(which pulseaudio)"
+exec sudo \
+	-H			\
+	-u \#1000		\
+	${PULSE_CMD} \
+		--start			\
+		--daemonize=0		\
+		--high-priority
+# end of file
