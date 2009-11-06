@@ -1,0 +1,14 @@
+#!/bin/sh
+# edit: /etc/dhcpd.conf
+# add: ddns-update-style ad-hoc;
+exec 2>&1
+sv start /.runit/services/syslogd || exit 1
+sv start /.runit/services/klogd || exit 1
+killall -9 dhcpd
+rm -frv /var/run/dhcpd.pid
+mkdir -pv /var/state/dhcp
+touch /var/state/dhcp/dhcpd.leases
+exec dhcpd \
+	-f	\
+	-d
+# end of file

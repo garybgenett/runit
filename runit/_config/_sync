@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+export AUTO_SYNC="1"
+export HOME="/.g/_data/zactive/.home"
+${HOME}/scripts/_sync
+sleep 60
+# end of file

@@ -1,0 +1,14 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd || exit 1
+sv start /.runit/services/klogd || exit 1
+killall -9 htc
+htc \
+	--proxy 192.168.12.105:3128	\
+	--forward-port 8889		\
+	me.garybgenett.net:8888
+PID=$(pidof -s htc)
+while [ "$(pidof -s htc)" -eq "${PID}" ]; do
+	sleep 10
+done
+# end of file

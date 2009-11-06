@@ -1,0 +1,4 @@
+#!/bin/sh
+pkill -9 -f "agetty tty4 38400 linux"
+exec agetty tty4 38400 linux
+# end of file

@@ -1,0 +1,12 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd || exit 1
+sv start /.runit/services/klogd || exit 1
+killall -9 in.tftpd
+exec in.tftpd \
+	--foreground	\
+	--verbose	\
+	--user nobody	\
+	--secure	\
+	/.g/_data/.ftp
+# end of file
