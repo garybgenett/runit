@@ -1,0 +1,152 @@
+#!/bin/sh
+################################################################################
+# runit stage 1 script
+################################################################################
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
+
+########################################
+
+def_color="\\033[0;39m"		# light gray
+msg_color="\\033[1;37m"		# white
+
+term_color="\\033[1;34m"	# dark blue
+dark_color="\\033[1;30m"	# dark gray
+good_color="\\033[1;32m"	# light green
+fail_color="\\033[1;31m"	# red
+
+print_msg() {
+	echo -e "${msg_color}${*}${def_color}"
+	return 0
+}
+
+report_status() {
+	echo -e -n "${term_color}"
+	if ${*}; then
+#>>>		sleep 2
+		echo -e "${good_color}* ${dark_color}${*}${def_color}"
+		return 0
+	else
+#>>>		sleep 2
+		echo -e "${fail_color}* ${dark_color}${*}${def_color}"
+		return 1
+	fi
+	return 0
+}
+
+emergency_shell() {
+	echo -e "${fail_color}Starting emergency shell...${def_color}"
+#>>>	sulogin
+	HOME=/.g/.home /bin/bash
+	echo -e "${fail_color}Restarting system...${def_color}"
+	touch /.runit/reboot
+	chmod 100 /.runit/reboot
+	exit 100
+}
+
+################################################################################
+
+print_msg "Setting clock..."
+report_status hwclock --hctosys --localtime
+
+print_msg "Creating device directory..."
+report_status mount -n -t tmpfs		none /dev
+report_status cp -afv /lib/udev/devices/* /dev
+report_status mkdir -pv /dev/.udev
+report_status mount -n -t devpts	none /dev/pts
+OPT="-o size=805306368" # 3 * 2^8 * (2^10)^2
+report_status mount -n -t tmpfs ${OPT}	none /dev/shm
+
+print_msg "Mounting kernel filesystems..."
+report_status mount -n -t proc		none /proc
+report_status mount -n -t sysfs		none /sys
+
+if [ -f /etc/sysctl.conf ]; then
+	print_msg "Setting kernel variables..."
+	report_status sysctl -p /etc/sysctl.conf
+fi
+
+if [ -f /etc/modules ]; then
+	print_msg "Loading kernel modules..."
+	for MODULE in $(grep -vE "^#" /etc/modules 2>/dev/null); do
+		report_status modprobe -v ${MODULE}
+	done
+fi
+
+print_msg "Starting udev..."
+report_status eval "echo >/proc/sys/kernel/hotplug"
+report_status udevd --daemon
+report_status udevadm trigger
+report_status udevadm settle --timeout=10
+
+print_msg "Setting hostname..."
+[ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
+[ -z "${HOSTNAME}" ]	&& HOSTNAME="$(hostname)"
+[ -z "${HOSTNAME}" ]	&& HOSTNAME="localhost"
+report_status hostname "${HOSTNAME}"
+
+print_msg "Configuring keyboard and terminal..."
+report_status loadkeys "us"
+report_status unicode_start
+report_status setterm -blank 10
+report_status setterm -powerdown 30
+report_status setterm -powersave off
+
+print_msg "Checking and mounting root filesystem..."
+report_status mount -n -o remount,ro	/			|| emergency_shell
+report_status fsck -p -C -V		/			|| emergency_shell
+report_status mount -n -o remount,rw	/			|| emergency_shell
+
+print_msg "Creating new mtab..."
+report_status rm -frv /etc/mtab*
+report_status mount -o remount /
+report_status mount -o remount -t tmpfs		none /dev
+report_status mount -o remount -t devpts	none /dev/pts
+report_status mount -o remount -t tmpfs		none /dev/shm
+report_status mount -o remount -t proc		none /proc
+report_status mount            -t usbfs		none /proc/bus/usb
+report_status mount -o remount -t sysfs		none /sys
+
+print_msg "Checking and mounting remaining filesystems..."
+report_status fsck -p -A -C -R -V				|| emergency_shell
+report_status mount -a -t nodevpts,noproc,nosysfs,notmpfs	|| emergency_shell
+
+print_msg "Cleaning up temporary directories and files..."
+report_status rm -frv $(find /tmp/ -mindepth 1 -maxdepth 1 2>/dev/null)
+report_status rm -frv $(find /var/{lock,run} -mindepth 1 -maxdepth 1 2>/dev/null)
+report_status eval "echo >/var/log/wtmp"
+report_status eval "echo >/var/run/utmp"
+report_status chown root:root /var/{log,run}/[uw]tmp
+report_status chmod 644 /var/{log,run}/[uw]tmp
+
+if [ -x "$(which alsamixer)" ] &&
+   [ -f /etc/asound.state ]; then
+	print_msg "Restoring alsa state..."
+	restore_alsa_state() {
+		RESULT="$(alsactl restore -f /etc/asound.state)"
+		if [ -n "${RESULT}" ]; then
+			echo "${RESULT}"
+			return 1
+		fi
+		return 0
+	}
+	report_status restore_alsa_state
+fi
+
+########################################
+
+print_msg "Setting up networking..."
+report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
+
+print_msg "Mounting data filesystems..."
+report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount g++ sda" || {
+	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
+	sleep 10									;
+}
+
+########################################
+
+exit 0
+################################################################################
+# end of file
+################################################################################

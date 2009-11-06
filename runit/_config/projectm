@@ -1,0 +1,17 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd || exit 1
+sv start /.runit/services/klogd || exit 1
+sv start /.runit/services/dbus || exit 1
+sv start /.runit/services/hald || exit 1
+sv start /.runit/services/pulseaudio || exit 1
+sv start /.runit/services/xdm || exit 1
+killall -9 projectM-pulseaudio
+export DISPLAY=":0"
+export LC_NUMERIC="C"
+export PROJECTM_CMD="$(which projectM-pulseaudio)"
+exec sudo \
+	-H			\
+	-u \#1000		\
+	${PROJECTM_CMD}
+# end of file

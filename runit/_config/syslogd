@@ -1,0 +1,21 @@
+#!/bin/sh
+exec 2>&1
+killall -9 syslogd
+rm -frv /var/run/syslogd.pid
+cat >/tmp/syslog.conf <<END_OF_CONF
+# info or higher
+*.info		/dev/stdout
+# authentication
+authpriv.*	/dev/stdout
+# boot messages
+local7.*	/dev/stdout
+# everything
+#>>>*.*		/dev/tty12
+# emergency messages
+*.emerg		*
+END_OF_CONF
+exec syslogd \
+	-n			\
+	-f /tmp/syslog.conf	\
+	-m 0
+# end of file
