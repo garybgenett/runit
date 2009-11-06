@@ -7,7 +7,7 @@ rm -frv ./services/*/run
 rm -frv ./services/*/log/{config,run}
 
 mkdir -pv ./{log,runsvdir,services,watch}
-mkdir -pv ./runsvdir/{media,default,server,station,maint}
+mkdir -pv ./runsvdir/{media,default,server,station,maint,maintx}
 
 for SVC in $(ls ./_config); do
 	mkdir -pv ./services/${SVC}
@@ -31,6 +31,7 @@ for SVC in $(ls ./_config); do
 	ln -fsv ../../services/${SVC}	./runsvdir/server/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/station/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/maint/${SVC}
+	ln -fsv ../../services/${SVC}	./runsvdir/maintx/${SVC}
 done
 
 rm -frv   ./runsvdir/media/{htc,hts,nxproxyc,nxproxys,NULL}
@@ -38,8 +39,9 @@ rm -frv ./runsvdir/default/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulse
 rm -frv  ./runsvdir/server/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd}
 rm -frv ./runsvdir/station/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd,named}
 rm -frv   ./runsvdir/maint/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
+rm -frv  ./runsvdir/maintx/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
 
-rm -frv ./runsvdir/{media,default,server,maint}/{autossh,dhcpcd}
+rm -frv ./runsvdir/{media,default,server,maint,maintx}/{autossh,dhcpcd}
 rm -frv ./runsvdir/{server,maint}/xdm
 
 exit 0
