@@ -9,10 +9,10 @@ default 0
 timeout 5
 
 title Gobo
-kernel (hd0,2)/System/Kernel/Boot/kernel vga=791 root=/dev/sda3 ro init=/sbin/runit-init
+kernel (hd0,2)/System/Kernel/Boot/kernel vga=791 root=/dev/vda3 ro init=/sbin/runit-init
 
 title Gobo (console)
-kernel (hd0,2)/System/Kernel/Boot/kernel vga=791 root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
+kernel (hd0,2)/System/Kernel/Boot/kernel vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 ################################################################################
 # end of file
