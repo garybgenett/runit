@@ -1,0 +1,10 @@
+#!/bin/sh
+exec 2>&1
+killall -9 Xorg
+modprobe -v nvidia
+export XORG_CMD="$(which Xorg)"
+exec ${XORG_CMD} \
+	:0			\
+	-keeptty		\
+	-logfile /dev/stderr
+# end of file
