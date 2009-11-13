@@ -4,6 +4,7 @@ sv start /.runit/services/xorg || exit 1
 killall -9 xautolock
 killall -9 xlock
 export HOME="/dev/null"
+export SHELL="/bin/bash"
 export DISPLAY=":0"
 export OPENBOX_CMD="$(which openbox)"
 exec sudo \
