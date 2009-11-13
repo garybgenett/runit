@@ -9,5 +9,6 @@ exec thttpd \
 	-C /dev/null		\
 	-u nobody		\
 	-d /.g/_data/.www	\
+	-c \*\*.cgi		\
 	-r
 # end of file
