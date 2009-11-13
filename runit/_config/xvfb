@@ -2,6 +2,7 @@
 exec 2>&1
 killall -9 Xvfb
 export HOME="/.g/_data/zactive/.home"
+export SHELL="/bin/bash"
 export XINIT_CMD="$(which xinit)"
 export XVFB_CMD="$(which Xvfb)"
 exec sudo \
