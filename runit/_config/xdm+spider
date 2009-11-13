@@ -1,6 +1,6 @@
 #!/bin/sh
 exec 2>&1
-#>>>killall -9 xdm
+killall -9 xdm
 rm -frv /var/run/xdm.pid
 modprobe -v nvidia
 export X_CMD="$(which X)"
