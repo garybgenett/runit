@@ -6,6 +6,6 @@ export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
 	:0			\
 	-keeptty		\
-	-logfile /dev/stderr
+	-logfile /dev/stderr	\
 	-nolisten tcp
 # end of file
