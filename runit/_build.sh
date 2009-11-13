@@ -34,15 +34,17 @@ for SVC in $(ls ./_config); do
 	ln -fsv ../../services/${SVC}	./runsvdir/maintx/${SVC}
 done
 
-rm -frv   ./runsvdir/media/{htc,hts,nxproxyc,nxproxys,NULL}
-rm -frv ./runsvdir/default/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio}
-rm -frv  ./runsvdir/server/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd}
-rm -frv ./runsvdir/station/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd,named}
-rm -frv   ./runsvdir/maint/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
-rm -frv  ./runsvdir/maintx/{htc,hts,nxproxyc,nxproxys,pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
+rm -frv ./runsvdir/*/{htc,hts,nxproxyc,nxproxys,xdm}
+
+rm -frv   ./runsvdir/media/{NULL,NULL}
+rm -frv ./runsvdir/default/{pavucontrol,projectm,pulseaudio}
+rm -frv  ./runsvdir/server/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,xvfb}
+rm -frv ./runsvdir/station/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,xvfb,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd,named}
+rm -frv   ./runsvdir/maint/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,xvfb,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
+rm -frv  ./runsvdir/maintx/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,xvfb,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
 
 rm -frv ./runsvdir/{media,default,server,maint,maintx}/{autossh,dhcpcd}
-rm -frv ./runsvdir/{server,maint}/xdm
+rm -frv ./runsvdir/{server,maint}/{xorg,xsession}
 
 exit 0
 # end of file
