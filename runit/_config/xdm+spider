@@ -7,5 +7,5 @@ export X_CMD="$(which X)"
 exec xdm \
 	-nodaemon		\
 	-error /dev/stderr	\
-	-server ":0 local ${X_CMD} -keeptty -logfile /dev/stderr"
+	-server ":0 local ${X_CMD} -keeptty -logfile /dev/stderr -nolisten tcp"
 # end of file

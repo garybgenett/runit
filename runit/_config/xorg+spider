@@ -7,4 +7,5 @@ exec ${XORG_CMD} \
 	:0			\
 	-keeptty		\
 	-logfile /dev/stderr
+	-nolisten tcp
 # end of file
