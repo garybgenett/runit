@@ -10,12 +10,6 @@ killall -9 pulseaudio
 rm -frv /var/run/pulse/pid
 mkdir -pv /var/run/pulse
 chown -vR pulse:pulse /var/run/pulse
-#>>>exec pulseaudio \
-#>>>	--system			\
-#>>>	--daemonize=0			\
-#>>>	--high-priority			\
-#>>>	--disallow-exit			\
-#>>>	--disallow-module-loading
 export DISPLAY=":0"
 export PULSE_CMD="$(which pulseaudio)"
 exec sudo \
