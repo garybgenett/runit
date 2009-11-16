@@ -6,6 +6,7 @@ export SHELL="/bin/bash"
 export DISPLAY=":0"
 export OPENBOX_CMD="$(which openbox)"
 xset -dpms
+xset s off
 exec sudo \
 	-H			\
 	-u nobody		\
