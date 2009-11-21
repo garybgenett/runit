@@ -1,0 +1,16 @@
+bind
+compile
+cups
+dhcpd
+dovecot
+etc
+grub
+linux
+minicom
+network
+ntp
+openvpn
+proftpd
+samba
+ssh
+xorg
