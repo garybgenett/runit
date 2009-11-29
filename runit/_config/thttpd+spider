@@ -10,6 +10,5 @@ exec thttpd \
 	-u nobody		\
 	-d /.g/_data/.www	\
 	-c \*\*.cgi		\
-	-r			\
 	-v
 # end of file
