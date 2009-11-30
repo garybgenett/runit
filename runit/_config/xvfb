@@ -14,5 +14,5 @@ exec sudo \
 		${XVFB_CMD} \
 			:1			\
 			-nolisten tcp		\
-			-screen 0 1440x900x24
+			-screen 0 1280x800x24
 # end of file
