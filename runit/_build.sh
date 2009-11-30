@@ -7,7 +7,7 @@ rm -frv ./services/*/run
 rm -frv ./services/*/log/{config,run}
 
 mkdir -pv ./{log,runsvdir,services,watch}
-mkdir -pv ./runsvdir/{media,default,server_r,server,maint,maint_x,station}
+mkdir -pv ./runsvdir/{media,default,server_r,server_v,server,maint,maint_x,station}
 
 for SVC in $(ls ./_config); do
 	mkdir -pv ./services/${SVC}
@@ -29,6 +29,7 @@ for SVC in $(ls ./_config); do
 	ln -fsv ../../services/${SVC}	./runsvdir/media/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/default/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/server_r/${SVC}
+	ln -fsv ../../services/${SVC}	./runsvdir/server_v/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/server/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/maint/${SVC}
 	ln -fsv ../../services/${SVC}	./runsvdir/maint_x/${SVC}
@@ -46,6 +47,7 @@ rm -frv  ./runsvdir/station/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smb
 rm -frv    ./runsvdir/media/{autossh,dhcpcd}
 rm -frv  ./runsvdir/default/{autossh,dhcpcd}
 rm -frv ./runsvdir/server_r/{NULL,dhcpcd}
+rm -frv ./runsvdir/server_v/{autossh,dhcpcd}
 rm -frv   ./runsvdir/server/{autossh,dhcpcd}
 rm -frv   ./runsvdir/maint*/{autossh,dhcpcd}
 rm -frv  ./runsvdir/station/{NULL,NULL}
@@ -53,6 +55,7 @@ rm -frv  ./runsvdir/station/{NULL,NULL}
 rm -frv    ./runsvdir/media/{NULL,NULL}
 rm -frv  ./runsvdir/default/{NULL,NULL}
 rm -frv ./runsvdir/server_r/{xorg,xsession}
+rm -frv ./runsvdir/server_v/{xorg,xsession}
 rm -frv   ./runsvdir/server/{xorg,xsession,xvfb}
 rm -frv    ./runsvdir/maint/{xorg,xsession,xvfb}
 rm -frv  ./runsvdir/maint_x/{NULL,xvfb}
