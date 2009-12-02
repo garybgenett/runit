@@ -1,7 +1,7 @@
 #!/bin/sh
 exec 2>&1
-sv start /.runit/services/syslogd || exit 1
-sv start /.runit/services/klogd || exit 1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
 killall -9 openvpn
 modprobe -v tun
 exec openvpn \
