@@ -2,8 +2,8 @@
 # edit: /etc/proftpd.conf
 # change: Group = nobody
 exec 2>&1
-sv start /.runit/services/syslogd || exit 1
-sv start /.runit/services/klogd || exit 1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
 killall -9 proftpd
 rm -frv /var/run/proftpd/proftpd.pid
 mkdir -pv /var/run/proftpd

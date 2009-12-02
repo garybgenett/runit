@@ -2,8 +2,8 @@
 # edit: /etc/ntp.conf
 # change: logfile /dev/stdout
 exec 2>&1
-sv start /.runit/services/syslogd || exit 1
-sv start /.runit/services/klogd || exit 1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
 killall -9 ntpd
 exec ntpd \
 	--nofork			\
