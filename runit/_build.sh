@@ -1,65 +1,72 @@
 #!/usr/bin/env bash
 source ${HOME}/.bashrc
+################################################################################
 
-rm -frv ./log/*
-rm -frv ./runsvdir/*/*
-rm -frv ./services/*/run
-rm -frv ./services/*/log/{config,run}
+${MKDIR} ./log
+${RM} ./log/*
 
-mkdir -pv ./{log,runsvdir,services,watch}
-mkdir -pv ./runsvdir/{media,default,server_r,server_v,server,maint,maint_x,station}
+declare SVC=
+for SVC in $(ls ./_config | ${GREP} -v "^tty"); do
+	${MKDIR} ./services/${SVC}/log
+	${LN} ../services/${SVC}/log/current	./log/${SVC}
+	${LN} ../../../_config/.log_config	./services/${SVC}/log/config
+	${LN} ../../../_config/.log_run		./services/${SVC}/log/run
+done
+
+for SVC in syslogd tcpdump; do
+	${LN} ../../../_config/.log_config_capture	./services/${SVC}/log/config
+	${RM} ./.${SVC}
+	${LN} ./services/${SVC}/log	./.${SVC}
+done
+
+########################################
 
 for SVC in $(ls ./_config); do
-	mkdir -pv ./services/${SVC}
+	${MKDIR} ./services/${SVC}
+	${LN} ../../_config/${SVC}	./services/${SVC}/run
 done
 
-for SVC in $(ls ./_config | grep -vE "^tty"); do
-	mkdir -pv ./services/${SVC}/log
-	ln -fsv ../services/${SVC}/log/current	./log/${SVC}
-	ln -fsv ../../../_config/.log_config	./services/${SVC}/log/config
-	ln -fsv ../../../_config/.log_run	./services/${SVC}/log/run
-done
+########################################
 
-ln -fsv ../../../_config/.log_config_syslog	./services/syslogd/log/config
-ln -fsv ../../../_config/.log_run_syslog	./services/syslogd/log/run
-ln -fsv ../_config/.log_config_syslog		./watch/config
+${MKDIR} ./runsvdir/media
+${MKDIR} ./runsvdir/default
+${MKDIR} ./runsvdir/server_r
+${MKDIR} ./runsvdir/server_v
+${MKDIR} ./runsvdir/server
+${MKDIR} ./runsvdir/maint
+${MKDIR} ./runsvdir/maint_x
+${MKDIR} ./runsvdir/station
+${RM} ./runsvdir/*/*
+
+declare IFS_ORIG="${IFS}"
+declare IFS_LINE="
+"
+
+export IFS="${IFS_LINE}"
+declare LINE
+for LINE in $(eval ${GREP} -v "^#" ./_runlevels.txt); do
+	export IFS="${IFS_ORIG}"
+	declare SVC_SET="false"
+	declare LEVEL
+	for LEVEL in ${LINE}; do
+		if ${SVC_SET}; then
+			${LN} ../../services/${SVC} ./runsvdir/${LEVEL}/${SVC}
+		else
+			SVC="${LEVEL}"
+			SVC_SET="true"
+		fi
+	done
+	export IFS="${IFS_LINE}"
+done
+export IFS="${IFS_ORIG}"
 
 for SVC in $(ls ./_config); do
-	ln -fsv ../../_config/${SVC}	./services/${SVC}/run
-	ln -fsv ../../services/${SVC}	./runsvdir/media/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/default/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/server_r/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/server_v/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/server/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/maint/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/maint_x/${SVC}
-	ln -fsv ../../services/${SVC}	./runsvdir/station/${SVC}
+	if [[ -z $(${GREP} "^${SVC}" ./_runlevels.txt) ]]; then
+		echo -ne "\n !!! SERVICE '${SVC}' MISSING !!!\n"
+	fi
 done
-
-rm -frv        ./runsvdir/*/{htc,hts,nxproxyc,nxproxys,xdm}
-
-rm -frv    ./runsvdir/media/{NULL,NULL}
-rm -frv  ./runsvdir/default/{pavucontrol,projectm,pulseaudio}
-rm -frv  ./runsvdir/server*/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd}
-rm -frv   ./runsvdir/maint*/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd}
-rm -frv  ./runsvdir/station/{pavucontrol,projectm,pulseaudio,cupsd,dbus,hald,smbd,_sync,dhcpd,dovecot,tftpd,thttpd,proftpd,named}
-
-rm -frv    ./runsvdir/media/{autossh,dhcpcd}
-rm -frv  ./runsvdir/default/{autossh,dhcpcd}
-rm -frv ./runsvdir/server_r/{NULL,dhcpcd}
-rm -frv ./runsvdir/server_v/{autossh,dhcpcd}
-rm -frv   ./runsvdir/server/{autossh,dhcpcd}
-rm -frv   ./runsvdir/maint*/{autossh,dhcpcd}
-rm -frv  ./runsvdir/station/{NULL,NULL}
-
-rm -frv    ./runsvdir/media/{NULL,NULL}
-rm -frv  ./runsvdir/default/{NULL,NULL}
-rm -frv ./runsvdir/server_r/{xorg,xsession}
-rm -frv ./runsvdir/server_v/{xorg,xsession}
-rm -frv   ./runsvdir/server/{xorg,xsession,xvfb}
-rm -frv    ./runsvdir/maint/{xorg,xsession,xvfb}
-rm -frv  ./runsvdir/maint_x/{NULL,xvfb}
-rm -frv  ./runsvdir/station/{NULL,xvfb}
 
 exit 0
+################################################################################
 # end of file
+################################################################################
