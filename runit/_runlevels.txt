@@ -1,0 +1,49 @@
+################################################################################
+# service	station maint_x maint server server_v server_r default media
+################################################################################
+klogd		station maint_x maint server server_v server_r default media
+ntpd		station maint_x maint server server_v server_r default media
+openvpn		station maint_x maint server server_v server_r default media
+sshd		station maint_x maint server server_v server_r default media
+syslogd		station maint_x maint server server_v server_r default media
+tcpdump		station maint_x maint server server_v server_r default media
+tty1		station maint_x maint server server_v server_r default media
+tty2		station maint_x maint server server_v server_r default media
+tty3		station maint_x maint server server_v server_r default media
+tty4		station maint_x maint server server_v server_r default media
+ttyS0		station maint_x maint server server_v server_r default media
+udevd		station maint_x maint server server_v server_r default media
+################################################################################
+named		        maint_x maint server server_v server_r default media
+################################################################################
+_sync		                      server server_v server_r default media
+dhcpd		                      server server_v server_r default media
+dovecot		                      server server_v server_r default media
+proftpd		                      server server_v server_r default media
+tftpd		                      server server_v server_r default media
+thttpd		                      server server_v server_r default media
+################################################################################
+xvfb		                             server_v server_r default media
+################################################################################
+autossh		station                               server_r
+dhcpcd		station
+xorg		station maint_x                                default media
+xsession	station maint_x                                default media
+################################################################################
+cupsd		                                               default media
+dbus		                                               default media
+hald		                                               default media
+smbd		                                               default media
+################################################################################
+pavucontrol	                                                       media
+projectm	                                                       media
+pulseaudio	                                                       media
+################################################################################
+htc
+hts
+nxproxyc
+nxproxys
+xdm
+################################################################################
+# end of file
+################################################################################
