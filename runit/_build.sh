@@ -13,10 +13,9 @@ for SVC in $(ls ./_config | ${GREP} -v "^tty"); do
 	${LN} ../../../_config/.log_run		./services/${SVC}/log/run
 done
 
-${LN} ../../../_config/.log_run_capture		./services/tcpdump/log/run
+${LN} ../../../_config/.log_config_capture	./services/syslogd/log/config
 
 for SVC in syslogd tcpdump; do
-	${LN} ../../../_config/.log_config_capture	./services/${SVC}/log/config
 	${RM} ./.${SVC}
 	${LN} ./services/${SVC}/log	./.${SVC}
 done
