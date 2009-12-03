@@ -1,12 +1,10 @@
 #!/bin/sh
-#>>>exec 2>&1
-exec 2>/dev/null
+exec 2>&1
 killall -9 tcpdump
 exec tcpdump \
-	-i eth0				\
-	-w /dev/stdout			\
+	-i eth0			\
+	-w ./log/tcpdump.eth0.	\
+	-C 100			\
+	-W 100			\
 	-s 0
-#>>>	-w ../../watch/tcpdump.eth0.	\
-#>>>	-C 100				\
-#>>>	-W 100
 # end of file
