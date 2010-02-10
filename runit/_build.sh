@@ -2,6 +2,10 @@
 source ${HOME}/.bashrc
 ################################################################################
 
+declare RUNLEVELS="./_runlevels.txt"
+
+################################################################################
+
 ${MKDIR} ./log
 ${RM} ./log/*
 
@@ -29,14 +33,6 @@ done
 
 ########################################
 
-${MKDIR} ./runsvdir/media
-${MKDIR} ./runsvdir/default
-${MKDIR} ./runsvdir/server_r
-${MKDIR} ./runsvdir/server_v
-${MKDIR} ./runsvdir/server
-${MKDIR} ./runsvdir/maint
-${MKDIR} ./runsvdir/maint_x
-${MKDIR} ./runsvdir/station
 ${RM} ./runsvdir/*/*
 
 declare IFS_ORIG="${IFS}"
@@ -45,12 +41,13 @@ declare IFS_LINE="
 
 export IFS="${IFS_LINE}"
 declare LINE
-for LINE in $(eval ${GREP} -v "^#" ./_runlevels.txt); do
+declare LEVEL
+for LINE in $(eval ${GREP} -v "^[#]" ${RUNLEVELS}); do
 	export IFS="${IFS_ORIG}"
 	declare SVC_SET="false"
-	declare LEVEL
 	for LEVEL in ${LINE}; do
 		if ${SVC_SET}; then
+			${MKDIR} ./runsvdir/${LEVEL}
 			${LN} ../../services/${SVC} ./runsvdir/${LEVEL}/${SVC}
 		else
 			SVC="${LEVEL}"
@@ -62,7 +59,7 @@ done
 export IFS="${IFS_ORIG}"
 
 for SVC in $(ls ./_config); do
-	if [[ -z $(${GREP} "^${SVC}" ./_runlevels.txt) ]]; then
+	if [[ -z $(${GREP} "^${SVC}" ${RUNLEVELS}) ]]; then
 		echo -ne "\n !!! SERVICE '${SVC}' MISSING !!!\n"
 	fi
 done
