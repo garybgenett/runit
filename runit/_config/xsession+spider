@@ -11,6 +11,7 @@ cat >${HOME}/.config/openbox/rc.xml <<END_OF_CONF
 </openbox_config>
 END_OF_CONF
 xset -dpms
+xset b off
 xset s off
 exec sudo \
 	-H			\
