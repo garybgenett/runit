@@ -18,7 +18,6 @@ named		        maint_x maint server server_v server_r default media
 ################################################################################
 _sync		                      server server_v server_r default media
 dhcpd		                      server server_v server_r default media
-davmail		                      server server_v server_r default media
 dovecot		                      server server_v server_r default media
 proftpd		                      server server_v server_r default media
 tftpd		                      server server_v server_r default media
@@ -40,6 +39,7 @@ pavucontrol	                                                       media
 projectm	                                                       media
 pulseaudio	                                                       media
 ################################################################################
+davmail
 htc
 hts
 nxproxyc
