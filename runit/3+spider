@@ -7,7 +7,7 @@ PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 
 ########################################
 
-def_color="\\033[0;39m"		# light gray
+def_color="\\033[0;37m"		# light gray
 msg_color="\\033[1;37m"		# white
 
 term_color="\\033[1;34m"	# dark blue
