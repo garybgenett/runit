@@ -6,6 +6,14 @@ declare RUNLEVELS="./_runlevels.txt"
 
 ################################################################################
 
+${RM} /etc/runit
+${RM} /service
+
+${LN} /.runit		/etc/runit
+${LN} /.runit/services	/service
+
+########################################
+
 ${MKDIR} ./log
 ${RM} ./log/*
 
