@@ -1,0 +1,18 @@
+#!/bin/sh
+exec 2>&1
+killall -9 Xvfb
+export HOME="/.g/_data/zactive/.home"
+export SHELL="/bin/bash"
+export XINIT_CMD="$(which xinit)"
+export XVFB_CMD="$(which Xvfb)"
+exec sudo \
+	-H			\
+	-u \#1000		\
+	${XINIT_CMD} \
+		${HOME}/.xsession \
+		-- \
+		${XVFB_CMD} \
+			:1			\
+			-nolisten tcp		\
+			-screen 0 1680x1050x24
+# end of file
