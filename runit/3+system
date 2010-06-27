@@ -73,7 +73,7 @@ report_status killall5 -9
 countdown
 
 print_msg "Cleaning up temporary directories and files..."
-report_status rm -frv $(find /tmp/ -mindepth 1 -maxdepth 1 2>/dev/null)
+#>>>report_status rm -frv $(find /tmp/ -mindepth 1 -maxdepth 1 2>/dev/null)
 report_status rm -frv $(find /var/{lock,run} -mindepth 1 -maxdepth 1 2>/dev/null)
 report_status eval "echo >/var/log/wtmp"
 report_status eval "echo >/var/run/utmp"
