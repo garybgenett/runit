@@ -50,16 +50,16 @@ print_msg "Setting clock..."
 report_status hwclock --hctosys --localtime
 
 print_msg "Creating device directory..."
-report_status mount -n -t tmpfs		none /dev
+report_status mount -n -t tmpfs					none /dev
 report_status cp -afv /lib/udev/devices/* /dev
 report_status mkdir -pv /dev/.udev
-report_status mount -n -t devpts	none /dev/pts
-OPT="-o size=805306368" # 3 * 2^8 * (2^10)^2
-report_status mount -n -t tmpfs ${OPT}	none /dev/shm
+report_status mount -n -t devpts	-o noexec,nosuid	none /dev/pts
+OPT="-o size=50%,mode=700"
+report_status mount -n -t tmpfs ${OPT}	-o nodev,nosuid		none /dev/shm
 
 print_msg "Mounting kernel filesystems..."
-report_status mount -n -t proc		none /proc
-report_status mount -n -t sysfs		none /sys
+report_status mount -n -t proc		-o nodev,noexec,nosuid	none /proc
+report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
 if [ -f /etc/sysctl.conf ]; then
 	print_msg "Setting kernel variables..."
