@@ -1,15 +1,130 @@
-bind
-cups
-dhcpd
-dovecot
-etc
-grub
-linux
-minicom
-network
-ntp
-openvpn
-proftpd
-samba
-ssh
-xorg
+#!/usr/bin/env bash
+source ${HOME}/.bashrc
+################################################################################
+
+declare SETCONF_DIR="/.g/_data/zactive/.setup"
+
+################################################################################
+
+declare DIR=
+for DIR in \
+	bind		\
+	cups		\
+	dhcpd		\
+	dovecot		\
+	etc		\
+	grub		\
+	linux		\
+	minicom		\
+	ntp		\
+	openvpn		\
+	proftpd		\
+	samba		\
+	ssh		\
+	xorg
+do
+	${MKDIR}			/.setup/${DIR}
+	setconf ${SETCONF_DIR}/${DIR}	/.setup/${DIR}
+done
+
+########################################
+
+chown -vR root:root			/.setup
+chmod -vR 755				/.setup
+
+chown -vR nobody:root			/.setup/bind
+chown -vR root:lpadmin			/.setup/cups
+
+chmod -v 400				/.setup/ssh/ssh_host_*
+chmod -v 400				/.setup/samba/*.tdb
+
+########################################
+
+${RM}					/.setup/.setconf
+${LN} ${SETCONF_DIR}/.setconf		/.setup/.setconf
+
+########################################
+
+# bind
+${RM}					/etc/bind
+${LN} /.setup/bind			/etc/bind
+${RM}					/etc/named.conf
+${LN} /.setup/bind/named.conf		/etc/named.conf
+
+# cups
+${RM}					/etc/cups
+${LN} /.setup/cups			/etc/cups
+
+# dhcpd
+${RM}					/etc/dhcpd.conf
+${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcpd.conf
+
+# dovecot
+${RM}					/etc/dovecot
+${LN} /.setup/dovecot			/etc/dovecot
+
+# etc
+declare FILE=
+for FILE in \
+	crypttab	\
+	exports		\
+	fstab		\
+	host.conf	\
+	hostname	\
+	hosts		\
+	locale.gen	\
+	modules		\
+	networks	\
+	resolv.conf	\
+	sysctl.conf
+do
+	${RM}				/etc/${FILE}
+	${LN} /.setup/etc/${FILE}	/etc/${FILE}
+done
+
+# grub
+${RM}					/boot/grub/grub.cfg
+${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
+${RM}					/boot/grub/menu.lst
+${LN} /.setup/grub/menu.lst		/boot/grub/menu.lst
+
+# linux
+
+# minicom
+${RM}					/etc/minicom
+${LN} /.setup/minicom			/etc/minicom
+${RM}					/etc/minirc.dfl
+${LN} /.setup/minicom/minirc.dfl	/etc/minirc.dfl
+
+# ntp
+${RM}					/etc/ntp-servers.conf
+${LN} /.setup/ntp/ntp-servers.conf	/etc/ntp-servers.conf
+${RM}					/etc/ntp.conf
+${LN} /.setup/ntp/ntp.conf		/etc/ntp.conf
+
+# openvpn
+${RM}					/etc/openvpn
+${LN} /.setup/openvpn			/etc/openvpn
+
+# proftpd
+${RM}					/etc/proftpd.conf
+${LN} /.setup/proftpd/proftpd.conf	/etc/proftpd.conf
+
+# samba
+${RM}					/etc/samba
+${LN} /.setup/samba			/etc/samba
+
+# ssh
+${RM}					/etc/ssh
+${LN} /.setup/ssh			/etc/ssh
+
+# xorg
+${RM}					/etc/X11/Xmodmap
+${LN} /.setup/xorg/Xmodmap		/etc/X11/Xmodmap
+${RM}					/etc/X11/xorg.conf
+${LN} /.setup/xorg/xorg.conf		/etc/X11/xorg.conf
+
+exit 0
+################################################################################
+# end of file
+################################################################################
