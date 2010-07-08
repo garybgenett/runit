@@ -18,12 +18,12 @@ ${LN} /.runit/services	/var/service
 
 ########################################
 
-${MKDIR} /etc/init.d
+#>>>${MKDIR} /etc/init.d
 
-for SVC in $(ls ./_config); do
-	${RM} /etc/init.d/${SVC}
-	${LN} ${SV_CMD} /etc/init.d/${SVC}
-done
+#>>>for SVC in $(ls ./_config); do
+#>>>	${RM} /etc/init.d/${SVC}
+#>>>	${LN} ${SV_CMD} /etc/init.d/${SVC}
+#>>>done
 
 ########################################
 
