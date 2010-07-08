@@ -8,9 +8,11 @@ declare RUNLEVELS="./_runlevels.txt"
 
 ${RM} /etc/runit
 ${RM} /service
+${RM} /var/service
 
 ${LN} /.runit		/etc/runit
 ${LN} /.runit/services	/service
+${LN} /.runit/services	/var/service
 
 ########################################
 
