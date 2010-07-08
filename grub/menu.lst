@@ -7,41 +7,59 @@ terminal --timeout=5 console serial
 
 color light-gray/black black/light-gray
 
-default 0
+default 1
 timeout 5
 
 ########################################
 
+title Main
+rootnoverify (hd0,0)
+configfile /boot/menu.lst
+
+########################################
+
 title Root: Current
+rootnoverify (hd0,1)
 kernel /boot/_cur vga=791 root=/dev/sda2 ro init=/sbin/runit-init
 title Root: Current (console)
+rootnoverify (hd0,1)
 kernel /boot/_cur vga=791 root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 title Root: New
+rootnoverify (hd0,1)
 kernel /boot/_new vga=791 root=/dev/sda2 ro init=/sbin/runit-init
 title Root: New (console)
+rootnoverify (hd0,1)
 kernel /boot/_new vga=791 root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 title Root: Old
+rootnoverify (hd0,1)
 kernel /boot/_old vga=791 root=/dev/sda2 ro init=/sbin/runit-init
 title Root: Old (console)
+rootnoverify (hd0,1)
 kernel /boot/_old vga=791 root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 ########################################
 
 title Toor: Current
+rootnoverify (hd0,2)
 kernel /boot/_cur vga=791 root=/dev/sda3 ro init=/sbin/runit-init
 title Toor: Current (console)
+rootnoverify (hd0,2)
 kernel /boot/_cur vga=791 root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 title Toor: New
+rootnoverify (hd0,2)
 kernel /boot/_new vga=791 root=/dev/sda3 ro init=/sbin/runit-init
 title Toor: New (console)
+rootnoverify (hd0,2)
 kernel /boot/_new vga=791 root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 title Toor: Old
+rootnoverify (hd0,2)
 kernel /boot/_old vga=791 root=/dev/sda3 ro init=/sbin/runit-init
 title Toor: Old (console)
+rootnoverify (hd0,2)
 kernel /boot/_old vga=791 root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 
 ################################################################################
