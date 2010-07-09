@@ -6,6 +6,11 @@ declare SETCONF_DIR="/.g/_data/zactive/.setup"
 
 ################################################################################
 
+${RM}					/etc/localtime
+${LN} /usr/share/zoneinfo/US/Pacific	/etc/localtime
+
+########################################
+
 declare DIR=
 for DIR in \
 	bind		\
@@ -72,8 +77,10 @@ for FILE in \
 	host.conf	\
 	hostname	\
 	hosts		\
+	issue		\
 	locale.gen	\
 	modules		\
+	motd		\
 	networks	\
 	resolv.conf	\
 	sysctl.conf
