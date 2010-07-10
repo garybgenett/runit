@@ -50,6 +50,8 @@ ${RM}					/etc/named.conf
 ${LN} /.setup/bind/named.conf		/etc/named.conf
 
 # cups
+${RM}					/.setup/cups/mime.*
+${LN} /usr/share/cups/mime/mime.*	/.setup/cups
 ${RM}					/etc/cups
 ${LN} /.setup/cups			/etc/cups
 
