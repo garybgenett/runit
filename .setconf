@@ -50,8 +50,6 @@ ${RM}					/etc/named.conf
 ${LN} /.setup/bind/named.conf		/etc/named.conf
 
 # cups
-chown -vR root:lpadmin			/.setup/cups
-chmod -vR 775				/.setup/cups
 ${RM}					/etc/cups
 ${LN} /.setup/cups			/etc/cups
 
