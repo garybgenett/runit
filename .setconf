@@ -39,6 +39,7 @@ chmod -vR 755				/.setup
 
 chown -vR nobody:root			/.setup/bind
 chown -vR root:lpadmin			/.setup/cups
+chmod -vR 775				/.setup/cups
 
 chmod -v 400				/.setup/ssh/ssh_host_*
 chmod -v 700				/.setup/samba/private
