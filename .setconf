@@ -41,7 +41,8 @@ chown -vR nobody:root			/.setup/bind
 chown -vR root:lpadmin			/.setup/cups
 
 chmod -v 400				/.setup/ssh/ssh_host_*
-chmod -v 400				/.setup/samba/*.tdb
+chmod -v 700				/.setup/samba/private
+chmod -v 400				/.setup/samba/private/*.tdb
 
 ########################################
 
