@@ -14,66 +14,66 @@ set timeout=5
 ########################################
 
 menuentry "Main" {
-rootnoverify (hd0,0)
+root (hd0,1)
 configfile /boot/grub.cfg
 }
 
 ########################################
 
 menuentry "Root: Current" {
-rootnoverify (hd0,1)
-kernel /boot/_cur vga=791 root=/dev/vda2 ro init=/sbin/runit-init
+root (hd0,2)
+linux /boot/_cur vga=791 root=/dev/vda2 ro init=/sbin/runit-init
 }
 menuentry "Root: Current (console)" {
-rootnoverify (hd0,1)
-kernel /boot/_cur vga=791 root=/dev/vda2 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,2)
+linux /boot/_cur vga=791 root=/dev/vda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: New" {
-rootnoverify (hd0,1)
-kernel /boot/_new vga=791 root=/dev/vda2 ro init=/sbin/runit-init
+root (hd0,2)
+linux /boot/_new vga=791 root=/dev/vda2 ro init=/sbin/runit-init
 }
 menuentry "Root: New (console)" {
-rootnoverify (hd0,1)
-kernel /boot/_new vga=791 root=/dev/vda2 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,2)
+linux /boot/_new vga=791 root=/dev/vda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Old" {
-rootnoverify (hd0,1)
-kernel /boot/_old vga=791 root=/dev/vda2 ro init=/sbin/runit-init
+root (hd0,2)
+linux /boot/_old vga=791 root=/dev/vda2 ro init=/sbin/runit-init
 }
 menuentry "Root: Old (console)" {
-rootnoverify (hd0,1)
-kernel /boot/_old vga=791 root=/dev/vda2 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,2)
+linux /boot/_old vga=791 root=/dev/vda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 ########################################
 
 menuentry "Toor: Current" {
-rootnoverify (hd0,2)
-kernel /boot/_cur vga=791 root=/dev/vda3 ro init=/sbin/runit-init
+root (hd0,3)
+linux /boot/_cur vga=791 root=/dev/vda3 ro init=/sbin/runit-init
 }
 menuentry "Toor: Current (console)" {
-rootnoverify (hd0,2)
-kernel /boot/_cur vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,3)
+linux /boot/_cur vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: New" {
-rootnoverify (hd0,2)
-kernel /boot/_new vga=791 root=/dev/vda3 ro init=/sbin/runit-init
+root (hd0,3)
+linux /boot/_new vga=791 root=/dev/vda3 ro init=/sbin/runit-init
 }
 menuentry "Toor: New (console)" {
-rootnoverify (hd0,2)
-kernel /boot/_new vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,3)
+linux /boot/_new vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: Old" {
-rootnoverify (hd0,2)
-kernel /boot/_old vga=791 root=/dev/vda3 ro init=/sbin/runit-init
+root (hd0,3)
+linux /boot/_old vga=791 root=/dev/vda3 ro init=/sbin/runit-init
 }
 menuentry "Toor: Old (console)" {
-rootnoverify (hd0,2)
-kernel /boot/_old vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,3)
+linux /boot/_old vga=791 root=/dev/vda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 ################################################################################
