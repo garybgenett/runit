@@ -14,24 +14,30 @@ set timeout=5
 ########################################
 
 menuentry "Root: Current" {
-kernel /boot/_cur vga=791 root=/dev/sda1 ro init=/sbin/runit-init
+root (hd0,1)
+linux /boot/_cur vga=791 root=/dev/sda1 ro init=/sbin/runit-init
 }
 menuentry "Root: Current (console)" {
-kernel /boot/_cur vga=791 root=/dev/sda1 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,1)
+linux /boot/_cur vga=791 root=/dev/sda1 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: New" {
-kernel /boot/_new vga=791 root=/dev/sda1 ro init=/sbin/runit-init
+root (hd0,1)
+linux /boot/_new vga=791 root=/dev/sda1 ro init=/sbin/runit-init
 }
 menuentry "Root: New (console)" {
-kernel /boot/_new vga=791 root=/dev/sda1 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,1)
+linux /boot/_new vga=791 root=/dev/sda1 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Old" {
-kernel /boot/_old vga=791 root=/dev/sda1 ro init=/sbin/runit-init
+root (hd0,1)
+linux /boot/_old vga=791 root=/dev/sda1 ro init=/sbin/runit-init
 }
 menuentry "Root: Old (console)" {
-kernel /boot/_old vga=791 root=/dev/sda1 ro init=/sbin/runit-init console=ttyS0,9600n8
+root (hd0,1)
+linux /boot/_old vga=791 root=/dev/sda1 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 ################################################################################
