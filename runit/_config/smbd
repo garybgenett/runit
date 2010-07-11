@@ -1,6 +1,4 @@
 #!/bin/sh
-# edit: /etc/samba/smb.conf
-# change: force group = nobody
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
