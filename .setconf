@@ -11,6 +11,12 @@ ${LN} /usr/share/zoneinfo/US/Pacific	/etc/localtime
 
 ########################################
 
+${RM}					/_arch*
+${LN} /.g/_data/_build/_arch		/_arch
+${LN} /.g/_data/_build/_arch.git	/_arch.git
+
+########################################
+
 declare DIR=
 for DIR in \
 	bind		\
