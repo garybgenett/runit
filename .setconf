@@ -129,6 +129,13 @@ ${LN} /.setup/xorg/Xmodmap		/etc/X11/Xmodmap
 ${RM}					/etc/X11/xorg.conf
 ${LN} /.setup/xorg/xorg.conf		/etc/X11/xorg.conf
 
+########################################
+
+${MKDIR}				/.runit
+setconf ${SETCONF_DIR}/runit		/.runit
+
+(cd /.runit;				./_build.sh)
+
 exit 0
 ################################################################################
 # end of file
