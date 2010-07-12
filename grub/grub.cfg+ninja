@@ -5,13 +5,13 @@
 serial --unit=0 --speed=9600 --word=8 --parity=no --stop=1
 terminal --timeout=5 serial console
 
-set menu_color_normal=light-gray/black
-set menu_color_highlight=black/light-gray
-
 insmod vbe
 insmod gfxterm
 set gfxmode=1024x768x16,1024x768,800x600,640x480
 set gfxpayload=keep
+
+set menu_color_normal=light-gray/black
+set menu_color_highlight=black/light-gray
 
 set default=2
 set timeout=5
