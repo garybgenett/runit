@@ -93,8 +93,6 @@ done
 # grub
 ${RM}					/boot/grub/grub.cfg
 ${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
-${RM}					/boot/grub/menu.lst
-${LN} /.setup/grub/menu.lst		/boot/grub/menu.lst
 
 # linux
 
