@@ -2,16 +2,11 @@
 # grub configuration file
 ################################################################################
 
-terminal_output console
-
 serial --unit=0 --speed=9600 --word=8 --parity=no --stop=1
 terminal --timeout=5 serial console
 
 insmod vbe
-insmod vbeinfo
-insmod gfxterm
-set gfxmode=1280x1024,1024x768,800x600
-set gfxpayload=keep
+set gfxpayload=1280x1024,1024x768
 
 set menu_color_normal=light-gray/black
 set menu_color_highlight=black/light-gray
@@ -29,34 +24,28 @@ configfile /boot/grub.cfg
 ########################################
 
 menuentry "Root: Current" {
-terminal_output gfxterm
 root (hd0,2)
 linux /boot/_cur root=/dev/sda2 ro init=/sbin/runit-init
 }
 menuentry "Root: Current (console)" {
-terminal_output gfxterm
 root (hd0,2)
 linux /boot/_cur root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: New" {
-terminal_output gfxterm
 root (hd0,2)
 linux /boot/_new root=/dev/sda2 ro init=/sbin/runit-init
 }
 menuentry "Root: New (console)" {
-terminal_output gfxterm
 root (hd0,2)
 linux /boot/_new root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Old" {
-terminal_output gfxterm
 root (hd0,2)
 linux /boot/_old root=/dev/sda2 ro init=/sbin/runit-init
 }
 menuentry "Root: Old (console)" {
-terminal_output gfxterm
 root (hd0,2)
 linux /boot/_old root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
@@ -64,34 +53,28 @@ linux /boot/_old root=/dev/sda2 ro init=/sbin/runit-init console=ttyS0,9600n8
 ########################################
 
 menuentry "Toor: Current" {
-terminal_output gfxterm
 root (hd0,3)
 linux /boot/_cur root=/dev/sda3 ro init=/sbin/runit-init
 }
 menuentry "Toor: Current (console)" {
-terminal_output gfxterm
 root (hd0,3)
 linux /boot/_cur root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: New" {
-terminal_output gfxterm
 root (hd0,3)
 linux /boot/_new root=/dev/sda3 ro init=/sbin/runit-init
 }
 menuentry "Toor: New (console)" {
-terminal_output gfxterm
 root (hd0,3)
 linux /boot/_new root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: Old" {
-terminal_output gfxterm
 root (hd0,3)
 linux /boot/_old root=/dev/sda3 ro init=/sbin/runit-init
 }
 menuentry "Toor: Old (console)" {
-terminal_output gfxterm
 root (hd0,3)
 linux /boot/_old root=/dev/sda3 ro init=/sbin/runit-init console=ttyS0,9600n8
 }
