@@ -12,7 +12,7 @@ set +a
 rm -frv /.runit/runsvdir/current
 ln -fsv maint /.runit/runsvdir/current
 
-runsvchdir /.runit/runsvdir/media
+runsvchdir /.runit/runsvdir/maint
 runsvdir /.runit/runsvdir/current ................................................................................................................................
 
 exit 111
