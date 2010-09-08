@@ -3,9 +3,7 @@
 # runit stage 2 script
 ################################################################################
 
-set -a
-PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
-set +a
+export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 
 ################################################################################
 
