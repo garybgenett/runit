@@ -25,11 +25,6 @@ thttpd		                      server server_v server_r default media
 ################################################################################
 xvfb		                             server_v server_r default media
 ################################################################################
-autossh		station                               server_r
-dhcpcd		station
-xorg		station maint_x                                default media
-xsession	station maint_x                                default media
-################################################################################
 cupsd		                                               default media
 dbus		                                               default media
 hald		                                               default media
@@ -38,6 +33,11 @@ smbd		                                               default media
 pavucontrol	                                                       media
 projectm	                                                       media
 pulseaudio	                                                       media
+################################################################################
+autossh		station                               server_r
+dhcpcd		station
+xorg		station maint_x                                        media
+xsession	station maint_x                                        media
 ################################################################################
 davmail
 htc
