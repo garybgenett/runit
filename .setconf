@@ -24,6 +24,7 @@ for DIR in \
 	dhcpd		\
 	dovecot		\
 	etc		\
+	gentoo		\
 	grub		\
 	linux		\
 	minicom		\
@@ -96,6 +97,10 @@ do
 	${RM}				/etc/${FILE}
 	${LN} /.setup/etc/${FILE}	/etc/${FILE}
 done
+
+# gentoo
+${RM}					/etc/make.conf
+${LN} /.setup/gentoo/make.conf		/etc/make.conf
 
 # grub
 ${RM}					/boot/grub/grub.cfg
