@@ -101,6 +101,8 @@ done
 # gentoo
 ${RM}					/etc/make.conf
 ${LN} /.setup/gentoo/make.conf		/etc/make.conf
+${RM}					/etc/portage/package.use
+${LN} /.setup/gentoo/package.use	/etc/portage/package.use
 
 # grub
 ${RM}					/boot/grub/grub.cfg
