@@ -38,15 +38,8 @@ done
 chown -vR root:root			/.setup
 chmod -vR 755				/.setup
 
-declare FILE=
-for FILE in \
-	.colorize	\
-	.packages	\
-	.setconf
-do
-	${RM}				/.setup/${FILE}
-	${LN} ${SETCONF_DIR}/${FILE}	/.setup/${FILE}
-done
+${RM}					/.setup/.setconf
+${LN} ${SETCONF_DIR}/.setconf		/.setup/.setconf
 
 ########################################
 
