@@ -88,6 +88,12 @@ done
 # gentoo
 ${RM}					/etc/make.conf
 ${LN} /.setup/gentoo/make.conf		/etc/make.conf
+${RM}					/etc/portage/package.keywords
+${LN} /.setup/gentoo/package.keywords	/etc/portage/package.keywords
+${RM}					/etc/portage/package.mask
+${LN} /.setup/gentoo/package.mask	/etc/portage/package.mask
+${RM}					/etc/portage/package.unmask
+${LN} /.setup/gentoo/package.unmask	/etc/portage/package.unmask
 ${RM}					/etc/portage/package.use
 ${LN} /.setup/gentoo/package.use	/etc/portage/package.use
 
