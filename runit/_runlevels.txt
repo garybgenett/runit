@@ -28,11 +28,11 @@ xvfb		                             server_v server_r default media
 cupsd		                                               default media
 dbus		                                               default media
 hald		                                               default media
+pulseaudio	                                               default media
 smbd		                                               default media
 ################################################################################
 pavucontrol	                                                       media
 projectm	                                                       media
-pulseaudio	                                                       media
 ################################################################################
 autossh		station                               server_r
 dhcpcd		station
