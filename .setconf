@@ -2,12 +2,20 @@
 source ${HOME}/.bashrc
 ################################################################################
 
+declare PORTAGE_DIR="/.g/_data/_build/_portage"
 declare SETCONF_DIR="/.g/_data/zactive/.setup"
 
 ################################################################################
 
 ${RM}					/etc/localtime
 ${LN} /usr/share/zoneinfo/US/Pacific	/etc/localtime
+
+########################################
+
+${RM}					/usr/portage
+${LN} ${PORTAGE_DIR}/usr.portage	/usr/portage
+${RM}					/var/tmp
+${LN} ${PORTAGE_DIR}/var.tmp		/var/tmp
 
 ########################################
 
