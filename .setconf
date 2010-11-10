@@ -65,8 +65,8 @@ ${RM}					/etc/cups
 ${LN} /.setup/cups			/etc/cups
 
 # dhcpd
-${RM}					/etc/dhcpd.conf
-${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcpd.conf
+${RM}					/etc/dhcp/dhcpd.conf
+${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcp/dhcpd.conf
 
 # dovecot
 ${RM}					/etc/dovecot
@@ -128,8 +128,8 @@ ${RM}					/etc/openvpn
 ${LN} /.setup/openvpn			/etc/openvpn
 
 # proftpd
-${RM}					/etc/proftpd.conf
-${LN} /.setup/proftpd/proftpd.conf	/etc/proftpd.conf
+${RM}					/etc/proftpd/proftpd.conf
+${LN} /.setup/proftpd/proftpd.conf	/etc/proftpd/proftpd.conf
 
 # samba
 chmod -v 700				/.setup/samba/private
