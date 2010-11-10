@@ -51,8 +51,24 @@ report_status hwclock --hctosys --localtime
 
 print_msg "Creating device directory..."
 report_status mount -n -t tmpfs					none /dev
-report_status cp -afv /lib/udev/devices/* /dev
-report_status mkdir -pv /dev/.udev
+make_devices() {
+	[ ! -d /dev/.udev   ] && mkdir -m 0755 /dev/.udev
+	[ ! -d /dev/pts     ] && mkdir -m 0755 /dev/pts
+	[ ! -d /dev/shm     ] && mkdir -m 0755 /dev/shm
+	[ ! -c /dev/console ] && mknod -m 0600 /dev/console	c 5 1
+	[ ! -c /dev/kmsg    ] && mknod -m 0666 /dev/kmsg	c 1 11
+	[ ! -c /dev/null    ] && mknod -m 0666 /dev/null	c 1 3
+	[ ! -c /dev/random  ] && mknod -m 0666 /dev/random	c 1 8
+	[ ! -c /dev/urandom ] && mknod -m 0666 /dev/urandom	c 1 9
+	[ ! -c /dev/zero    ] && mknod -m 0666 /dev/zero	c 1 5
+	[ ! -h /dev/core    ] && ln -fns /proc/kcore		/dev/core
+	[ ! -h /dev/fd      ] && ln -fns /proc/self/fd		/dev/fd
+	[ ! -h /dev/stderr  ] && ln -fns /proc/self/fd/2	/dev/stderr
+	[ ! -h /dev/stdin   ] && ln -fns /proc/self/fd/0	/dev/stdin
+	[ ! -h /dev/stdout  ] && ln -fns /proc/self/fd/1	/dev/stdout
+	return 0
+}
+report_status make_devices
 report_status mount -n -t devpts	-o noexec,nosuid	none /dev/pts
 OPT="-o size=50%,mode=700"
 report_status mount -n -t tmpfs ${OPT}	-o nodev,nosuid		none /dev/shm
