@@ -98,7 +98,7 @@ report_status fsck -p -C -V		/			|| emergency_shell
 report_status mount -n -o remount,rw	/			|| emergency_shell
 
 print_msg "Creating new mtab..."
-report_status rm -frv /etc/mtab*
+report_status rm -frv /etc/mtab
 report_status mount -o remount /
 report_status mount -o remount -t tmpfs		none /dev
 report_status mount -o remount -t devpts	none /dev/pts
@@ -111,13 +111,13 @@ print_msg "Checking and mounting remaining filesystems..."
 report_status fsck -p -A -C -R -V				|| emergency_shell
 report_status mount -a -t nodevpts,noproc,nosysfs,notmpfs	|| emergency_shell
 
-print_msg "Cleaning up temporary directories and files..."
+#>>>print_msg "Cleaning up temporary directories and files..."
 #>>>report_status rm -frv $(find /tmp/ -mindepth 1 -maxdepth 1 2>/dev/null)
-report_status rm -frv $(find /var/{lock,run} -mindepth 1 -maxdepth 1 2>/dev/null)
-report_status eval "echo >/var/log/wtmp"
-report_status eval "echo >/var/run/utmp"
-report_status chown root:root /var/{log,run}/[uw]tmp
-report_status chmod 644 /var/{log,run}/[uw]tmp
+#>>>report_status rm -frv $(find /var/{lock,run} -mindepth 1 -maxdepth 1 2>/dev/null)
+#>>>report_status eval "echo >/var/log/wtmp"
+#>>>report_status eval "echo >/var/run/utmp"
+#>>>report_status chown root:root /var/{log,run}/[uw]tmp
+#>>>report_status chmod 644 /var/{log,run}/[uw]tmp
 
 if [ -x "$(which alsamixer)" ] &&
    [ -f /etc/asound.state ]; then
