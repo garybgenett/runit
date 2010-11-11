@@ -1,5 +1,8 @@
 #!/bin/sh
 # edit: /etc/dbus-1/system.conf
+sed -i -r \
+	-e 's|^[[:space:]]+(<fork/>)|<!-- \1 -->|;' \
+	/etc/dbus-1/system.conf
 # comment: <fork/>
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1

@@ -1,5 +1,8 @@
 #!/bin/sh
 # edit: /etc/pulse/default.pa
+sed -i -r \
+	-e 's|^(load-module module-console-kit)|#\1|;' \
+	/etc/pulse/default.pa
 # comment: load-module module-console-kit
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
