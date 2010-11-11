@@ -81,7 +81,7 @@ export IFS="${IFS_ORIG}"
 
 for SVC in $(ls ./_config); do
 	if [[ -z $(${GREP} "^${SVC}" ${RUNLEVELS}) ]]; then
-		echo -ne "\n !!! SERVICE '${SVC}' MISSING !!!\n"
+		echo -en "\n !!! SERVICE '${SVC}' MISSING !!!\n"
 	fi
 done
 
