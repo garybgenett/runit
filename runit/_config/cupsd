@@ -1,8 +1,8 @@
 #!/bin/sh
 # edit: /etc/cups/cupsd.conf
-# add: AccessLog /dev/stdout
-# add: ErrorLog /dev/stdout
-# add: PageLog /dev/stdout
+# set: AccessLog /dev/stdout
+# set: ErrorLog /dev/stdout
+# set: PageLog /dev/stdout
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
