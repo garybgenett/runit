@@ -32,7 +32,7 @@ pulseaudio	                                               default media
 smbd		                                               default media
 ################################################################################
 pavucontrol	                                                       media
-projectm	                                                       media
+xbmc		                                                       media
 ################################################################################
 autossh		station                               server_r
 dhcpcd		station
@@ -44,6 +44,7 @@ htc
 hts
 nxproxyc
 nxproxys
+projectm
 xdm
 ################################################################################
 # end of file
