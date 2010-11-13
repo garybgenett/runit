@@ -61,11 +61,11 @@ make_devices() {
 	[ ! -c /dev/random  ] && mknod -m 0666 /dev/random	c 1 8
 	[ ! -c /dev/urandom ] && mknod -m 0666 /dev/urandom	c 1 9
 	[ ! -c /dev/zero    ] && mknod -m 0666 /dev/zero	c 1 5
-	[ ! -h /dev/core    ] && ln -fns /proc/kcore		/dev/core
-	[ ! -h /dev/fd      ] && ln -fns /proc/self/fd		/dev/fd
-	[ ! -h /dev/stderr  ] && ln -fns /proc/self/fd/2	/dev/stderr
-	[ ! -h /dev/stdin   ] && ln -fns /proc/self/fd/0	/dev/stdin
-	[ ! -h /dev/stdout  ] && ln -fns /proc/self/fd/1	/dev/stdout
+	[ ! -L /dev/core    ] && ln -fns /proc/kcore		/dev/core
+	[ ! -L /dev/fd      ] && ln -fns /proc/self/fd		/dev/fd
+	[ ! -L /dev/stderr  ] && ln -fns /proc/self/fd/2	/dev/stderr
+	[ ! -L /dev/stdin   ] && ln -fns /proc/self/fd/0	/dev/stdin
+	[ ! -L /dev/stdout  ] && ln -fns /proc/self/fd/1	/dev/stdout
 	return 0
 }
 report_status make_devices
