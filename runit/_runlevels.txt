@@ -42,8 +42,6 @@ xsession	station maint_x                                        media
 davmail
 htc
 hts
-nxproxyc
-nxproxys
 projectm
 xdm
 ################################################################################
