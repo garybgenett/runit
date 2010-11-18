@@ -39,7 +39,6 @@ dhcpcd		station
 xorg		station maint_x                                        media
 xsession	station maint_x                                        media
 ################################################################################
-davmail
 htc
 hts
 projectm
