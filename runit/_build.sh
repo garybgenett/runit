@@ -88,6 +88,12 @@ chown -vR root:tcpdump	./services/tcpdump/log
 
 ########################################
 
+${RM} ./ctrlaltdel
+${RM} ./reboot
+${RM} ./stopit
+
+########################################
+
 for SVC in $(ls ./_config); do
 	if [[ -z $(${GREP} "^${SVC}" ${RUNLEVELS}) ]]; then
 		echo -en "\n !!! SERVICE '${SVC}' MISSING !!!\n"
