@@ -85,6 +85,7 @@ chown -vR root:root	./
 chmod -vR 755		./
 
 chown -vR root:tcpdump	./services/tcpdump/log
+chmod -vR 775		./services/tcpdump/log
 
 ########################################
 
