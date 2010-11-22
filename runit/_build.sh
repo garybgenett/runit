@@ -79,6 +79,15 @@ for LINE in $(eval ${GREP} -v "^[#]" ${RUNLEVELS}); do
 done
 export IFS="${IFS_ORIG}"
 
+########################################
+
+chown -vR root:root	./
+chmod -vR 755		./
+
+chown -vR root:tcpdump	./services/tcpdump/log
+
+########################################
+
 for SVC in $(ls ./_config); do
 	if [[ -z $(${GREP} "^${SVC}" ${RUNLEVELS}) ]]; then
 		echo -en "\n !!! SERVICE '${SVC}' MISSING !!!\n"
