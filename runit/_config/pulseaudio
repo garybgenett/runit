@@ -13,7 +13,6 @@ killall -9 pulseaudio
 rm -frv /var/run/pulse/pid
 mkdir -pv /var/run/pulse
 chown -vR pulse:pulse /var/run/pulse
-export DISPLAY=":0"
 export PULSE_CMD="$(which pulseaudio)"
 exec sudo \
 	-H			\
