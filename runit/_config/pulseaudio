@@ -10,9 +10,6 @@ sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/dbus		|| exit 1
 sv start /.runit/services/hald		|| exit 1
 killall -9 pulseaudio
-rm -frv /var/run/pulse/pid
-mkdir -pv /var/run/pulse
-chown -vR pulse:pulse /var/run/pulse
 export PULSE_CMD="$(which pulseaudio)"
 exec sudo \
 	-H			\
