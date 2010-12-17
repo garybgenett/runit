@@ -6,7 +6,7 @@ export TCPDUMP_INT="eth0"
 exec tcpdump \
 	-i ${TCPDUMP_INT}				\
 	-w ${TCPDUMP_DIR}/tcpdump.${TCPDUMP_INT}.	\
-	-C 100						\
+	-C 10						\
 	-W 100						\
 	-s 0
 # end of file
