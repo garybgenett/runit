@@ -19,9 +19,9 @@ named		        maint_x maint server server_v server_r default media
 _sync		                      server server_v server_r default media
 dhcpd		                      server server_v server_r default media
 dovecot		                      server server_v server_r default media
+lighttpd	                      server server_v server_r default media
 proftpd		                      server server_v server_r default media
 tftpd		                      server server_v server_r default media
-thttpd		                      server server_v server_r default media
 ################################################################################
 xvfb		                             server_v server_r default media
 ################################################################################
@@ -42,6 +42,7 @@ xsession	station maint_x                                        media
 htc
 hts
 projectm
+thttpd
 xdm
 ################################################################################
 # end of file
