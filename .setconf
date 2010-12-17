@@ -28,6 +28,7 @@ for DIR in \
 	etc		\
 	gentoo		\
 	grub		\
+	lighttpd	\
 	linux		\
 	minicom		\
 	ntp		\
@@ -108,6 +109,10 @@ ${LN} /.setup/gentoo/package.use	/etc/portage/package.use
 # grub
 ${RM}					/boot/grub/grub.cfg
 ${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
+
+# lighttpd
+${RM}					/etc/lighttpd/lighttpd.conf
+${LN} /.setup/lighttpd/lighttpd.conf	/etc/lighttpd/lighttpd.conf
 
 # linux
 
