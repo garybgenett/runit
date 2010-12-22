@@ -21,6 +21,7 @@ ${LN} ${PORTAGE_DIR}/var.tmp		/var/tmp
 
 declare DIR=
 for DIR in \
+	awstats		\
 	bind		\
 	cups		\
 	dhcpd		\
@@ -51,6 +52,10 @@ ${RM}					/.setup/.setconf
 ${LN} ${SETCONF_DIR}/.setconf		/.setup/.setconf
 
 ########################################
+
+# awstats
+${RM}					/etc/awstats
+${LN} /.setup/awstats			/etc/awstats
 
 # bind
 chown -vR nobody:root			/.setup/bind
