@@ -4,6 +4,7 @@ killall -9 autossh
 export HOME="/.g/.home"
 exec autossh \
 	-M 0				\
+	-T				\
 	-i ${HOME}/.ssh/remote_id	\
 	-R 65533:127.0.0.1:22		\
 	plastic@me.garybgenett.net
