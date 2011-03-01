@@ -27,7 +27,6 @@ xvfb		                             server_v server_r default media
 ################################################################################
 cupsd		                                               default media
 dbus		                                               default media
-hald		                                               default media
 pulseaudio	                                               default media
 smbd		                                               default media
 ################################################################################
@@ -39,6 +38,7 @@ dhcpcd		station
 xorg		station maint_x                                        media
 xsession	station maint_x                                        media
 ################################################################################
+hald
 htc
 hts
 projectm
