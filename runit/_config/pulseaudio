@@ -8,7 +8,6 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/dbus		|| exit 1
-sv start /.runit/services/hald		|| exit 1
 killall -9 pulseaudio
 export PULSE_CMD="$(which pulseaudio)"
 exec sudo \
