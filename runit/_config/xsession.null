@@ -1,8 +1,9 @@
 #!/bin/sh
 exec 2>&1
-sv start /.runit/services/xorg		|| exit 1
+sv start /.runit/services/xorg.null	|| exit 1
 export HOME="/tmp/.null"
-export DISPLAY=":0"
+export SHELL=""
+export DISPLAY=":9"
 export OPENBOX_CMD="$(which openbox)"
 mkdir -pv ${HOME}/.config/openbox
 cat >${HOME}/.config/openbox/rc.xml <<END_OF_CONF
