@@ -35,8 +35,10 @@ xbmc		                                                       media
 ################################################################################
 autossh		station                               server_r
 dhcpcd		station
-xorg		station maint_x                                        media
-xsession	station maint_x                                        media
+xorg		station maint_x                                default media
+xorg.null	station maint_x                                        media
+xsession	station maint_x                                default media
+xsession.null	station maint_x                                        media
 ################################################################################
 hald
 htc

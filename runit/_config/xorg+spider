@@ -1,10 +1,11 @@
 #!/bin/sh
 exec 2>&1
-killall -9 Xorg
+kill -9 $(pgrep -f "Xorg :0")
 modprobe -v nvidia
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
 	:0			\
+	tty5			\
 	-keeptty		\
 	-logfile /dev/stderr	\
 	-nolisten tcp
