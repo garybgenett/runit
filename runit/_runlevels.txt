@@ -27,11 +27,8 @@ dhcpd		                                      server_r default media
 tftpd		                                      server_r default media
 ################################################################################
 cupsd		                                               default media
-dbus		                                               default media
-pulseaudio	                                               default media
 smbd		                                               default media
 ################################################################################
-pavucontrol	                                                       media
 xbmc		                                                       media
 ################################################################################
 autossh		station                               server_r
@@ -41,10 +38,10 @@ xorg.null	                                                       media
 xsession	station maint_x                                default media
 xsession.null	                                                       media
 ################################################################################
+dbus
 hald
 htc
 hts
-projectm
 thttpd
 xdm
 ################################################################################

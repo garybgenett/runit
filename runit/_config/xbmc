@@ -2,8 +2,6 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
-sv start /.runit/services/dbus		|| exit 1
-sv start /.runit/services/pulseaudio	|| exit 1
 sv start /.runit/services/xorg.null	|| exit 1
 killall -9 xbmc
 killall -9 xbmc.bin
