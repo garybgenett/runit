@@ -17,13 +17,14 @@ udevd		station maint_x maint server server_v server_r default media
 named		        maint_x maint server server_v server_r default media
 ################################################################################
 _sync		                      server server_v server_r default media
-dhcpd		                      server server_v server_r default media
 dovecot		                      server server_v server_r default media
 lighttpd	                      server server_v server_r default media
 proftpd		                      server server_v server_r default media
-tftpd		                      server server_v server_r default media
 ################################################################################
 xvfb		                             server_v server_r default media
+################################################################################
+dhcpd		                                      server_r default media
+tftpd		                                      server_r default media
 ################################################################################
 cupsd		                                               default media
 dbus		                                               default media
