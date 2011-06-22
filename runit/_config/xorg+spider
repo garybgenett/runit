@@ -1,6 +1,7 @@
 #!/bin/sh
 exec 2>&1
 kill -9 $(pgrep -f "Xorg :0")
+rmmod -v nvidia
 modprobe -v nvidia
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
