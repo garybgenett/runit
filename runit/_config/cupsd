@@ -1,11 +1,11 @@
 #!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
 # edit: /etc/cups/cupsd.conf
 # set: AccessLog /dev/stdout
 # set: ErrorLog /dev/stdout
 # set: PageLog /dev/stdout
-exec 2>&1
-sv start /.runit/services/syslogd	|| exit 1
-sv start /.runit/services/klogd		|| exit 1
 killall -9 cupsd
 exec cupsd \
 	-f
