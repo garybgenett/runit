@@ -11,8 +11,8 @@ exec sudo \
 	-H			\
 	-u \#1000		\
 	${XINIT_CMD} \
-		${HOME}/.xsession \
-		-- \
+		${HOME}/.xsession	\
+		--			\
 		${XVFB_CMD} \
 			:1			\
 			-nolisten tcp		\
