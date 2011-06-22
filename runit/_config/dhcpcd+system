@@ -1,5 +1,7 @@
 #!/bin/sh
 exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
 killall -9 dhcpcd
 cat >/etc/resolv.conf.head <<END_OF_CONF
 domain example.net
