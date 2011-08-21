@@ -21,8 +21,6 @@ dovecot		                      server server_v server_r default media
 lighttpd	                      server server_v server_r default media
 proftpd		                      server server_v server_r default media
 ################################################################################
-xvfb		                             server_v server_r default media
-################################################################################
 dhcpd		                                      server_r default media
 tftpd		                                      server_r default media
 ################################################################################
@@ -37,6 +35,7 @@ xorg		station maint_x                                default media
 xorg.null	                                                       media
 xsession	station maint_x                                default media
 xsession.null	                                                       media
+xvfb		                             server_v          default media
 ################################################################################
 dbus
 hald
