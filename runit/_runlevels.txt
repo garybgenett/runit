@@ -35,7 +35,7 @@ xorg		station maint_x                                default media
 xorg.null	                                                       media
 xsession	station maint_x                                default media
 xsession.null	                                                       media
-xvfb		                             server_v          default media
+xvfb		        maint_x              server_v          default media
 ################################################################################
 dbus
 hald
