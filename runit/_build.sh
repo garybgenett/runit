@@ -56,15 +56,9 @@ done
 
 ${RM} ./runsvdir/*/*
 
-declare IFS_ORIG="${IFS}"
-declare IFS_LINE="
-"
-
-export IFS="${IFS_LINE}"
 declare LINE
 declare LEVEL
-for LINE in $(eval ${GREP} -v "^[#]" ${RUNLEVELS}); do
-	export IFS="${IFS_ORIG}"
+${GREP} -v "^[#]" ${RUNLEVELS} | while read -r LINE; do
 	declare SVC_SET="false"
 	for LEVEL in ${LINE}; do
 		if ${SVC_SET}; then
@@ -75,9 +69,7 @@ for LINE in $(eval ${GREP} -v "^[#]" ${RUNLEVELS}); do
 			SVC_SET="true"
 		fi
 	done
-	export IFS="${IFS_LINE}"
 done
-export IFS="${IFS_ORIG}"
 
 ########################################
 
