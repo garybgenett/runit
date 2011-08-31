@@ -24,7 +24,6 @@ proftpd		                      server server_v server_r default media
 dhcpd		                                      server_r default media
 tftpd		                                      server_r default media
 ################################################################################
-cupsd		                                               default media
 smbd		                                               default media
 ################################################################################
 xbmc		                                                       media
@@ -37,6 +36,7 @@ xsession	      maint_x station                          default media
 xsession.null	                                                       media
 xvfb		      maint_x                server_v          default media
 ################################################################################
+cupsd
 dbus
 hald
 htc
