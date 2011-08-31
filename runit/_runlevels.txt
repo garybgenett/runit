@@ -21,15 +21,14 @@ dovecot		                      server server_v server_r default media
 lighttpd	                      server server_v server_r default media
 proftpd		                      server server_v server_r default media
 ################################################################################
-dhcpd		                                      server_r default media
-tftpd		                                      server_r default media
-################################################################################
 smbd		                                               default media
 ################################################################################
 xbmc		                                                       media
 ################################################################################
 autossh		              station                 server_r
 dhcpcd		              station
+dhcpd		                                      server_r
+tftpd		                                      server_r
 xorg		      maint_x station                          default media
 xorg.null	                                                       media
 xsession	      maint_x station                          default media
