@@ -45,6 +45,9 @@ countdown() {
 
 ################################################################################
 
+print_msg "Saving clock..."
+report_status hwclock --systohc --localtime
+
 if [ -x "$(which alsamixer)" ]; then
 	print_msg "Storing alsa state..."
 	store_alsa_state() {
@@ -57,9 +60,6 @@ if [ -x "$(which alsamixer)" ]; then
 	}
 	report_status store_alsa_state
 fi
-
-print_msg "Saving clock..."
-report_status hwclock --systohc --localtime
 
 print_msg "Syncing disks..."
 report_status sync
