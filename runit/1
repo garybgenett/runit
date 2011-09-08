@@ -82,7 +82,7 @@ report_status udevadm trigger
 report_status udevadm settle --timeout=10
 
 print_msg "Setting clock..."
-report_status hwclock --hctosys --localtime
+report_status hwclock --debug --hctosys --localtime
 
 if [ -f /etc/sysctl.conf ]; then
 	print_msg "Setting kernel variables..."
