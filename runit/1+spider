@@ -46,9 +46,6 @@ emergency_shell() {
 
 ################################################################################
 
-print_msg "Setting clock..."
-report_status hwclock --hctosys --localtime
-
 print_msg "Creating device directory..."
 report_status mount -n -t tmpfs					none /dev
 make_devices() {
@@ -78,6 +75,15 @@ print_msg "Mounting kernel filesystems..."
 report_status mount -n -t proc		-o nodev,noexec,nosuid	none /proc
 report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
+print_msg "Starting udev..."
+report_status eval "echo >/proc/sys/kernel/hotplug"
+report_status udevd --daemon
+report_status udevadm trigger
+report_status udevadm settle --timeout=10
+
+print_msg "Setting clock..."
+report_status hwclock --hctosys --localtime
+
 if [ -f /etc/sysctl.conf ]; then
 	print_msg "Setting kernel variables..."
 	report_status sysctl -p /etc/sysctl.conf
@@ -89,12 +95,6 @@ if [ -f /etc/modules ]; then
 		report_status modprobe -v ${MODULE}
 	done
 fi
-
-print_msg "Starting udev..."
-report_status eval "echo >/proc/sys/kernel/hotplug"
-report_status udevd --daemon
-report_status udevadm trigger
-report_status udevadm settle --timeout=10
 
 print_msg "Setting hostname..."
 [ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
