@@ -112,8 +112,8 @@ ${RM}					/etc/portage/package.use
 ${LN} /.setup/gentoo/package.use	/etc/portage/package.use
 
 # grub
-${RM}					/boot/grub/grub.cfg
-${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
+${RM}					/boot/grub2/grub.cfg
+${LN} /.setup/grub/grub.cfg		/boot/grub2/grub.cfg
 
 # lighttpd
 ${RM}					/etc/lighttpd/lighttpd.conf
