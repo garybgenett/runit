@@ -71,6 +71,8 @@ ${RM}					/etc/cups
 ${LN} /.setup/cups			/etc/cups
 
 # dhcpd
+${RM}					/etc/dhcp/dhcpd.conf
+${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcp/dhcpd.conf
 ${RM}					/etc/dhcpd.conf
 ${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcpd.conf
 
