@@ -2,7 +2,7 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
-killall -9 dhcpd
+killall -v -9 dhcpd
 rm -frv /var/run/dhcp/dhcpd.pid
 mkdir -pv /var/lib/dhcp
 touch /var/lib/dhcp/dhcpd.leases
