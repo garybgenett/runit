@@ -6,7 +6,7 @@ sv start /.runit/services/klogd		|| exit 1
 # set: AccessLog /dev/stdout
 # set: ErrorLog /dev/stdout
 # set: PageLog /dev/stdout
-killall -9 cupsd
+killall -v -9 cupsd
 exec cupsd \
 	-f
 # end of file

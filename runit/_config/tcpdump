@@ -1,6 +1,6 @@
 #!/bin/sh
 exec 2>&1
-killall -9 tcpdump
+killall -v -9 tcpdump
 export TCPDUMP_DIR="/.runit/services/tcpdump/log"
 export TCPDUMP_INT="eth0"
 exec tcpdump \

@@ -7,8 +7,8 @@ sed -i -r \
 	-e 's|^[[:space:]]+(<fork/>)|<!-- \1 -->|;' \
 	/etc/dbus-1/system.conf
 # comment: <fork/>
-killall -9 dbus-daemon
-killall -9 dbus-launch
+killall -v -9 dbus-daemon
+killall -v -9 dbus-launch
 rm -frv /var/run/dbus.pid
 mkdir -pv /var/run/dbus
 exec dbus-daemon \
