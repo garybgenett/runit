@@ -29,6 +29,7 @@ for DIR in \
 	etc		\
 	gentoo		\
 	grub		\
+	hostapd		\
 	lighttpd	\
 	linux		\
 	minicom		\
@@ -116,6 +117,10 @@ ${LN} /.setup/gentoo/package.use	/etc/portage/package.use
 # grub
 ${RM}					/boot/grub2/grub.cfg
 ${LN} /.setup/grub/grub.cfg		/boot/grub2/grub.cfg
+
+# hostapd
+${RM}					/etc/hostapd/hostapd.conf
+${LN} /.setup/hostapd/hostapd.conf	/etc/hostapd/hostapd.conf
 
 # lighttpd
 ${RM}					/etc/lighttpd/lighttpd.conf
