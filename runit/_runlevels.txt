@@ -26,6 +26,7 @@ xbmc		                                                       media
 ################################################################################
 autossh		              station                 server_r
 dhcpcd		              station
+hostapd		                      server server_v          default media
 named		maint maint_x         server server_v server_r default media
 #-------------------------------------------------------------------------------
 xorg		      maint_x station                          default media
