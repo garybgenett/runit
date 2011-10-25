@@ -1,7 +1,7 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-killall -9 klogd
+killall -v -9 klogd
 rm -frv /var/run/klogd.pid
 exec klogd \
 	-n	\

@@ -4,7 +4,7 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 # edit: /etc/ntp.conf
 # set: logfile /dev/stdout
-killall -9 ntpd
+killall -v -9 ntpd
 mkdir -pv /var/run/ntpd
 exec ntpd \
 	--nofork			\

@@ -2,7 +2,7 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
-killall -9 lighttpd
+killall -v -9 lighttpd
 rm -frv /var/run/lighttpd/lighttpd.pid
 mkdir -pv /var/run/lighttpd
 chown -vR nobody:nobody /var/run/lighttpd
