@@ -3,7 +3,6 @@
 ################################################################################
 klogd		maint maint_x station server server_v server_r default media
 ntpd		maint maint_x station server server_v server_r default media
-openvpn		maint maint_x station server server_v server_r default media
 sshd		maint maint_x station server server_v server_r default media
 syslogd		maint maint_x station server server_v server_r default media
 tcpdump		maint maint_x station server server_v server_r default media
@@ -15,7 +14,6 @@ ttyS0		maint maint_x station server server_v server_r default media
 udevd		maint maint_x station server server_v server_r default media
 #-------------------------------------------------------------------------------
 _sync		                      server server_v server_r default media
-dhcpd		                      server server_v server_r default media
 dovecot		                      server server_v server_r default media
 lighttpd	                      server server_v server_r default media
 proftpd		                      server server_v server_r default media
@@ -26,8 +24,11 @@ xbmc		                                                       media
 ################################################################################
 autossh		              station                 server_r
 dhcpcd		              station
-hostapd		                      server server_v          default media
-named		maint maint_x         server server_v server_r default media
+#-------------------------------------------------------------------------------
+dhcpd		maint maint_x         server server_v server_r default media
+hostapd		maint maint_x         server server_v          default media
+named		maint maint_x         server server_v          default media
+openvpn		maint maint_x         server server_v          default media
 #-------------------------------------------------------------------------------
 xorg		      maint_x station                          default media
 xorg.null	                                                       media
