@@ -1,17 +1,17 @@
 ################################################################################
-# service	maint maint_x station server server_v server_r default media
+# service	station maint maint_x server server_v server_r default media
 ################################################################################
-klogd		maint maint_x station server server_v server_r default media
-ntpd		maint maint_x station server server_v server_r default media
-sshd		maint maint_x station server server_v server_r default media
-syslogd		maint maint_x station server server_v server_r default media
-tcpdump		maint maint_x station server server_v server_r default media
-tty1		maint maint_x station server server_v server_r default media
-tty2		maint maint_x station server server_v server_r default media
-tty3		maint maint_x station server server_v server_r default media
-tty4		maint maint_x station server server_v server_r default media
-ttyS0		maint maint_x station server server_v server_r default media
-udevd		maint maint_x station server server_v server_r default media
+klogd		station maint maint_x server server_v server_r default media
+ntpd		station maint maint_x server server_v server_r default media
+sshd		station maint maint_x server server_v server_r default media
+syslogd		station maint maint_x server server_v server_r default media
+tcpdump		station maint maint_x server server_v server_r default media
+tty1		station maint maint_x server server_v server_r default media
+tty2		station maint maint_x server server_v server_r default media
+tty3		station maint maint_x server server_v server_r default media
+tty4		station maint maint_x server server_v server_r default media
+ttyS0		station maint maint_x server server_v server_r default media
+udevd		station maint maint_x server server_v server_r default media
 #-------------------------------------------------------------------------------
 _sync		                      server server_v server_r default media
 dovecot		                      server server_v server_r default media
@@ -22,19 +22,19 @@ tftpd		                      server server_v server_r default media
 #-------------------------------------------------------------------------------
 xbmc		                                                       media
 ################################################################################
-autossh		              station                 server_r
-dhcpcd		              station
+autossh		station                               server_r
+dhcpcd		station
 #-------------------------------------------------------------------------------
-dhcpd		maint maint_x         server server_v server_r default media
-hostapd		maint maint_x         server server_v          default media
-named		maint maint_x         server server_v          default media
-openvpn		maint maint_x         server server_v          default media
+dhcpd		        maint maint_x server server_v server_r default media
+hostapd		        maint maint_x server server_v          default media
+named		        maint maint_x server server_v          default media
+openvpn		        maint maint_x server server_v          default media
 #-------------------------------------------------------------------------------
-xorg		      maint_x station                          default media
+xorg		station       maint_x                          default media
 xorg.null	                                                       media
-xsession	      maint_x station                          default media
+xsession	station       maint_x                          default media
 xsession.null	                                                       media
-xvfb		      maint_x                server_v          default media
+xvfb		              maint_x        server_v          default media
 ################################################################################
 cupsd
 dbus
