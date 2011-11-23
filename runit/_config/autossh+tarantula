@@ -6,6 +6,6 @@ exec autossh \
 	-M 0				\
 	-T				\
 	-i ${HOME}/.ssh/remote_id	\
-	-R 65532:127.0.0.1:22		\
+	-R 65533:127.0.0.1:22		\
 	plastic@me.garybgenett.net
 # end of file
