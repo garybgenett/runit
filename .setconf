@@ -38,6 +38,7 @@ for DIR in \
 	proftpd		\
 	samba		\
 	ssh		\
+	vmware		\
 	xorg
 do
 	${MKDIR}			/.setup/${DIR}
@@ -161,6 +162,12 @@ ${LN} /.setup/samba/private		/var/lib/samba/private
 chmod -v 400				/.setup/ssh/ssh_host_*
 ${RM}					/etc/ssh
 ${LN} /.setup/ssh			/etc/ssh
+
+# vmware
+${RM}					/etc/vmware-tools
+${LN} /.setup/vmware/etc		/etc/vmware-tools
+${RM}					/opt/vmware-tools
+${LN} /.setup/vmware/opt		/opt/vmware-tools
 
 # xorg
 ${RM}					/etc/X11/Xmodmap
