@@ -20,6 +20,7 @@ proftpd		                             server server_v server_r default media
 tftpd		                             server server_v server_r default media
 #-------------------------------------------------------------------------------
 firefox		                                                              media
+vlc		                                                              media
 xbmc		                                                              media
 ################################################################################
 autossh		station system                               server_r
