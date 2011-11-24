@@ -7,10 +7,16 @@ export HOME="/tmp/.null"
 export SHELL=""
 export DISPLAY=":9"
 export OPENBOX_CMD="$(which openbox)"
+rm -frv ${HOME}
 mkdir -pv ${HOME}/.config/openbox
+chown -vR null:null ${HOME}
 cat >${HOME}/.config/openbox/rc.xml <<END_OF_CONF
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_config>
+<keyboard>
+<keybind key="A-Tab"><action name="NextWindow"/></keybind>
+<keybind key="A-S-Tab"><action name="PreviousWindow"/></keybind>
+</keyboard>
 </openbox_config>
 END_OF_CONF
 xset -dpms
