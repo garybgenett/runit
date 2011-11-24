@@ -6,6 +6,8 @@ sv start /.runit/services/xorg		|| exit 1
 kill -9 $(pgrep -f "Xorg :9")
 rmmod -v nvidia
 modprobe -v nvidia
+sleep 2
+/.setup/gentoo/.hacks
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
 	:9			\
