@@ -4,21 +4,26 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/xorg.null	|| exit 1
 export HOME="/tmp/.null"
-export SHELL=""
+export HOME_SRC="/.g/_data/zactive/.home"
 export DISPLAY=":9"
 export OPENBOX_CMD="$(which openbox)"
 rm -frv ${HOME}
 mkdir -pv ${HOME}/.config/openbox
+ln -fsv ${HOME_SRC}/.htoprc.bak ${HOME}/.htoprc
 chown -vR null:null ${HOME}
-cat >${HOME}/.config/openbox/rc.xml <<END_OF_CONF
+cat >${HOME}/.config/openbox/menu.xml <<END_OF_MENU
 <?xml version="1.0" encoding="utf-8"?>
-<openbox_config>
-<keyboard>
-<keybind key="A-Tab"><action name="NextWindow"/></keybind>
-<keybind key="A-S-Tab"><action name="PreviousWindow"/></keybind>
-</keyboard>
-</openbox_config>
-END_OF_CONF
+<openbox_menu>
+<menu label="openbox" id="root-menu">
+<item label="clock"><action name="Execute"><execute>xclock</execute></action></item>
+<item label="mixer"><action name="Execute"><execute>aumix</execute></action></item>
+<item label="top"><action name="Execute"><execute>urxvt -e htop</execute></action></item>
+<separator />
+<item label="config"><action name="Execute"><execute>obconf</execute></action></item>
+<item label="exit"><action name="Exit" /></item>
+</menu>
+</openbox_menu>
+END_OF_MENU
 xset -dpms
 xset b off
 xset s off
