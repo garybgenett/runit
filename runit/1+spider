@@ -52,13 +52,14 @@ make_devices() {
 	[ ! -d /dev/.udev   ] && mkdir -m 0755 /dev/.udev
 	[ ! -d /dev/pts     ] && mkdir -m 0755 /dev/pts
 	[ ! -d /dev/shm     ] && mkdir -m 0755 /dev/shm
-	[ ! -c /dev/console ] && mknod -m 0600 /dev/console	c 5 1
-	[ ! -c /dev/kmsg    ] && mknod -m 0666 /dev/kmsg	c 1 11
-	[ ! -c /dev/null    ] && mknod -m 0666 /dev/null	c 1 3
-	[ ! -c /dev/random  ] && mknod -m 0666 /dev/random	c 1 8
-	[ ! -c /dev/tty0    ] && mknod -m 0600 /dev/tty0	c 4 0
-	[ ! -c /dev/urandom ] && mknod -m 0666 /dev/urandom	c 1 9
-	[ ! -c /dev/zero    ] && mknod -m 0666 /dev/zero	c 1 5
+	[ ! -c /dev/console ] && mknod -m 0600 /dev/console	c 5  1
+	[ ! -c /dev/kmsg    ] && mknod -m 0666 /dev/kmsg	c 1  11
+	[ ! -c /dev/null    ] && mknod -m 0666 /dev/null	c 1  3
+	[ ! -c /dev/random  ] && mknod -m 0666 /dev/random	c 1  8
+	[ ! -c /dev/rtc     ] && mknod -m 0600 /dev/rtc		c 10 135
+	[ ! -c /dev/tty0    ] && mknod -m 0600 /dev/tty0	c 4  0
+	[ ! -c /dev/urandom ] && mknod -m 0666 /dev/urandom	c 1  9
+	[ ! -c /dev/zero    ] && mknod -m 0666 /dev/zero	c 1  5
 	[ ! -L /dev/core    ] && ln -fns /proc/kcore		/dev/core
 	[ ! -L /dev/fd      ] && ln -fns /proc/self/fd		/dev/fd
 	[ ! -L /dev/stderr  ] && ln -fns /proc/self/fd/2	/dev/stderr
