@@ -9,10 +9,12 @@ export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export DISPLAY=":9"
 export VLC_CMD="$(which vlc)"
-rm -frv ${HOME}/.config/vlc
-mkdir -pv ${HOME}/.config/vlc
-rsync -avv --delete --copy-links ${HOME_SRC}/.config/vlc/ ${HOME}/.config/vlc
-chown -vR null:null ${HOME}/.config/vlc
+for DIR in .config/vlc .local/share/vlc; do
+	rm -frv ${HOME}/${DIR}
+	mkdir -pv ${HOME}/${DIR}
+	rsync -avv --delete --copy-links ${HOME_SRC}/${DIR}/ ${HOME}/${DIR}
+	chown -vR null:null ${HOME}/${DIR}
+done
 exec sudo \
 	-H		\
 	-u null		\
