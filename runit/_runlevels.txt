@@ -1,42 +1,42 @@
 ################################################################################
-# service	station system maint maint_x server server_v server_r default media
+# service	station system maint maint_x server server_v server_r default media custom
 ################################################################################
-klogd		station system maint maint_x server server_v server_r default media
-ntpd		station system maint maint_x server server_v server_r default media
-sshd		station system maint maint_x server server_v server_r default media
-syslogd		station system maint maint_x server server_v server_r default media
-tcpdump		station system maint maint_x server server_v server_r default media
-tty1		station system maint maint_x server server_v server_r default media
-tty2		station system maint maint_x server server_v server_r default media
-tty3		station system maint maint_x server server_v server_r default media
-tty4		station system maint maint_x server server_v server_r default media
-ttyS0		station system maint maint_x server server_v server_r default media
-udevd		station system maint maint_x server server_v server_r default media
+klogd		station system maint maint_x server server_v server_r default media custom
+ntpd		station system maint maint_x server server_v server_r default media custom
+sshd		station system maint maint_x server server_v server_r default media custom
+syslogd		station system maint maint_x server server_v server_r default media custom
+tcpdump		station system maint maint_x server server_v server_r default media custom
+tty1		station system maint maint_x server server_v server_r default media custom
+tty2		station system maint maint_x server server_v server_r default media custom
+tty3		station system maint maint_x server server_v server_r default media custom
+tty4		station system maint maint_x server server_v server_r default media custom
+ttyS0		station system maint maint_x server server_v server_r default media custom
+udevd		station system maint maint_x server server_v server_r default media custom
 #-------------------------------------------------------------------------------
-_sync		                             server server_v server_r default media
-dovecot		                             server server_v server_r default media
-lighttpd	                             server server_v server_r default media
-proftpd		                             server server_v server_r default media
-tftpd		                             server server_v server_r default media
+_sync		                             server server_v server_r default media custom
+dovecot		                             server server_v server_r default media custom
+lighttpd	                             server server_v server_r default media custom
+proftpd		                             server server_v server_r default media custom
+tftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
-firefox		                                                              media
-vlc		                                                              media
-xbmc		                                                              media
+firefox		                                                              media custom
+vlc		                                                              media custom
+xbmc		                                                              media custom
 ################################################################################
 autossh		station system                               server_r
 dhcpcd		station system
 #-------------------------------------------------------------------------------
-dhcpd		               maint maint_x server server_v server_r default media
-hostapd		               maint maint_x server server_v          default media
-named		        system maint maint_x server server_v          default media
-openvpn		               maint maint_x server server_v          default media
-smbd		        system               server server_v server_r default media
+dhcpd		               maint maint_x server server_v server_r default media custom
+hostapd		               maint maint_x server server_v          default media custom
+named		        system maint maint_x server server_v          default media custom
+openvpn		               maint maint_x server server_v          default media custom
+smbd		        system               server server_v server_r default media custom
 #-------------------------------------------------------------------------------
-xorg		station system       maint_x                          default media
-xorg.null	                                                              media
-xsession	station system       maint_x                          default media
-xsession.null	                                                              media
-xvfb		                     maint_x        server_v          default media
+xorg		station system       maint_x                          default media custom
+xorg.null	                                                              media custom
+xsession	station system       maint_x                          default media custom
+xsession.null	                                                              media custom
+xvfb		                     maint_x        server_v          default media custom
 ################################################################################
 cupsd
 dbus
