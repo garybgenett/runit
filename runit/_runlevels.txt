@@ -19,9 +19,11 @@ lighttpd	                             server server_v server_r default media cus
 proftpd		                             server server_v server_r default media custom
 tftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
-firefox		                                                              media custom
-vlc		                                                              media custom
 xbmc		                                                              media custom
+#-------------------------------------------------------------------------------
+firefox		                                                                    custom
+vlc		                                                                    custom
+xvfb		                                                                    custom
 ################################################################################
 autossh		station system                               server_r
 dhcpcd		station system
@@ -36,7 +38,6 @@ xorg		station system       maint_x                          default media custom
 xorg.null	                                                              media custom
 xsession	station system       maint_x                          default media custom
 xsession.null	                                                              media custom
-xvfb		                     maint_x        server_v          default media custom
 ################################################################################
 cupsd
 dbus
