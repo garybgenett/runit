@@ -4,8 +4,6 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/xorg		|| exit 1
 kill -9 $(pgrep -f "Xorg :9")
-sleep 2
-/.setup/gentoo/.hacks
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
 	:9			\
