@@ -19,6 +19,11 @@ ${LN} ${PORTAGE_DIR}/var.tmp		/var/tmp
 
 ########################################
 
+${RM}					/etc/vmware
+${LN} /.g/_data/_systems/vmware/vmware	/etc/vmware
+
+########################################
+
 declare DIR=
 for DIR in \
 	awstats		\
