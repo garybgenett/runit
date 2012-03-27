@@ -19,11 +19,6 @@ ${LN} ${PORTAGE_DIR}/var.tmp		/var/tmp
 
 ########################################
 
-${RM}					/etc/vmware
-${LN} /.g/_data/_systems/vmware/vmware	/etc/vmware
-
-########################################
-
 declare DIR=
 for DIR in \
 	awstats		\
@@ -169,6 +164,8 @@ ${RM}					/etc/ssh
 ${LN} /.setup/ssh			/etc/ssh
 
 # vmware
+${RM}					/etc/vmware
+${LN} /.setup/vmware			/etc/vmware
 ${RM}					/etc/vmware-tools
 ${LN} /.setup/vmware/etc		/etc/vmware-tools
 ${RM}					/opt/vmware-tools
