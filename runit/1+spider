@@ -47,7 +47,7 @@ emergency_shell() {
 ################################################################################
 
 print_msg "Creating device directory..."
-report_status mount -n -t tmpfs					none /dev
+#>>>report_status mount -n -t tmpfs					none /dev
 make_devices() {
 	[ ! -d /dev/.udev   ] && mkdir -m 0755 /dev/.udev
 	[ ! -d /dev/pts     ] && mkdir -m 0755 /dev/pts
@@ -78,7 +78,7 @@ report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
 print_msg "Starting udev..."
 report_status eval "echo >/proc/sys/kernel/hotplug"
-report_status udevd --daemon
+report_status /lib/udev/udevd --daemon
 report_status udevadm trigger
 report_status udevadm settle --timeout=10
 
@@ -118,7 +118,7 @@ report_status mount -n -o remount,rw	/			|| emergency_shell
 print_msg "Creating new mtab..."
 report_status rm -frv /etc/mtab
 report_status mount -o remount /
-report_status mount -o remount -t tmpfs		none /dev
+#>>>report_status mount -o remount -t tmpfs		none /dev
 report_status mount -o remount -t devpts	none /dev/pts
 report_status mount -o remount -t tmpfs		none /dev/shm
 report_status mount -o remount -t proc		none /proc
