@@ -28,11 +28,11 @@ xvfb		                                                                    custom
 autossh		station system                               server_r
 dhcpcd		station system
 #-------------------------------------------------------------------------------
-dhcpd		               maint maint_x server server_v server_r default media custom
+dhcpd		station        maint maint_x server server_v server_r default media custom
 hostapd		               maint maint_x server server_v          default media custom
-named		        system maint maint_x server server_v          default media custom
+named		station system maint maint_x server server_v          default media custom
 openvpn		station        maint maint_x server server_v          default media custom
-smbd		        system               server server_v server_r default media custom
+smbd		station system               server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 xorg		station system       maint_x                          default media custom
 xorg.null	                                                              media custom
