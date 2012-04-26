@@ -14,16 +14,12 @@ ttyS0		station system maint maint_x server server_v server_r default media custo
 udevd		station system maint maint_x server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 _sync		                             server server_v server_r default media custom
-dovecot		                             server server_v server_r default media custom
 lighttpd	                             server server_v server_r default media custom
 proftpd		                             server server_v server_r default media custom
-tftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 xbmc		                                                              media custom
 #-------------------------------------------------------------------------------
 firefox		                                                                    custom
-vlc		                                                                    custom
-xvfb		                                                                    custom
 ################################################################################
 autossh		station system                               server_r
 dhcpcd		station system
@@ -41,11 +37,15 @@ xsession.null	                                                              medi
 ################################################################################
 cupsd
 dbus
+dovecot
 hald
 htc
 hts
+tftpd
 thttpd
+vlc
 xdm
+xvfb
 ################################################################################
 # end of file
 ################################################################################
