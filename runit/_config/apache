@@ -1,0 +1,17 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
+# edit: /etc/apache2/httpd.conf
+# change: ErrorLog "/dev/stdout"
+# change: TransferLog "/dev/stdout"
+killall -v -9 apache2
+rm -frv /var/run/apache/apache.lock
+rm -frv /var/run/apache/apache.pid
+mkdir -pv /var/run/apache
+chown -vR nobody:nobody /var/run/apache
+exec apache2 \
+	-D NO_DETACH		\
+	-E /dev/stdout		\
+	-e debug
+# end of file
