@@ -15,6 +15,7 @@ ${LN} /usr/share/zoneinfo/US/Pacific	/etc/localtime
 
 declare DIR=
 for DIR in \
+	apache		\
 	awstats		\
 	bind		\
 	cups		\
@@ -24,7 +25,6 @@ for DIR in \
 	gentoo		\
 	grub		\
 	hostapd		\
-	lighttpd	\
 	linux		\
 	minicom		\
 	ntp		\
@@ -48,6 +48,10 @@ ${RM}					/.setup/.setconf
 ${LN} ${SETCONF_DIR}/.setconf		/.setup/.setconf
 
 ########################################
+
+# apache
+${RM}					/etc/apache2
+${LN} /.setup/apache			/etc/apache2
 
 # awstats
 ${RM}					/etc/awstats
@@ -116,10 +120,6 @@ ${LN} /.setup/grub/grub.cfg		/boot/grub2/grub.cfg
 # hostapd
 ${RM}					/etc/hostapd/hostapd.conf
 ${LN} /.setup/hostapd/hostapd.conf	/etc/hostapd/hostapd.conf
-
-# lighttpd
-${RM}					/etc/lighttpd/lighttpd.conf
-${LN} /.setup/lighttpd/lighttpd.conf	/etc/lighttpd/lighttpd.conf
 
 # linux
 
