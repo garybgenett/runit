@@ -14,7 +14,7 @@ ttyS0		station system maint maint_x server server_v server_r default media custo
 udevd		station system maint maint_x server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 _sync		                             server server_v server_r default media custom
-lighttpd	                             server server_v server_r default media custom
+apache		                             server server_v server_r default media custom
 proftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 xbmc		                                                              media custom
@@ -42,7 +42,6 @@ hald
 htc
 hts
 tftpd
-thttpd
 vlc
 xdm
 xvfb
