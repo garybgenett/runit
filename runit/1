@@ -78,7 +78,7 @@ report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
 print_msg "Starting udev..."
 report_status eval "echo >/proc/sys/kernel/hotplug"
-report_status /lib/udev/udevd --daemon
+report_status /usr/lib/systemd/systemd-udevd --daemon
 report_status udevadm trigger
 report_status udevadm settle --timeout=10
 
