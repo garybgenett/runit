@@ -32,6 +32,7 @@ for DIR in \
 	proftpd		\
 	samba		\
 	ssh		\
+	ulogd		\
 	vmware		\
 	xorg
 do
@@ -156,6 +157,10 @@ ${LN} /.setup/samba/private		/var/lib/samba/private
 chmod -v 400				/.setup/ssh/ssh_host_*
 ${RM}					/etc/ssh
 ${LN} /.setup/ssh			/etc/ssh
+
+# ulogd
+${RM}					/etc/ulogd.conf
+${LN} /.setup/ulogd/ulogd.conf		/etc/ulogd.conf
 
 # vmware
 ${RM}					/etc/vmware
