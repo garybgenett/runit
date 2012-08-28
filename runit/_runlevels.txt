@@ -12,6 +12,7 @@ tty3		station system maint maint_x server server_v server_r default media custom
 tty4		station system maint maint_x server server_v server_r default media custom
 ttyS0		station system maint maint_x server server_v server_r default media custom
 udevd		station system maint maint_x server server_v server_r default media custom
+ulogd		station system maint maint_x server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 _sync		                             server server_v server_r default media custom
 apache		                             server server_v server_r default media custom

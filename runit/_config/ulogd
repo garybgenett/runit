@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+killall -v -9 ulogd
+rm -frv /var/run/ulogd.pid
+exec ulogd
+# end of file
