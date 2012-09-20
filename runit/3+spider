@@ -78,7 +78,10 @@ report_status sync
 ########################################
 
 print_msg "Unmounting data filesystems..."
-report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdb" || {
+{
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sda"		;
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdb"		;
+} || {
 	print_msg "${fail_color}!!! Data filesystems are not completely unmounted !!!"	;
 	sleep 10									;
 }
