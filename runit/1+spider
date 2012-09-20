@@ -155,7 +155,10 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount g sdb" || {
+{
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount . sda"		;
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount g sdb"		;
+} || {
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
 }
