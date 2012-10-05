@@ -25,7 +25,7 @@ configfile (hd0,1)/boot/grub.cfg
 }
 
 menuentry "Boot" {
-linux (hd0,1)/boot.sys/_cur root=/dev/sdb2 ro init=/sbin/runit-init
+linux (hd0,1)/boot.sys/_cur root=/dev/sdb2 ro init=/sbin/runit-init rootdelay=5
 }
 
 ########################################
