@@ -82,6 +82,7 @@ ${RM}					/etc/dovecot
 ${LN} /.setup/dovecot			/etc/dovecot
 
 # etc
+${RM}					/etc/resolv.conf.*
 declare FILE=
 for FILE in \
 	crypttab	\
