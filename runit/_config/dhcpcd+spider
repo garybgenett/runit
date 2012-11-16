@@ -12,6 +12,7 @@ exec dhcpcd \
 	--debug					\
 	--config /dev/null			\
 	--require dhcp_server_identifier	\
+	--option dhcp_server_identifier		\
 	--option domain_name_servers		\
 	--option domain_name			\
 	--option domain_search			\
@@ -19,6 +20,7 @@ exec dhcpcd \
 	--option interface_mtu			\
 	--nooption host_name			\
 	--nohook lookup-hostname		\
+	--nohook hostname			\
 	--hostname ""				\
 	--timeout 0				\
 	eth0
