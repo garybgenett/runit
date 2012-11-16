@@ -23,7 +23,7 @@ xbmc		                                                              media custom
 firefox		                                                                    custom
 ################################################################################
 autossh		station system                               server_r
-dhcpcd		station system
+dhclient	station system
 #-------------------------------------------------------------------------------
 dhcpd		station        maint maint_x server server_v server_r default media custom
 hostapd		               maint maint_x server server_v          default media custom
@@ -38,6 +38,7 @@ xsession.null	                                                              medi
 ################################################################################
 cupsd
 dbus
+dhcpcd
 dovecot
 hald
 htc
