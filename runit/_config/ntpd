@@ -6,6 +6,7 @@ sv start /.runit/services/klogd		|| exit 1
 # set: logfile /dev/stdout
 killall -v -9 ntpd
 mkdir -pv /var/run/ntpd
+ntpdate -v -b pool.ntp.org
 exec ntpd \
 	--nofork			\
 	--logfile="/dev/stdout"
