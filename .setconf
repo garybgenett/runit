@@ -6,10 +6,12 @@ declare SETCONF_DIR="/.g/_data/zactive/.setup"
 
 ################################################################################
 
-${RM}					/run/udev
-${LN} /dev/.udev			/run/udev
 ${RM}					/etc/localtime
 ${LN} /usr/share/zoneinfo/US/Pacific	/etc/localtime
+${RM}					/etc/mtab
+${LN} /proc/mounts			/etc/mtab
+${RM}					/run/udev
+${LN} /dev/.udev			/run/udev
 
 ########################################
 
