@@ -70,12 +70,12 @@ make_devices() {
 report_status make_devices
 report_status mount -n -t devpts	-o noexec,nosuid,gid=5	none /dev/pts
 OPT="-o size=50%,mode=700"
-report_status mount -n -t tmpfs ${OPT}	-o nodev,nosuid		none /dev/shm
+report_status mount -n -t tmpfs ${OPT}	-o nodev,noexec,nosuid	none /dev/shm
 
 print_msg "Mounting kernel filesystems..."
 report_status mount -n -t proc		-o nodev,noexec,nosuid	none /proc
 report_status mkdir -v /proc/bus/usb
-report_status mount -n -t usbfs					none /proc/bus/usb
+report_status mount -n -t usbfs		-o nodev,noexec,nosuid	none /proc/bus/usb
 report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
 print_msg "Starting udev..."
