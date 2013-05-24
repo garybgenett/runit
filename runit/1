@@ -74,6 +74,8 @@ report_status mount -n -t tmpfs ${OPT}	-o nodev,nosuid		none /dev/shm
 
 print_msg "Mounting kernel filesystems..."
 report_status mount -n -t proc		-o nodev,noexec,nosuid	none /proc
+report_status mkdir -v /proc/bus/usb
+report_status mount -n -t usbfs					none /proc/bus/usb
 report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
 print_msg "Starting udev..."
@@ -117,17 +119,18 @@ report_status mount -n -o remount,rw	/			|| emergency_shell
 
 print_msg "Creating new mtab..."
 report_status rm -frv /etc/mtab
-report_status mount -o remount /
-#>>>report_status mount -o remount -t tmpfs		none /dev
-report_status mount -o remount -t devpts	none /dev/pts
-report_status mount -o remount -t tmpfs		none /dev/shm
-report_status mount -o remount -t proc		none /proc
-report_status mount            -t usbfs		none /proc/bus/usb
-report_status mount -o remount -t sysfs		none /sys
+report_status mount -f /
+#>>>report_status mount -f -t tmpfs		none /dev
+report_status mount -f -t devpts	none /dev/pts
+report_status mount -f -t tmpfs		none /dev/shm
+report_status mount -f -t proc		none /proc
+report_status mount -f -t usbfs		none /proc/bus/usb
+report_status mount -f -t sysfs		none /sys
 
 print_msg "Checking and mounting remaining filesystems..."
 report_status fsck -p -A -C -R -V				|| emergency_shell
-report_status mount -a -t nodevpts,noproc,nosysfs,notmpfs	|| emergency_shell
+OPT="nodevpts,noproc,nosysfs,notmpfs,nousbfs"
+report_status mount -a -t ${OPT}				|| emergency_shell
 
 print_msg "Managing important files..."
 report_status eval "touch /var/log/wtmp"
