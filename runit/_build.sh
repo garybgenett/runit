@@ -4,8 +4,6 @@ source ${HOME}/.bashrc
 
 declare RUNLEVELS="./_runlevels.txt"
 
-declare SV_CMD="$(which sv)"
-
 ################################################################################
 
 ${RM} /etc/runit
@@ -20,6 +18,7 @@ ${LN} /.runit/services	/var/service
 
 #>>>${MKDIR} /etc/init.d
 
+#>>>declare SV_CMD="$(which sv)"
 #>>>for SVC in $(ls ./_config); do
 #>>>	${RM} /etc/init.d/${SVC}
 #>>>	${LN} ${SV_CMD} /etc/init.d/${SVC}
