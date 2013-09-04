@@ -169,6 +169,7 @@ ${RM}					/etc/ulogd.conf
 ${LN} /.setup/ulogd/ulogd.conf		/etc/ulogd.conf
 
 # vmware
+chown -vR plastic:root			/.setup/vmware
 ${RM}					/etc/vmware
 ${LN} /.setup/vmware			/etc/vmware
 ${RM}					/etc/vmware-tools
