@@ -7,8 +7,11 @@ export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export DISPLAY=":9"
 export OPENBOX_CMD="$(which openbox)"
+export ENLIGHTENMENT_CMD="$(which enlightenment_start)"
 rm -frv ${HOME}
 mkdir -pv ${HOME}/.config/openbox
+rsync -avv --delete --copy-links ${HOME_SRC}/.X{defaults,resources} ${HOME}/
+rsync -avv --delete --copy-links ${HOME_SRC}/.e/ ${HOME}/.e
 ln -fsv ${HOME_SRC}/.htoprc.bak ${HOME}/.htoprc
 chown -vR null:null ${HOME}
 cat >${HOME}/.config/openbox/menu.xml <<END_OF_MENU
@@ -32,4 +35,8 @@ exec sudo \
 	-u null			\
 	${OPENBOX_CMD} \
 		--replace
+exec sudo \
+	-H			\
+	-u null			\
+	${ENLIGHTENMENT_CMD}
 # end of file
