@@ -117,8 +117,8 @@ ${RM}					/etc/portage/package.use
 ${LN} /.setup/gentoo/package.use	/etc/portage/package.use
 
 # grub
-${RM}					/boot/grub2/grub.cfg
-${LN} /.setup/grub/grub.cfg		/boot/grub2/grub.cfg
+${RM}					/boot/grub/grub.cfg
+${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
 
 # hostapd
 ${RM}					/etc/hostapd/hostapd.conf
