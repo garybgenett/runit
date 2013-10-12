@@ -151,8 +151,9 @@ report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
 {
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount . sda"	;
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g sdb"	;
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount .	sda"	;
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g	sdb"	;
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount media	sdc"	;
 } || {
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
