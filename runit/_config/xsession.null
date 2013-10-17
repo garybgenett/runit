@@ -6,8 +6,8 @@ sv start /.runit/services/xorg.null	|| exit 1
 export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export DISPLAY=":9"
-export OPENBOX_CMD="$(which openbox)"
-export ENLIGHTENMENT_CMD="$(which enlightenment_start)"
+export WM_CMD="$(which openbox) --replace"
+#>>>export WM_CMD="$(which enlightenment_start)"
 rm -frv ${HOME}
 mkdir -pv ${HOME}/.config/openbox
 rsync -avv --delete --copy-links ${HOME_SRC}/.X{defaults,resources} ${HOME}/
@@ -31,12 +31,7 @@ xset -dpms
 xset b off
 xset s off
 exec sudo \
-	-H			\
-	-u null			\
-	${OPENBOX_CMD} \
-		--replace
-exec sudo \
-	-H			\
-	-u null			\
-	${ENLIGHTENMENT_CMD}
+	-H		\
+	-u null		\
+	${WM_CMD}
 # end of file
