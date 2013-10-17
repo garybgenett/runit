@@ -5,11 +5,14 @@ sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/xorg.null	|| exit 1
 export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
+export PATH="${HOME}/commands:${HOME}/scripts:${PATH}"
 export DISPLAY=":9"
-export WM_CMD="$(which openbox) --replace"
+export WM_CMD="$(which dwm)"
+#>>>export WM_CMD="$(which openbox) --replace"
 #>>>export WM_CMD="$(which enlightenment_start)"
 rm -frv ${HOME}
 mkdir -pv ${HOME}/.config/openbox
+rsync -avv --delete --copy-links ${HOME_SRC}/{.bashrc,commands,scripts} ${HOME}/
 rsync -avv --delete --copy-links ${HOME_SRC}/.X{defaults,resources} ${HOME}/
 rsync -avv --delete --copy-links ${HOME_SRC}/.e/ ${HOME}/.e
 ln -fsv ${HOME_SRC}/.htoprc.bak ${HOME}/.htoprc
@@ -33,5 +36,6 @@ xset s off
 exec sudo \
 	-H		\
 	-u null		\
+	PATH="${PATH}"	\
 	${WM_CMD}
 # end of file
