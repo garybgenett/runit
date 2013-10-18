@@ -6,7 +6,8 @@ sv start /.runit/services/xorg		|| exit 1
 export HOME="/.g/_data/zactive/.home"
 export SHELL="/bin/bash"
 export DISPLAY=":0"
-export WM_CMD="$(which openbox) --replace"
+export WM_CMD="${HOME}/commands/dwm"
+#>>>export WM_CMD="$(which openbox) --replace"
 sudo \
 	-H		\
 	-u \#1000	\
