@@ -6,14 +6,13 @@ sv start /.runit/services/xorg		|| exit 1
 export HOME="/.g/_data/zactive/.home"
 export SHELL="/bin/bash"
 export DISPLAY=":0"
-export OPENBOX_CMD="$(which openbox)"
+export WM_CMD="$(which openbox) --replace"
 sudo \
-	-H			\
-	-u \#1000		\
-	${OPENBOX_CMD} \
-		--replace &
+	-H		\
+	-u \#1000	\
+	${WM_CMD} &
 exec sudo \
-	-H			\
-	-u \#1000		\
+	-H		\
+	-u \#1000	\
 	${HOME}/.xsession
 # end of file
