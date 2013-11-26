@@ -69,7 +69,7 @@ make_devices() {
 }
 report_status make_devices
 report_status mount -n -t devpts	-o noexec,nosuid,gid=5	none /dev/pts
-OPT="-o size=50%,mode=700"
+OPT="-o size=50%,mode=1777"
 report_status mount -n -t tmpfs ${OPT}	-o nodev,noexec,nosuid	none /dev/shm
 
 print_msg "Mounting kernel filesystems..."
