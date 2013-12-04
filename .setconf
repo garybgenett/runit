@@ -4,6 +4,8 @@ source ${HOME}/.bashrc
 
 declare SETCONF_DIR="/.g/_data/zactive/.setup"
 
+declare LIBVIRT_DIR="/.g/_data/_systems/libvirt"
+
 ################################################################################
 
 ${RM}					/etc/localtime
@@ -25,6 +27,7 @@ for DIR in \
 	gentoo		\
 	grub		\
 	hostapd		\
+	libvirt		\
 	linux		\
 	minicom		\
 	ntp		\
@@ -123,6 +126,18 @@ ${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
 # hostapd
 ${RM}					/etc/hostapd/hostapd.conf
 ${LN} /.setup/hostapd/hostapd.conf	/etc/hostapd/hostapd.conf
+
+# libvirt
+${RM}					/etc/libvirt/libvirt.conf
+${LN} /.setup/libvirt/libvirt.conf	/etc/libvirt/libvirt.conf
+${RM}					/etc/libvirt/libvirtd.conf
+${LN} /.setup/libvirt/libvirtd.conf	/etc/libvirt/libvirtd.conf
+${RM}					/etc/libvirt/qemu
+${LN} ${LIBVIRT_DIR}/qemu		/etc/libvirt/qemu
+${RM}					/etc/libvirt/storage
+${LN} ${LIBVIRT_DIR}/storage		/etc/libvirt/storage
+${RM}					/var/lib/libvirt/qemu
+${LN} ${LIBVIRT_DIR}/qemu.lib		/var/lib/libvirt/qemu
 
 # linux
 
