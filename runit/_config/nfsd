@@ -12,5 +12,6 @@ rpc.nfsd \
 	--host 10.0.0.254	\
 	1
 exec rpc.mountd \
+	--debug all		\
 	--foreground
 # end of file
