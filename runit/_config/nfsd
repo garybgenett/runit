@@ -1,0 +1,16 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
+killall -v -9 rpc.mountd
+rpc.nfsd 0
+killall -v -9 rpc.nfsd
+killall -v -9 rpcbind
+rpcbind
+rpc.nfsd \
+	--debug			\
+	--host 10.0.0.254	\
+	1
+exec rpc.mountd \
+	--foreground
+# end of file

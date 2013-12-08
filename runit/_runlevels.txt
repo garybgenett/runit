@@ -29,6 +29,7 @@ dhcpd		station        maint maint_x server server_v server_r default media custo
 hostapd		               maint maint_x server server_v          default media custom
 libvirtd	                             server server_v server_r default media custom
 named		station        maint maint_x server server_v          default media custom
+nfsd		                             server server_v server_r default media custom
 openvpn		station        maint maint_x server server_v          default media custom
 smbd		station                      server server_v server_r default media custom
 #-------------------------------------------------------------------------------
