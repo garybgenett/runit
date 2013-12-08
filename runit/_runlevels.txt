@@ -25,11 +25,13 @@ firefox		                                                                    cus
 autossh		station system                               server_r
 dhclient	station system
 #-------------------------------------------------------------------------------
+libvirtd	                             server server_v server_r default media custom
+nfsd		                             server server_v server_r default media custom
+tftpd		                             server server_v server_r default media custom
+#-------------------------------------------------------------------------------
 dhcpd		station        maint maint_x server server_v server_r default media custom
 hostapd		               maint maint_x server server_v          default media custom
-libvirtd	                             server server_v server_r default media custom
 named		station        maint maint_x server server_v          default media custom
-nfsd		                             server server_v server_r default media custom
 openvpn		station        maint maint_x server server_v          default media custom
 smbd		station                      server server_v server_r default media custom
 #-------------------------------------------------------------------------------
@@ -45,7 +47,6 @@ dovecot
 hald
 htc
 hts
-tftpd
 vlc
 xdm
 xsession.sugar

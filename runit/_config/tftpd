@@ -8,5 +8,5 @@ exec in.tftpd \
 	--verbose	\
 	--user nobody	\
 	--secure	\
-	/.g/_data/.ftp
+	/.g/_data/.store
 # end of file
