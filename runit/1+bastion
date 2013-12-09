@@ -101,6 +101,7 @@ print_msg "Setting hostname..."
 [ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="$(hostname)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="localhost"
+HOSTNAME="`cat /proc/cmdline | sed -r "s/^.*hostname=([^ ]+).*$/\1/g"`"
 report_status hostname "${HOSTNAME}"
 
 print_msg "Configuring keyboard and terminal..."
@@ -155,6 +156,9 @@ report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
 }
+
+print_msg "Copying configurations..."
+report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf"
 
 ########################################
 
