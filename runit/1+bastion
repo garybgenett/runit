@@ -111,8 +111,9 @@ report_status setterm -powerdown 30
 report_status setterm -powersave off
 
 print_msg "Checking and mounting root filesystem..."
+ROOT="`cat /proc/cmdline | sed -r "s/^.*root=([^ ]+).*$/\1/g"`"
 report_status mount -n -o remount,ro	/			|| emergency_shell
-report_status fsck -p -C -V		/			|| emergency_shell
+report_status fsck -p -C -V		${ROOT}			|| emergency_shell
 report_status mount -n -o remount,rw	/			|| emergency_shell
 
 print_msg "Creating new mtab..."
