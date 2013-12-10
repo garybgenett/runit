@@ -1,0 +1,97 @@
+################################################################################
+# grub configuration file
+################################################################################
+
+serial --unit=0 --speed=9600 --word=8 --parity=no --stop=1
+terminal_input console serial
+terminal_output console serial
+
+insmod part_gpt
+insmod part_msdos
+
+insmod vbe
+set gfxpayload=1280x1024,1024x768
+
+set menu_color_normal=light-gray/black
+set menu_color_highlight=black/light-gray
+
+set default=3
+set timeout=5
+
+########################################
+
+menuentry "Main" {
+configfile (hd0,1)/boot/grub.cfg
+}
+
+menuentry "Boot (Root)" {
+linux (hd0,1)/boot.sys/_cur root=/dev/sdb2 rootwait ro init=/sbin/runit-init rootdelay=5
+}
+menuentry "Boot (Toor)" {
+linux (hd0,1)/boot.sys/_cur root=/dev/sdb3 rootwait ro init=/sbin/runit-init rootdelay=5
+}
+
+menuentry "Drive (Root)" {
+linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init hostname=tarantula
+}
+menuentry "Drive (Toor)" {
+linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init hostname=tarantula
+}
+
+########################################
+
+menuentry "Root: Chainload" {
+chainloader (hd0,2)+1
+}
+
+menuentry "Root: Current" {
+linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init
+}
+menuentry "Root: Current (console)" {
+linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+}
+
+menuentry "Root: New" {
+linux (hd0,2)/boot/_new root=/dev/sda2 rootwait ro init=/sbin/runit-init
+}
+menuentry "Root: New (console)" {
+linux (hd0,2)/boot/_new root=/dev/sda2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+}
+
+menuentry "Root: Old" {
+linux (hd0,2)/boot/_old root=/dev/sda2 rootwait ro init=/sbin/runit-init
+}
+menuentry "Root: Old (console)" {
+linux (hd0,2)/boot/_old root=/dev/sda2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+}
+
+########################################
+
+menuentry "Toor: Chainload" {
+chainloader (hd0,3)+1
+}
+
+menuentry "Toor: Current" {
+linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init
+}
+menuentry "Toor: Current (console)" {
+linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+}
+
+menuentry "Toor: New" {
+linux (hd0,3)/boot/_new root=/dev/sda3 rootwait ro init=/sbin/runit-init
+}
+menuentry "Toor: New (console)" {
+linux (hd0,3)/boot/_new root=/dev/sda3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+}
+
+menuentry "Toor: Old" {
+linux (hd0,3)/boot/_old root=/dev/sda3 rootwait ro init=/sbin/runit-init
+}
+menuentry "Toor: Old (console)" {
+linux (hd0,3)/boot/_old root=/dev/sda3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+}
+
+################################################################################
+# end of file
+################################################################################
