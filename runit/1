@@ -98,10 +98,11 @@ if [ -f /etc/modules ]; then
 fi
 
 print_msg "Setting hostname..."
+HOST="`cat /proc/cmdline | grep -E -o "hostname=([^ ]+)" | sed -r "s/^.+=//g"`"
 [ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="$(hostname)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="localhost"
-HOSTNAME="`cat /proc/cmdline | sed -r "s/^.*hostname=([^ ]+).*$/\1/g"`"
+[ -n "${HOST}" ]	&& HOSTNAME="${HOST}"
 report_status hostname "${HOSTNAME}"
 
 print_msg "Configuring keyboard and terminal..."
@@ -112,7 +113,7 @@ report_status setterm -powerdown 30
 report_status setterm -powersave off
 
 print_msg "Checking and mounting root filesystem..."
-ROOT="`cat /proc/cmdline | sed -r "s/^.*root=([^ ]+).*$/\1/g"`"
+ROOT="`cat /proc/cmdline | grep -E -o "root=([^ ]+)" | sed -r "s/^.+=//g"`"
 report_status mount -n -o remount,ro	/			|| emergency_shell
 report_status fsck -p -C -V		${ROOT}			|| emergency_shell
 report_status mount -n -o remount,rw	/			|| emergency_shell
