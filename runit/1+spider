@@ -162,8 +162,11 @@ print_msg "Mounting data filesystems..."
 	sleep 10									;
 }
 
-print_msg "Copying configurations..."
-report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf"
+SETCONF="`cat /proc/cmdline | grep -E -o "setconf=([^ ]+)" | sed -r "s/^.+=//g"`"
+if ${SETCONF}; then
+	print_msg "Copying configurations..."
+	report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf"
+fi
 
 ########################################
 

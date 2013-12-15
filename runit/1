@@ -158,8 +158,11 @@ report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60
 	sleep 10									;
 }
 
-print_msg "Copying configurations..."
-report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf"
+SETCONF="`cat /proc/cmdline | grep -E -o "setconf=([^ ]+)" | sed -r "s/^.+=//g"`"
+if ${SETCONF}; then
+	print_msg "Copying configurations..."
+	report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf"
+fi
 
 ########################################
 
