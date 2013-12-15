@@ -24,6 +24,7 @@ firefox		                                                                    cus
 ################################################################################
 autossh		station system                               server_r
 dhclient	station system
+wpa_supplicant	station system
 #-------------------------------------------------------------------------------
 libvirtd	                             server server_v server_r default media custom
 nfsd		                             server server_v server_r default media custom

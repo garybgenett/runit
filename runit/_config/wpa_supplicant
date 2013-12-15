@@ -1,0 +1,21 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
+killall -v -9 wpa_supplicant
+cat >/etc/wpa_supplicant.conf <<END_OF_CONF
+network={
+	ssid="Unknown Network"
+	psk="onthenetwork"
+	key_mgmt=WPA-PSK
+	scan_ssid=1
+}
+END_OF_CONF
+#>>>	-f /dev/stdout			\
+exec wpa_supplicant \
+	-d				\
+	-t				\
+	-c /etc/wpa_supplicant.conf	\
+	-D nl80211			\
+	-i wlan0
+# end of file
