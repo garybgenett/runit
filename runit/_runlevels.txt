@@ -27,8 +27,8 @@ dhclient	station system
 wpa_supplicant	station system
 #-------------------------------------------------------------------------------
 libvirtd	                             server server_v server_r default media custom
-nfsd		                             server server_v server_r default media custom
-tftpd		                             server server_v server_r default media custom
+nfsd		station                      server server_v server_r default media custom
+tftpd		station                      server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 dhcpd		station        maint maint_x server server_v server_r default media custom
 hostapd		               maint maint_x server server_v          default media custom
