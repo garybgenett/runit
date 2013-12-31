@@ -169,6 +169,7 @@ ${RM}					/etc/samba
 ${LN} /.setup/samba			/etc/samba
 ${RM}					/var/lib/samba/private
 ${LN} /.setup/samba/private		/var/lib/samba/private
+echo "create /var/lib/samba/winbindd_idmap.tdb" | tdbtool
 
 # ssh
 chmod -v 400				/.setup/ssh/ssh_host_*
