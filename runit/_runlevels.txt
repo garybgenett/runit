@@ -15,7 +15,6 @@ udevd		station system maint maint_x server server_v server_r default media custo
 ulogd		station system maint maint_x server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 _sync		                             server server_v server_r default media custom
-apache		                             server server_v server_r default media custom
 proftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 xbmc		                                                              media custom
@@ -30,6 +29,7 @@ libvirtd	                             server server_v server_r default media cus
 nfsd		station                      server server_v server_r default media custom
 tftpd		station                      server server_v server_r default media custom
 #-------------------------------------------------------------------------------
+apache		station                      server server_v server_r default media custom
 dhcpd		station        maint maint_x server server_v server_r default media custom
 hostapd		               maint maint_x server server_v          default media custom
 named		station        maint maint_x server server_v          default media custom
