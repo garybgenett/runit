@@ -49,6 +49,7 @@ dovecot
 hald
 htc
 hts
+tor
 vlc
 xdm
 xsession.sugar
