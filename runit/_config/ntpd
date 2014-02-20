@@ -8,6 +8,6 @@ killall -v -9 ntpd
 mkdir -pv /var/run/ntpd
 ntpdate -v -b pool.ntp.org
 exec ntpd \
-	--nofork			\
+	--nofork \
 	--logfile="/dev/stdout"
 # end of file

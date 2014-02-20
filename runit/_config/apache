@@ -11,7 +11,7 @@ rm -frv /var/run/apache/apache.pid
 mkdir -pv /var/run/apache
 chown -vR nobody:nobody /var/run/apache
 exec apache2 \
-	-D NO_DETACH		\
-	-E /dev/stdout		\
+	-D NO_DETACH \
+	-E /dev/stdout \
 	-e debug
 # end of file

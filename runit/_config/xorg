@@ -5,9 +5,9 @@ sv start /.runit/services/klogd		|| exit 1
 kill -9 $(pgrep -f "Xorg :0")
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
-	:0			\
-	tty5			\
-	-keeptty		\
-	-logfile /dev/stderr	\
+	:0 \
+	tty5 \
+	-keeptty \
+	-logfile /dev/stderr \
 	-nolisten tcp
 # end of file

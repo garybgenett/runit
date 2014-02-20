@@ -14,8 +14,8 @@ interface "eth0" {
 }
 END_OF_CONF
 exec dhclient \
-	-v			\
-	-d			\
-	-cf /etc/dhclient.conf	\
+	-v \
+	-d \
+	-cf /etc/dhclient.conf \
 	eth0
 # end of file

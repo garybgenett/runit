@@ -8,20 +8,20 @@ domain example.net
 nameserver 127.0.0.1
 END_OF_CONF
 exec dhcpcd \
-	--nobackground				\
-	--debug					\
-	--config /dev/null			\
-	--require dhcp_server_identifier	\
-	--option dhcp_server_identifier		\
-	--option domain_name_servers		\
-	--option domain_name			\
-	--option domain_search			\
-	--option ntp_servers			\
-	--option interface_mtu			\
-	--nooption host_name			\
-	--nohook lookup-hostname		\
-	--nohook hostname			\
-	--hostname ""				\
-	--timeout 0				\
+	--nobackground \
+	--debug \
+	--config /dev/null \
+	--require dhcp_server_identifier \
+	--option dhcp_server_identifier \
+	--option domain_name_servers \
+	--option domain_name \
+	--option domain_search \
+	--option ntp_servers \
+	--option interface_mtu \
+	--nooption host_name \
+	--nohook lookup-hostname \
+	--nohook hostname \
+	--hostname "" \
+	--timeout 0 \
 	eth0
 # end of file
