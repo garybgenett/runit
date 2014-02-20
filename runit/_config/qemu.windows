@@ -7,5 +7,6 @@ export HOME="/.g/_data/zactive/.home"
 export SHELL="/bin/bash"
 export DISPLAY=":0"
 exec ${HOME}/scripts/qemu-windows.bsh 0 \
-	-no-shutdown
+	-no-shutdown \
+	-display none
 # end of file
