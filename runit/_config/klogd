@@ -4,6 +4,6 @@ sv start /.runit/services/syslogd	|| exit 1
 killall -v -9 klogd
 rm -frv /var/run/klogd.pid
 exec klogd \
-	-n	\
+	-n \
 	-c 3
 # end of file

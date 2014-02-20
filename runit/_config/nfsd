@@ -8,10 +8,10 @@ killall -v -9 rpc.nfsd
 killall -v -9 rpcbind
 rpcbind
 rpc.nfsd \
-	--debug			\
-	--host 10.0.0.254	\
+	--debug \
+	--host 10.0.0.254 \
 	1
 exec rpc.mountd \
-	--debug all		\
+	--debug all \
 	--foreground
 # end of file

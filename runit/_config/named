@@ -7,6 +7,6 @@ rm -frv /var/run/named/named.pid
 mkdir -pv /var/run/named
 chown -vR nobody:nobody /var/run/named
 exec named \
-	-f		\
+	-f \
 	-u nobody
 # end of file

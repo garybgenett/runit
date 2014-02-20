@@ -14,8 +14,8 @@ interface "wlan0" {
 }
 END_OF_CONF
 exec dhclient \
-	-v			\
-	-d			\
+	-v \
+	-d \
 	-cf /etc/dhclient.conf	\
 	wlan0
 # end of file

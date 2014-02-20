@@ -8,6 +8,6 @@ rm -frv /var/run/dhcp/dhcpd.pid
 mkdir -pv /var/lib/dhcp
 touch /var/lib/dhcp/dhcpd.leases
 exec dhcpd \
-	-f	\
+	-f \
 	-d
 # end of file
