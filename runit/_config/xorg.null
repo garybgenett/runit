@@ -6,9 +6,9 @@ sv start /.runit/services/xorg		|| exit 1
 kill -9 $(pgrep -f "Xorg :9")
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
-	:9			\
-	tty6			\
-	-keeptty		\
-	-logfile /dev/stderr	\
+	:9 \
+	tty6 \
+	-keeptty \
+	-logfile /dev/stderr \
 	-nolisten tcp
 # end of file

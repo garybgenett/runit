@@ -8,8 +8,8 @@ mkdir -pv /var/lib/samba/printers
 mkdir -pv /var/run/samba
 mkdir -pv /var/spool/samba
 exec smbd \
-	-F	\
-	-i	\
-	-S	\
+	-F \
+	-i \
+	-S \
 	-d 2
 # end of file

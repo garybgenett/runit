@@ -4,20 +4,20 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 killall -v -9 dhcpcd
 exec dhcpcd \
-	--nobackground				\
-	--debug					\
-	--config /dev/null			\
-	--require dhcp_server_identifier	\
-	--option dhcp_server_identifier		\
-	--option domain_name_servers		\
-	--option domain_name			\
-	--option domain_search			\
-	--option ntp_servers			\
-	--option interface_mtu			\
-	--nooption host_name			\
-	--nohook lookup-hostname		\
-	--nohook hostname			\
-	--hostname ""				\
-	--timeout 0				\
+	--nobackground \
+	--debug \
+	--config /dev/null \
+	--require dhcp_server_identifier \
+	--option dhcp_server_identifier \
+	--option domain_name_servers \
+	--option domain_name \
+	--option domain_search \
+	--option ntp_servers \
+	--option interface_mtu \
+	--nooption host_name \
+	--nohook lookup-hostname \
+	--nohook hostname \
+	--hostname "" \
+	--timeout 0 \
 	eth0
 # end of file

@@ -16,8 +16,8 @@ for DIR in .config/vlc .local/share/vlc; do
 	chown -vR null:null ${HOME}/${DIR}
 done
 exec sudo \
-	-H		\
-	-u null		\
+	-H \
+	-u null \
 	${VLC_CMD} \
 		${HOME_SRC}/setup/_misc/playlist.m3u
 # end of file
