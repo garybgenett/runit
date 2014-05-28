@@ -120,6 +120,8 @@ ${RM}					/etc/portage/package.unmask
 ${LN} /.setup/gentoo/package.unmask	/etc/portage/package.unmask
 ${RM}					/etc/portage/package.use
 ${LN} /.setup/gentoo/package.use	/etc/portage/package.use
+${RM}					/etc/portage/savedconfig
+${LN} /.setup/gentoo/savedconfig	/etc/portage/savedconfig
 ${RM}					/etc/portage/sets
 ${LN} /.setup/gentoo/sets		/etc/portage/sets
 
