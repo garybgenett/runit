@@ -4,11 +4,11 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 killall -v -9 wpa_supplicant
 cat >/etc/wpa_supplicant.conf <<END_OF_CONF
+ap_scan=1
 network={
 	ssid="Invalid Network"
 	psk="onthenetwork"
 	key_mgmt=WPA-PSK
-	ap_scan=1
 	scan_ssid=1
 }
 END_OF_CONF
