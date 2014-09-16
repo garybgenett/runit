@@ -79,7 +79,7 @@ report_status sync
 
 print_msg "Unmounting data filesystems..."
 {
-	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdc"		;
+#>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdc"		;
 	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdb"		;
 	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sda"		;
 } || {
