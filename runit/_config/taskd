@@ -6,7 +6,17 @@ export TASKDDATA="/.g/_data/zactive/_pim/taskd"
 export TASKD_PID="/var/run/taskd.pid"
 export TASKD_LOG="/dev/stdout"
 export TASKD_SRV="server.example.net:53589"
+if [ ! -d ${TASKDDATA} ]; then
+	mkdir -pv ${TASKDDATA}
+	/usr/bin/taskd init --debug --data "${TASKDDATA}"
+	/usr/bin/taskd add --debug --data "${TASKDDATA}" org local
+	/usr/bin/taskd add --debug --data "${TASKDDATA}" group local group
+	/usr/bin/taskd add --debug --data "${TASKDDATA}" user local user
+	touch "${TASKDDATA}/orgs/local/groups/group/config"
+	exit 0
+fi
 killall -v -9 taskd
+rm -frv ${TASKD_PID}
 exec /usr/bin/taskd \
 	server \
 	--debug \
