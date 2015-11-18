@@ -168,8 +168,8 @@ ${RM}					/etc/proftpd/proftpd.conf
 ${LN} /.setup/proftpd/proftpd.conf	/etc/proftpd/proftpd.conf
 
 # samba
-${MKDIR}				/.setup/samba/private
-chmod -v 700				/.setup/samba/private
+${MKDIR}				/.setup/samba/private/sock
+chmod -v 700				/.setup/samba/private{,/sock}
 chmod -v 600				/.setup/samba/private/*.tdb
 ${RM}					/etc/samba
 ${LN} /.setup/samba			/etc/samba
