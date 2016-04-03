@@ -46,7 +46,7 @@ countdown() {
 ################################################################################
 
 print_msg "Saving clock..."
-report_status hwclock --debug --systohc --localtime
+report_status hwclock --debug --utc --systohc
 
 if [ -x "$(which alsamixer)" ]; then
 	print_msg "Storing alsa state..."
