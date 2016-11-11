@@ -7,7 +7,7 @@ cat >/etc/dhclient.conf <<END_OF_CONF
 timeout 0;
 interface "eth0" {
 	send host-name "$(hostname)";
-	prepend domain-search "example.net", "f5net.com", "olympus.f5net.com", "pdsea.f5net.com", "es.f5net.com", "gbg.es.f5net.com";
+	prepend domain-search "example.net";
 	prepend domain-name-servers 127.0.0.1;
 	request dhcp-server-identifier, host-name, subnet-mask, broadcast-address, routers, domain-name-servers, domain-name, domain-search, ntp-servers, time-offset, interface-mtu;
 	require dhcp-server-identifier;
