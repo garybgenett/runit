@@ -4,7 +4,7 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 killall -v -9 dhcpcd
 cat >/etc/resolv.conf.head <<END_OF_CONF
-search f5net.com olympus.f5net.com pdsea.f5net.com es.f5net.com gbg.es.f5net.com
+domain example.net
 nameserver 127.0.0.1
 END_OF_CONF
 exec dhcpcd \
