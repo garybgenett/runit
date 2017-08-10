@@ -33,5 +33,5 @@ exec /usr/bin/taskd \
 		--server.crl="/.g/_data/zactive/.home/.openssl/server-ca.example.net.crl" \
 		--ca.cert="/.g/_data/zactive/.home/.openssl/client-ca.example.net.crt" \
 		--debug.tls="1" \
-		--client.allow="^taskd,^task [1-9],^Mirakel [1-9]"
+		--client.allow="^taskd,^task [1-9]"
 # end of file
