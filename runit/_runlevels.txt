@@ -51,6 +51,7 @@ hald
 htc
 hts
 libvirtd
+nginx
 tor
 vlc
 xdm
