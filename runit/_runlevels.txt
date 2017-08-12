@@ -28,7 +28,6 @@ autossh		station system                               server_r
 dhclient	station system
 wpa_supplicant	station system
 #-------------------------------------------------------------------------------
-libvirtd	                             server server_v server_r default media custom
 nfsd		station                      server server_v server_r default media custom
 tftpd		station                      server server_v server_r default media custom
 #-------------------------------------------------------------------------------
@@ -51,6 +50,7 @@ dhcpcd
 hald
 htc
 hts
+libvirtd
 tor
 vlc
 xdm
