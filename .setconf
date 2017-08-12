@@ -30,6 +30,7 @@ for DIR in \
 	libvirt		\
 	linux		\
 	minicom		\
+	nginx		\
 	ntp		\
 	openvpn		\
 	proftpd		\
@@ -152,6 +153,10 @@ ${RM}					/etc/minicom
 ${LN} /.setup/minicom			/etc/minicom
 ${RM}					/etc/minirc.dfl
 ${LN} /.setup/minicom/minirc.dfl	/etc/minirc.dfl
+
+# nginx
+${RM}					/etc/nginx
+${LN} /.setup/nginx			/etc/nginx
 
 # ntp
 ${RM}					/etc/ntp-servers.conf
