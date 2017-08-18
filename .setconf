@@ -215,7 +215,9 @@ ${RM}					/etc/X11/xorg.conf
 ${MKDIR}				/.runit
 setconf ${SETCONF_DIR}/runit		/.runit
 
-(cd /.runit;				./_build.sh)
+if [[ ${1} == -r ]]; then
+	(cd /.runit;			./_build.sh)
+fi
 
 exit 0
 ################################################################################
