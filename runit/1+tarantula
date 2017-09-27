@@ -134,10 +134,10 @@ report_status chown root:root /var/{log,run}/[uw]tmp
 report_status chmod 644 /var/{log,run}/[uw]tmp
 
 if [ -x "$(which alsamixer)" ] &&
-   [ -f /etc/asound.state ]; then
+   [ -f /var/lib/alsa/asound.state ]; then
 	print_msg "Restoring alsa state..."
 	restore_alsa_state() {
-		RESULT="$(alsactl restore -f /etc/asound.state)"
+		RESULT="$(alsactl restore -f /var/lib/alsa/asound.state)"
 		if [ -n "${RESULT}" ]; then
 			echo "${RESULT}"
 			return 1
