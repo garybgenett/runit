@@ -5,7 +5,7 @@ sv start /.runit/services/klogd		|| exit 1
 export TASKDDATA="/.g/_data/zactive/_pim/taskd"
 export TASKD_PID="/var/run/taskd.pid"
 export TASKD_LOG="/dev/stdout"
-export TASKD_SRV="server.example.net:53589"
+export TASKD_SRV="0.0.0.0:53589"
 if [ ! -d ${TASKDDATA} ]; then
 	mkdir -pv ${TASKDDATA}
 	/usr/bin/taskd init --debug --data "${TASKDDATA}"
@@ -28,10 +28,11 @@ exec /usr/bin/taskd \
 		--pid.file="${TASKD_PID}" \
 		--extensions="${TASKDDATA}" \
 		--server="${TASKD_SRV}" \
-		--server.cert="/.g/_data/zactive/.home/.openssl/server.example.net.crt" \
-		--server.key="/.g/_data/zactive/.home/.openssl/server.example.net.key" \
-		--server.crl="/.g/_data/zactive/.home/.openssl/server-ca.example.net.crl" \
-		--ca.cert="/.g/_data/zactive/.home/.openssl/client-ca.example.net.crt" \
+		--server.cert="/.g/_data/zactive/.home/.openssl/server.garybgenett.net.crt" \
+		--server.key="/.g/_data/zactive/.home/.openssl/server.garybgenett.net.key" \
+		--server.crl="/.g/_data/zactive/.home/.openssl/server-ca.garybgenett.net.crl" \
+		--ca.cert="/.g/_data/zactive/.home/.openssl/client-ca.garybgenett.net.crt" \
 		--debug.tls="1" \
+		--trust="strict" \
 		--client.allow="^taskd,^task [1-9]"
 # end of file
