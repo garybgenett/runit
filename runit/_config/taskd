@@ -34,5 +34,6 @@ exec /usr/bin/taskd \
 		--ca.cert="/.g/_data/zactive/.home/.openssl/client-ca.garybgenett.net.crt" \
 		--debug.tls="1" \
 		--trust="strict" \
-		--client.allow="^taskd,^task [1-9]"
+		--client.allow="^taskd,^task" \
+		--request.limit=16777216 # 2^24 = 16777216 / default: 2^20 = 1048576
 # end of file
