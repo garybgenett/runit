@@ -17,7 +17,9 @@ ulogd		station system maint maint_x server server_v server_r default media custo
 _sync		                             server server_v server_r default media custom
 proftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
+bluetoothd	                                                      default media custom
 cupsd		                                                      default media custom
+dbus		                                                      default media custom
 #-------------------------------------------------------------------------------
 firefox		                                                                    custom
 ################################################################################
@@ -41,7 +43,6 @@ xorg.null	                                                              media cu
 xsession	station system       maint_x                          default media custom
 xsession.null	                                                              media custom
 ################################################################################
-dbus
 dhcpcd
 hald
 hostapd
