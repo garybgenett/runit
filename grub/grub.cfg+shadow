@@ -25,7 +25,7 @@ terminal_output gfxterm
 set menu_color_normal=light-gray/black
 set menu_color_highlight=black/light-gray
 
-set default=7
+set default=6
 set timeout=5
 
 ########################################
@@ -35,17 +35,17 @@ configfile (hd0,1)/boot/grub.cfg
 }
 
 menuentry "Boot (Root)" {
-linux (hd0,1)/boot.sys/_cur root=/dev/sdb2 rootwait ro init=/sbin/runit-init rootdelay=5
+linux (hd0,1)/boot.sys/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init rootdelay=5
 }
 menuentry "Boot (Toor)" {
-linux (hd0,1)/boot.sys/_cur root=/dev/sdb3 rootwait ro init=/sbin/runit-init rootdelay=5
+linux (hd0,1)/boot.sys/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init rootdelay=5
 }
 
 menuentry "Drive (Root)" {
-linux (hd0,2)/boot/_cur root=/dev/sdb2 rootwait ro init=/sbin/runit-init setconf=true hostname=tarantula
+linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init setconf=true hostname=tarantula
 }
 menuentry "Drive (Toor)" {
-linux (hd0,3)/boot/_cur root=/dev/sdb3 rootwait ro init=/sbin/runit-init setconf=true hostname=tarantula
+linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init setconf=true hostname=tarantula
 }
 
 ########################################
@@ -55,32 +55,32 @@ chainloader (hd0,2)+1
 }
 
 menuentry "Root: Current" {
-linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init
+linux (hd0,2)/boot/_cur root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init
 }
 menuentry "Root: Current (console)" {
-linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,2)/boot/_cur root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: New" {
-linux (hd0,2)/boot/_new root=/dev/sda2 rootwait ro init=/sbin/runit-init
+linux (hd0,2)/boot/_new root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init
 }
 menuentry "Root: New (console)" {
-linux (hd0,2)/boot/_new root=/dev/sda2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,2)/boot/_new root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Old" {
-linux (hd0,2)/boot/_old root=/dev/sda2 rootwait ro init=/sbin/runit-init
+linux (hd0,2)/boot/_old root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init
 }
 menuentry "Root: Old (console)" {
-linux (hd0,2)/boot/_old root=/dev/sda2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,2)/boot/_old root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Rescue" {
-linux (hd0,2)/boot/_kernel root=/dev/sda2 rootwait ro init=/sbin/init
+linux (hd0,2)/boot/_kernel root=/dev/nvme0n1p2 rootwait ro init=/sbin/init
 initrd (hd0,2)/boot/_initrd
 }
 menuentry "Root: Rescue (console)" {
-linux (hd0,2)/boot/_kernel root=/dev/sda2 rootwait ro init=/sbin/init console=ttyS0,9600n8
+linux (hd0,2)/boot/_kernel root=/dev/nvme0n1p2 rootwait ro init=/sbin/init console=ttyS0,9600n8
 initrd (hd0,2)/boot/_initrd
 }
 
@@ -91,32 +91,32 @@ chainloader (hd0,3)+1
 }
 
 menuentry "Toor: Current" {
-linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init
+linux (hd0,3)/boot/_cur root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init
 }
 menuentry "Toor: Current (console)" {
-linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,3)/boot/_cur root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: New" {
-linux (hd0,3)/boot/_new root=/dev/sda3 rootwait ro init=/sbin/runit-init
+linux (hd0,3)/boot/_new root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init
 }
 menuentry "Toor: New (console)" {
-linux (hd0,3)/boot/_new root=/dev/sda3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,3)/boot/_new root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: Old" {
-linux (hd0,3)/boot/_old root=/dev/sda3 rootwait ro init=/sbin/runit-init
+linux (hd0,3)/boot/_old root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init
 }
 menuentry "Toor: Old (console)" {
-linux (hd0,3)/boot/_old root=/dev/sda3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,3)/boot/_old root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: Rescue" {
-linux (hd0,3)/boot/_kernel root=/dev/sda3 rootwait ro init=/sbin/init
+linux (hd0,3)/boot/_kernel root=/dev/nvme0n1p3 rootwait ro init=/sbin/init
 initrd (hd0,3)/boot/_initrd
 }
 menuentry "Toor: Rescue (console)" {
-linux (hd0,3)/boot/_kernel root=/dev/sda3 rootwait ro init=/sbin/init console=ttyS0,9600n8
+linux (hd0,3)/boot/_kernel root=/dev/nvme0n1p3 rootwait ro init=/sbin/init console=ttyS0,9600n8
 initrd (hd0,3)/boot/_initrd
 }
 
