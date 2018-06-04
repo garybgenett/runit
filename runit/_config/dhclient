@@ -1,12 +1,15 @@
 #!/bin/sh
 exec 2>&1
-sv start /.runit/services/syslogd	|| exit 1
-sv start /.runit/services/klogd		|| exit 1
+sv start /.runit/services/syslogd		|| exit 1
+sv start /.runit/services/klogd			|| exit 1
+sv start /.runit/services/wpa_supplicant	|| exit 1
 killall -v -9 dhclient
 cat >/etc/dhclient.conf <<END_OF_CONF
 timeout 0;
-interface "eth0" {
+interface "wlan0" {
 	send host-name "$(hostname)";
+	prepend domain-search "example.net";
+	prepend domain-name-servers 127.0.0.1, 10.255.255.254;
 	request dhcp-server-identifier, host-name, subnet-mask, broadcast-address, routers, domain-name-servers, domain-name, domain-search, ntp-servers, time-offset, interface-mtu;
 	require dhcp-server-identifier;
 }
@@ -15,5 +18,5 @@ exec dhclient \
 	-v \
 	-d \
 	-cf /etc/dhclient.conf \
-	eth0
+	wlan0
 # end of file

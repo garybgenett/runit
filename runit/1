@@ -153,7 +153,7 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount vm sda" || {
+report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g sda" || {
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
 }

@@ -19,5 +19,6 @@ exec sudo \
 	-H \
 	-u null \
 	${VLC_CMD} \
+		-I dummy \
 		${HOME_SRC}/setup/_misc/playlist.m3u
 # end of file
