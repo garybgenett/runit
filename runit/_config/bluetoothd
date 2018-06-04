@@ -1,0 +1,24 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
+sv start /.runit/services/dbus		|| exit 1
+export PATH="/usr/libexec/bluetooth:${PATH}"
+killall -v -9 bluetoothd
+cat >/etc/bluetooth/main.conf <<END_OF_CONF
+[General]
+Name=bluetooth
+DeviceID=bluetooth
+Class=0x000000
+Privacy=off
+ReverseServiceDiscovery=true
+DiscoverableTimeout=0
+PairableTimeout=0
+AutoConnectTimeout=10
+[Policy]
+AutoEnable=true
+END_OF_CONF
+exec bluetoothd \
+	--debug \
+	--nodetach
+# end of file
