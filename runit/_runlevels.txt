@@ -19,8 +19,6 @@ proftpd		                             server server_v server_r default media cus
 #-------------------------------------------------------------------------------
 cupsd		                                                      default media custom
 #-------------------------------------------------------------------------------
-xbmc		                                                              media custom
-#-------------------------------------------------------------------------------
 firefox		                                                                    custom
 ################################################################################
 autossh		station system                               server_r
@@ -54,6 +52,7 @@ nginx
 tcpdump
 tor
 vlc
+xbmc
 xdm
 xsession.sugar
 xvfb
