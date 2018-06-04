@@ -1,0 +1,12 @@
+#!/bin/sh
+exec 2>&1
+killall -v -9 autossh
+export HOME="/.g/.home"
+exec autossh \
+	-M 0 \
+	-T \
+	-F ${HOME}/.ssh/config.batch \
+	-i ${HOME}/.ssh/remote_id \
+	-R 65530:127.0.0.1:22 \
+	plastic@me.garybgenett.net
+# end of file
