@@ -2,15 +2,12 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
-# edit: /etc/dbus-1/system.conf
-sed -i -r \
-	-e 's|^[[:space:]]+(<fork/>)|<!-- \1 -->|;' \
-	/etc/dbus-1/system.conf
-# comment: <fork/>
 killall -v -9 dbus-daemon
 killall -v -9 dbus-launch
 rm -frv /var/run/dbus.pid
 mkdir -pv /var/run/dbus
+chmod -v 755 /usr/bin/dbus-{daemon,launch}
 exec dbus-daemon \
+	--nofork \
 	--system
 # end of file
