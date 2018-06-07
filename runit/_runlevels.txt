@@ -33,6 +33,7 @@ tftpd		station                      server server_v server_r default media custo
 apache		station                      server server_v server_r default media custom
 dhcpd		station        maint maint_x server server_v server_r default media custom
 dovecot		station                      server server_v server_r default media custom
+hostapd		                             server                   default media custom
 named		station        maint maint_x server server_v          default media custom
 openvpn		station system maint maint_x server server_v          default media custom
 smbd		station                      server server_v server_r default media custom
@@ -45,7 +46,6 @@ xsession.null	                                                              medi
 ################################################################################
 dhcpcd
 hald
-hostapd
 htc
 hts
 libvirtd
