@@ -9,7 +9,7 @@ timeout 0;
 interface "wlan0" {
 	send host-name "$(hostname)";
 	prepend domain-search "example.net";
-	prepend domain-name-servers 127.0.0.1, 10.255.255.254;
+	prepend domain-name-servers 127.0.0.1, 10.255.255.254, 208.67.222.222, 208.67.220.220;
 	request dhcp-server-identifier, host-name, subnet-mask, broadcast-address, routers, domain-name-servers, domain-name, domain-search, ntp-servers, time-offset, interface-mtu;
 	require dhcp-server-identifier;
 }
