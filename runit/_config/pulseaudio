@@ -1,0 +1,30 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+sv start /.runit/services/klogd		|| exit 1
+sv start /.runit/services/dbus		|| exit 1
+killall -9 pulseaudio
+chmod -v 755 /usr/bin/pulseaudio
+sed -i -r \
+	-e 's|^(load-module[ ]module-console-kit)|#\1|;' \
+	/etc/pulse/default.pa
+# https://rudd-o.com/linux-and-free-software/how-to-make-pulseaudio-run-once-at-boot-for-all-your-users
+cat >/etc/dbus-1/system.d/pulseaudio.conf <<END_OF_CONF
+<!DOCTYPE busconfig>
+<busconfig>
+<policy user="plastic">
+<allow own="org.pulseaudio.Server"/>
+<allow send_destination="org.bluez"/>
+<allow send_interface="org.bluez.Manager"/>
+</policy>
+</busconfig>
+END_OF_CONF
+exec sudo \
+	-H \
+	-u \#1000 \
+	pulseaudio \
+		--start \
+		--daemonize=no \
+		--log-level=debug \
+		--log-target=stderr
+# end of file
