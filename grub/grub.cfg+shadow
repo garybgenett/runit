@@ -35,17 +35,17 @@ configfile (hd0,1)/boot/grub.cfg
 }
 
 menuentry "Boot (Root)" {
-linux (hd0,1)/boot.sys/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init rootdelay=5
+linux (hd0,1)/boot.sys/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
 }
 menuentry "Boot (Toor)" {
-linux (hd0,1)/boot.sys/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init rootdelay=5
+linux (hd0,1)/boot.sys/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
 }
 
 menuentry "Drive (Root)" {
-linux (hd0,2)/boot/_cur root=/dev/sda2 rootwait ro init=/sbin/runit-init setconf=true hostname=tarantula
+linux (hd0,2)/boot/_cur root=/dev/sdb2 rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
 }
 menuentry "Drive (Toor)" {
-linux (hd0,3)/boot/_cur root=/dev/sda3 rootwait ro init=/sbin/runit-init setconf=true hostname=tarantula
+linux (hd0,3)/boot/_cur root=/dev/sdb3 rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
 }
 
 ########################################
