@@ -4,6 +4,7 @@ sv start /.runit/services/syslogd		|| exit 1
 sv start /.runit/services/klogd			|| exit 1
 sv start /.runit/services/wpa_supplicant	|| exit 1
 killall -v -9 dhclient
+rm -frv /var/lib/dhcp/*
 cat >/etc/dhclient.conf <<END_OF_CONF
 timeout 0;
 interface "wlan0" {
