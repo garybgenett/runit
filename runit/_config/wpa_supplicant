@@ -34,8 +34,8 @@ network={
 	priority=89
 }
 END_OF_CONF
-if [ ! -e /tmp/wpa_supplicant.conf ]; then
-cat >/tmp/wpa_supplicant.conf <<END_OF_CONF
+if [ ! -e /tmp/.wpa_supplicant.conf ]; then
+cat >/tmp/.wpa_supplicant.conf <<END_OF_CONF
 network={
 	ssid="spl-public"
 	scan_ssid=1
@@ -44,7 +44,7 @@ network={
 network={
 END_OF_CONF
 fi
-cat /tmp/wpa_supplicant.conf >>/etc/wpa_supplicant/wpa_supplicant.conf
+cat /tmp/.wpa_supplicant.conf >>/etc/wpa_supplicant/wpa_supplicant.conf
 exec wpa_supplicant \
 	-d \
 	-t \
