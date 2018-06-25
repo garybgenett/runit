@@ -18,6 +18,7 @@ END_OF_CONF
 exec dhclient \
 	-v \
 	-d \
+	-1 \
 	-cf /etc/dhclient.conf \
 	eth0
 # end of file
