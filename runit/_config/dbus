@@ -3,7 +3,7 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 killall -v -9 dbus-daemon
-killall -v -9 dbus-launch
+#>>>killall -v -9 dbus-launch
 rm -frv /var/run/dbus.pid
 mkdir -pv /var/run/dbus
 chmod -v 755 /usr/bin/dbus-{daemon,launch}
