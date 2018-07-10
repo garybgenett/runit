@@ -14,7 +14,7 @@ ttyS0		station system maint maint_x server server_v server_r default media custo
 udevd		station system maint maint_x server server_v server_r default media custom
 ulogd		station system maint maint_x server server_v server_r default media custom
 #-------------------------------------------------------------------------------
-_sync		                             server server_v server_r default media custom
+_sync		station system               server server_v server_r default media custom
 proftpd		                             server server_v server_r default media custom
 #-------------------------------------------------------------------------------
 cupsd		                                                      default media custom
