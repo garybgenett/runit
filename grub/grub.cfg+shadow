@@ -55,24 +55,24 @@ chainloader (hd0,2)+1
 }
 
 menuentry "Root: Current" {
-linux (hd0,2)/boot/_cur root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R
+linux (hd0,2)/boot/_cur root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1
 }
 menuentry "Root: Current (console)" {
-linux (hd0,2)/boot/_cur root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R console=ttyS0,9600n8
+linux (hd0,2)/boot/_cur root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1 console=ttyS0,9600n8
 }
 
 menuentry "Root: New" {
-linux (hd0,2)/boot/_new root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R
+linux (hd0,2)/boot/_new root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1
 }
 menuentry "Root: New (console)" {
-linux (hd0,2)/boot/_new root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R console=ttyS0,9600n8
+linux (hd0,2)/boot/_new root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1 console=ttyS0,9600n8
 }
 
 menuentry "Root: Old" {
-linux (hd0,2)/boot/_old root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R
+linux (hd0,2)/boot/_old root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1
 }
 menuentry "Root: Old (console)" {
-linux (hd0,2)/boot/_old root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R console=ttyS0,9600n8
+linux (hd0,2)/boot/_old root=/dev/nvme0n1p2 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1 console=ttyS0,9600n8
 }
 
 menuentry "Root: Rescue" {
@@ -91,24 +91,24 @@ chainloader (hd0,3)+1
 }
 
 menuentry "Toor: Current" {
-linux (hd0,3)/boot/_cur root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R
+linux (hd0,3)/boot/_cur root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1
 }
 menuentry "Toor: Current (console)" {
-linux (hd0,3)/boot/_cur root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R console=ttyS0,9600n8
+linux (hd0,3)/boot/_cur root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1 console=ttyS0,9600n8
 }
 
 menuentry "Toor: New" {
-linux (hd0,3)/boot/_new root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R
+linux (hd0,3)/boot/_new root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1
 }
 menuentry "Toor: New (console)" {
-linux (hd0,3)/boot/_new root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R console=ttyS0,9600n8
+linux (hd0,3)/boot/_new root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1 console=ttyS0,9600n8
 }
 
 menuentry "Toor: Old" {
-linux (hd0,3)/boot/_old root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R
+linux (hd0,3)/boot/_old root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1
 }
 menuentry "Toor: Old (console)" {
-linux (hd0,3)/boot/_old root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1:R video=DP-1:R console=ttyS0,9600n8
+linux (hd0,3)/boot/_old root=/dev/nvme0n1p3 rootwait ro init=/sbin/runit-init video=eDP-1 video=DP-1 console=ttyS0,9600n8
 }
 
 menuentry "Toor: Rescue" {
