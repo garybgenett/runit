@@ -10,5 +10,6 @@ rm -frv /var/lib/dhcp/*
 touch /var/lib/dhcp/dhcpd.leases
 exec dhcpd \
 	-f \
-	-d
+	-d \
+	br0 qemu0
 # end of file
