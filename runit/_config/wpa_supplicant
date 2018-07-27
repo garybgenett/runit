@@ -14,13 +14,13 @@ network={
 	scan_ssid=1
 	priority=99
 }
-network={
-	ssid="InternetConnection"
-	psk="MustGoFaster"
-	key_mgmt=WPA-PSK
-	scan_ssid=1
-	priority=98
-}
+#>>>network={
+#>>>	ssid="InternetConnection"
+#>>>	psk="MustGoFaster"
+#>>>	key_mgmt=WPA-PSK
+#>>>	scan_ssid=1
+#>>>	priority=98
+#>>>}
 END_OF_CONF
 if [ ! -e /tmp/.wpa_supplicant.conf ]; then
 cat >/tmp/.wpa_supplicant.conf <<END_OF_CONF
