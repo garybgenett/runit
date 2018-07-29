@@ -6,6 +6,7 @@ ntpd		station system maint maint_x server server_v server_r default media custom
 sshd		station system maint maint_x server server_v server_r default media custom
 syslogd		station system maint maint_x server server_v server_r default media custom
 taskd		station system maint maint_x server server_v server_r default media custom
+tcpdump		station system maint maint_x server server_v server_r default media custom
 tty1		station system maint maint_x server server_v server_r default media custom
 tty2		station system maint maint_x server server_v server_r default media custom
 tty3		station system maint maint_x server server_v server_r default media custom
@@ -50,7 +51,6 @@ htc
 hts
 libvirtd
 nginx
-tcpdump
 tor
 vlc
 xbmc
