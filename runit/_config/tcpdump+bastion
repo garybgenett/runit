@@ -2,7 +2,7 @@
 exec 2>&1
 killall -v -9 tcpdump
 export TCPDUMP_DIR="/.runit/services/tcpdump/log"
-export TCPDUMP_INT="wlan0"
+export TCPDUMP_INT="eth0"
 exec tcpdump \
 	-i ${TCPDUMP_INT} \
 	-w ${TCPDUMP_DIR}/tcpdump.${TCPDUMP_INT}. \
