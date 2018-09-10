@@ -109,28 +109,13 @@ do
 done
 
 # gentoo
-declare OVERLAY="/.setup/gentoo/_overlay"
-declare OVERLAY_CONF="overlay.conf"
-${RM}					/etc/portage/$(basename ${OVERLAY})
-${LN} ${OVERLAY}			/etc/portage/$(basename ${OVERLAY})
-${RM}					/etc/portage/repos.conf/${OVERLAY_CONF}
-${LN} ${OVERLAY}/${OVERLAY_CONF}	/etc/portage/repos.conf/${OVERLAY_CONF}
-${RM}					/etc/portage/make.conf
-${LN} /.setup/gentoo/make.conf		/etc/portage/make.conf
-${RM}					/etc/portage/package.keywords
-${LN} /.setup/gentoo/package.keywords	/etc/portage/package.keywords
-${RM}					/etc/portage/package.license
-${LN} /.setup/gentoo/package.license	/etc/portage/package.license
-${RM}					/etc/portage/package.mask
-${LN} /.setup/gentoo/package.mask	/etc/portage/package.mask
-${RM}					/etc/portage/package.unmask
-${LN} /.setup/gentoo/package.unmask	/etc/portage/package.unmask
-${RM}					/etc/portage/package.use
-${LN} /.setup/gentoo/package.use	/etc/portage/package.use
-${RM}					/etc/portage/savedconfig
-${LN} /.setup/gentoo/savedconfig	/etc/portage/savedconfig
-${RM}					/etc/portage/sets
-${LN} /.setup/gentoo/sets		/etc/portage/sets
+declare OVERLAY="/.setup/gentoo/_overlay/overlay.conf"
+for FILE in /.setup/gentoo/*; do
+${RM}					/etc/portage/$(basename ${FILE})
+${LN} ${FILE}				/etc/portage/$(basename ${FILE})
+${RM}					/etc/portage/repos.conf/$(basename ${OVERLAY})
+${LN} ${OVERLAY}			/etc/portage/repos.conf/$(basename ${OVERLAY})
+done
 
 # grub
 ${RM}					/boot/grub/grub.cfg
