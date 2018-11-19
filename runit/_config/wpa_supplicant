@@ -32,6 +32,13 @@ network={
 	priority=19
 }
 network={
+	ssid="Izzie"
+	psk="2063494294"
+	key_mgmt=WPA-PSK
+	scan_ssid=1
+	priority=19
+}
+network={
 	ssid="spl-public"
 	scan_ssid=1
 	priority=18
