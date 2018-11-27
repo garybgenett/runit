@@ -6,20 +6,26 @@ killall -v -9 wpa_supplicant
 cat >/etc/wpa_supplicant/wpa_supplicant.conf <<END_OF_CONF
 ap_scan=1
 network={
-	ssid="Unknown Network"
-#>>>	ssid="Invalid Network"
-#>>>	ssid="Unsafe Network"
+	ssid="Unsafe Network"
 	psk="onthenetwork"
 	key_mgmt=WPA-PSK
 	scan_ssid=1
 	priority=99
+}
+network={
+	ssid="Unknown Network"
+#>>>	ssid="Invalid Network"
+	psk="onthenetwork"
+	key_mgmt=WPA-PSK
+	scan_ssid=1
+	priority=98
 }
 #>>>network={
 #>>>	ssid="InternetConnection"
 #>>>	psk="MustGoFaster"
 #>>>	key_mgmt=WPA-PSK
 #>>>	scan_ssid=1
-#>>>	priority=98
+#>>>	priority=97
 #>>>}
 END_OF_CONF
 if [ ! -e /tmp/.wpa_supplicant.conf ]; then
@@ -36,12 +42,12 @@ network={
 	psk="2063494294"
 	key_mgmt=WPA-PSK
 	scan_ssid=1
-	priority=19
+	priority=18
 }
 network={
 	ssid="spl-public"
 	scan_ssid=1
-	priority=18
+	priority=17
 }
 END_OF_CONF
 fi
