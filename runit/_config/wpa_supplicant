@@ -31,6 +31,12 @@ END_OF_CONF
 if [ ! -e /tmp/.wpa_supplicant.conf ]; then
 cat >/tmp/.wpa_supplicant.conf <<END_OF_CONF
 network={
+	ssid="Impact Hub Seattle"
+	key_mgmt=NONE
+	scan_ssid=1
+	priority=20
+}
+network={
 	ssid="Sun Rae"
 	psk="*Pr1v8 Netw0rk*"
 	key_mgmt=WPA-PSK
