@@ -3,61 +3,14 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 killall -v -9 wpa_supplicant
-cat >/etc/wpa_supplicant/wpa_supplicant.conf <<END_OF_CONF
-ap_scan=1
-network={
-	ssid="Unsafe Network"
-	psk="onthenetwork"
-	key_mgmt=WPA-PSK
-	scan_ssid=1
-	priority=99
-}
-network={
-	ssid="Unknown Network"
-#>>>	ssid="Invalid Network"
-	psk="onthenetwork"
-	key_mgmt=WPA-PSK
-	scan_ssid=1
-	priority=98
-}
-#>>>network={
-#>>>	ssid="InternetConnection"
-#>>>	psk="MustGoFaster"
-#>>>	key_mgmt=WPA-PSK
-#>>>	scan_ssid=1
-#>>>	priority=97
-#>>>}
-END_OF_CONF
-if [ ! -e /tmp/.wpa_supplicant.conf ]; then
-cat >/tmp/.wpa_supplicant.conf <<END_OF_CONF
-network={
-	ssid="Impact Hub Seattle"
-	key_mgmt=NONE
-	scan_ssid=1
-	priority=20
-}
-network={
-	ssid="Sun Rae"
-	psk="*Pr1v8 Netw0rk*"
-	key_mgmt=WPA-PSK
-	scan_ssid=1
-	priority=19
-}
-network={
-	ssid="Izzie"
-	psk="2063494294"
-	key_mgmt=WPA-PSK
-	scan_ssid=1
-	priority=18
-}
-network={
-	ssid="spl-public"
-	scan_ssid=1
-	priority=17
-}
-END_OF_CONF
+export WPA_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
+cat /dev/null >${WPA_CONF}
+if [ -e		/etc/wpa_supplicant/wpa_supplicant.source.conf ]; then
+	cat	/etc/wpa_supplicant/wpa_supplicant.source.conf >>${WPA_CONF}
 fi
-cat /tmp/.wpa_supplicant.conf >>/etc/wpa_supplicant/wpa_supplicant.conf
+if [ -e		/tmp/.wpa_supplicant.conf ]; then
+	cat	/tmp/.wpa_supplicant.conf >>${WPA_CONF}
+fi
 exec wpa_supplicant \
 	-d \
 	-t \
