@@ -3,18 +3,25 @@ source ${HOME}/.bashrc
 ################################################################################
 
 declare SETCONF_DIR="/.g/_data/zactive/.setup"
+declare SETUP_DIR="/.setup"
+declare SETCONF=".setconf"
+
+declare RUNIT_DIR="/.runit"
+
+########################################
 
 declare LIBVIRT_DIR="/.g/_data/_systems/libvirt"
 
 ################################################################################
 
-${RM}					/etc/localtime
-${LN} /usr/share/zoneinfo/US/Pacific	/etc/localtime
-${RM}					/run/udev
-${LN} /dev/.udev			/run/udev
+${RM}						/etc/localtime
+${LN} /usr/share/zoneinfo/US/Pacific		/etc/localtime
+${RM}						/run/udev
+${LN} /dev/.udev				/run/udev
 
 ########################################
 
+declare FILE=
 declare DIR=
 for DIR in \
 	apache		\
@@ -41,173 +48,158 @@ for DIR in \
 	vmware		\
 	xorg
 do
-	${MKDIR}			/.setup/${DIR}
-	setconf ${SETCONF_DIR}/${DIR}	/.setup/${DIR}
+	${MKDIR}				${SETUP_DIR}/${DIR}
+	setconf ${SETCONF_DIR}/${DIR}		${SETUP_DIR}/${DIR}
 done
 
 ########################################
 
-chown -vR root:root			/.setup
-chmod -vR 755				/.setup
+chown -vR root:root				${SETUP_DIR}
+chmod -vR 755					${SETUP_DIR}
 
-${RM}					/.setup/.setconf
-${LN} ${SETCONF_DIR}/.setconf		/.setup/.setconf
+${RM}						${SETUP_DIR}/${SETCONF}
+${LN} ${SETCONF_DIR}/${SETCONF}			${SETUP_DIR}/${SETCONF}
 
 ########################################
 
 # apache
-${RM}					/etc/apache2
-${LN} /.setup/apache			/etc/apache2
+${RM}						/etc/apache2
+${LN} ${SETUP_DIR}/apache			/etc/apache2
 
 # awstats
-${RM}					/etc/awstats
-${LN} /.setup/awstats			/etc/awstats
+${RM}						/etc/awstats
+${LN} ${SETUP_DIR}/awstats			/etc/awstats
 
 # bind
-chown -vR nobody:root			/.setup/bind
-${RM}					/etc/bind
-${LN} /.setup/bind			/etc/bind
-${RM}					/etc/named.conf
-${LN} /.setup/bind/named.conf		/etc/named.conf
+chown -vR nobody:root				${SETUP_DIR}/bind
+${RM}						/etc/bind
+${LN} ${SETUP_DIR}/bind				/etc/bind
+${RM}						/etc/named.conf
+${LN} ${SETUP_DIR}/bind/named.conf		/etc/named.conf
 
 # cups
-${RM}					/.setup/cups/mime.*
-${LN} /usr/share/cups/mime/mime.*	/.setup/cups
-${RM}					/etc/cups
-${LN} /.setup/cups			/etc/cups
+${RM}						${SETUP_DIR}/cups/mime.*
+${LN} /usr/share/cups/mime/mime.*		${SETUP_DIR}/cups
+${RM}						/etc/cups
+${LN} ${SETUP_DIR}/cups				/etc/cups
 
 # dhcpd
-${RM}					/etc/dhcp/dhcpd.conf
-${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcp/dhcpd.conf
-${RM}					/etc/dhcpd.conf
-${LN} /.setup/dhcpd/dhcpd.conf		/etc/dhcpd.conf
+${RM}						/etc/dhcp/dhcpd.conf
+${LN} ${SETUP_DIR}/dhcpd/dhcpd.conf		/etc/dhcp/dhcpd.conf
+${RM}						/etc/dhcpd.conf
+${LN} ${SETUP_DIR}/dhcpd/dhcpd.conf		/etc/dhcpd.conf
 
 # dovecot
-${RM}					/etc/dovecot
-${LN} /.setup/dovecot			/etc/dovecot
+${RM}						/etc/dovecot
+${LN} ${SETUP_DIR}/dovecot			/etc/dovecot
 
 # etc
-${RM}					/etc/resolv.conf.*
-declare FILE=
-for FILE in \
-	crypttab	\
-	exports		\
-	fstab		\
-	host.conf	\
-	hostname	\
-	hosts		\
-	issue		\
-	locale.gen	\
-	modules		\
-	motd		\
-	networks	\
-	resolv.conf	\
-	sysctl.conf
-do
-	${RM}				/etc/${FILE}
-	${LN} /.setup/etc/${FILE}	/etc/${FILE}
+${RM}						/etc/resolv.conf.*
+for FILE in ${SETUP_DIR}/etc/*; do
+	${RM}					/etc/$(basename ${FILE})
+	${LN} ${FILE}				/etc/$(basename ${FILE})
 done
 
 # gentoo
-declare OVERLAY="/.setup/gentoo/_overlay/overlay.conf"
-for FILE in /.setup/gentoo/*; do
-${RM}					/etc/portage/$(basename ${FILE})
-${LN} ${FILE}				/etc/portage/$(basename ${FILE})
-${RM}					/etc/portage/repos.conf/$(basename ${OVERLAY})
-${LN} ${OVERLAY}			/etc/portage/repos.conf/$(basename ${OVERLAY})
+declare OVERLAY="${SETUP_DIR}/gentoo/_overlay/overlay.conf"
+for FILE in ${SETUP_DIR}/gentoo/*; do
+${RM}						/etc/portage/$(basename ${FILE})
+${LN} ${FILE}					/etc/portage/$(basename ${FILE})
+${RM}						/etc/portage/repos.conf/$(basename ${OVERLAY})
+${LN} ${OVERLAY}				/etc/portage/repos.conf/$(basename ${OVERLAY})
 done
 
 # grub
-${RM}					/boot/grub/grub.cfg
-${LN} /.setup/grub/grub.cfg		/boot/grub/grub.cfg
+${RM}						/boot/grub/grub.cfg
+${LN} ${SETUP_DIR}/grub/grub.cfg		/boot/grub/grub.cfg
 
 # hostapd
-${RM}					/etc/hostapd/hostapd.conf
-${LN} /.setup/hostapd/hostapd.conf	/etc/hostapd/hostapd.conf
+${RM}						/etc/hostapd/hostapd.conf
+${LN} ${SETUP_DIR}/hostapd/hostapd.conf		/etc/hostapd/hostapd.conf
 
 # libvirt
-${RM}					/etc/libvirt/libvirt.conf
-${LN} /.setup/libvirt/libvirt.conf	/etc/libvirt/libvirt.conf
-${RM}					/etc/libvirt/libvirtd.conf
-${LN} /.setup/libvirt/libvirtd.conf	/etc/libvirt/libvirtd.conf
-${RM}					/etc/libvirt/qemu
-${LN} ${LIBVIRT_DIR}/qemu		/etc/libvirt/qemu
-${RM}					/etc/libvirt/storage
-${LN} ${LIBVIRT_DIR}/storage		/etc/libvirt/storage
-${RM}					/var/lib/libvirt/qemu
-${LN} ${LIBVIRT_DIR}/qemu.lib		/var/lib/libvirt/qemu
+${RM}						/etc/libvirt/libvirt.conf
+${LN} ${SETUP_DIR}/libvirt/libvirt.conf		/etc/libvirt/libvirt.conf
+${RM}						/etc/libvirt/libvirtd.conf
+${LN} ${SETUP_DIR}/libvirt/libvirtd.conf	/etc/libvirt/libvirtd.conf
+${RM}						/etc/libvirt/qemu
+${LN} ${LIBVIRT_DIR}/qemu			/etc/libvirt/qemu
+${RM}						/etc/libvirt/storage
+${LN} ${LIBVIRT_DIR}/storage			/etc/libvirt/storage
+${RM}						/var/lib/libvirt/qemu
+${LN} ${LIBVIRT_DIR}/qemu.lib			/var/lib/libvirt/qemu
 
 # linux
 
 # minicom
-${RM}					/etc/minicom
-${LN} /.setup/minicom			/etc/minicom
-${RM}					/etc/minirc.dfl
-${LN} /.setup/minicom/minirc.dfl	/etc/minirc.dfl
+${RM}						/etc/minicom
+${LN} ${SETUP_DIR}/minicom			/etc/minicom
+${RM}						/etc/minirc.dfl
+${LN} ${SETUP_DIR}/minicom/minirc.dfl		/etc/minirc.dfl
 
 # nginx
-${RM}					/etc/nginx
-${LN} /.setup/nginx			/etc/nginx
+${RM}						/etc/nginx
+${LN} ${SETUP_DIR}/nginx			/etc/nginx
 
 # ntp
-${RM}					/etc/ntp-servers.conf
-${LN} /.setup/ntp/ntp-servers.conf	/etc/ntp-servers.conf
-${RM}					/etc/ntp.conf
-${LN} /.setup/ntp/ntp.conf		/etc/ntp.conf
+${RM}						/etc/ntp-servers.conf
+${LN} ${SETUP_DIR}/ntp/ntp-servers.conf		/etc/ntp-servers.conf
+${RM}						/etc/ntp.conf
+${LN} ${SETUP_DIR}/ntp/ntp.conf			/etc/ntp.conf
 
 # openvpn
-${RM}					/etc/openvpn
-${LN} /.setup/openvpn			/etc/openvpn
+${RM}						/etc/openvpn
+${LN} ${SETUP_DIR}/openvpn			/etc/openvpn
 
 # proftpd
-${RM}					/etc/proftpd/proftpd.conf
-${LN} /.setup/proftpd/proftpd.conf	/etc/proftpd/proftpd.conf
+${RM}						/etc/proftpd/proftpd.conf
+${LN} ${SETUP_DIR}/proftpd/proftpd.conf		/etc/proftpd/proftpd.conf
 
 # samba
-${MKDIR}				/.setup/samba/private/msg.sock
-chmod -v 700				/.setup/samba/private{,/msg.sock}
-chmod -v 600				/.setup/samba/private/*.tdb
-${RM}					/etc/samba
-${LN} /.setup/samba			/etc/samba
-${RM}					/var/lib/samba/private
-${LN} /.setup/samba/private		/var/lib/samba/private
+${MKDIR}					${SETUP_DIR}/samba/private/msg.sock
+chmod -v 700					${SETUP_DIR}/samba/private{,/msg.sock}
+chmod -v 600					${SETUP_DIR}/samba/private/*.tdb
+${RM}						/etc/samba
+${LN} ${SETUP_DIR}/samba			/etc/samba
+${RM}						/var/lib/samba/private
+${LN} ${SETUP_DIR}/samba/private		/var/lib/samba/private
 echo "create /var/lib/samba/winbindd_idmap.tdb" | tdbtool
 
 # ssh
-chmod -v 400				/.setup/ssh/ssh_host_*
-${RM}					/etc/ssh
-${LN} /.setup/ssh			/etc/ssh
+chmod -v 400					${SETUP_DIR}/ssh/ssh_host_*
+${RM}						/etc/ssh
+${LN} ${SETUP_DIR}/ssh				/etc/ssh
 
 # udev
-${RM}					/etc/udev/rules.d
-${LN} /.setup/udev/rules.d		/etc/udev/rules.d
+${RM}						/etc/udev/rules.d
+${LN} ${SETUP_DIR}/udev/rules.d			/etc/udev/rules.d
 
 # ulogd
-${RM}					/etc/ulogd.conf
-${LN} /.setup/ulogd/ulogd.conf		/etc/ulogd.conf
+${RM}						/etc/ulogd.conf
+${LN} ${SETUP_DIR}/ulogd/ulogd.conf		/etc/ulogd.conf
 
 # vmware
-chown -vR plastic:root			/.setup/vmware
-${RM}					/etc/vmware
-${LN} /.setup/vmware			/etc/vmware
-${RM}					/etc/vmware-tools
-${LN} /.setup/vmware/etc		/etc/vmware-tools
-${RM}					/opt/vmware-tools
-${LN} /.setup/vmware/opt		/opt/vmware-tools
+chown -vR plastic:root				${SETUP_DIR}/vmware
+${RM}						/etc/vmware
+${LN} ${SETUP_DIR}/vmware			/etc/vmware
+${RM}						/etc/vmware-tools
+${LN} ${SETUP_DIR}/vmware/etc			/etc/vmware-tools
+${RM}						/opt/vmware-tools
+${LN} ${SETUP_DIR}/vmware/opt			/opt/vmware-tools
 
 # xorg
-${RM}					/etc/X11/Xmodmap
-${LN} /.setup/xorg/Xmodmap		/etc/X11/Xmodmap
-${RM}					/etc/X11/xorg.conf
-#>>>${LN} /.setup/xorg/xorg.conf		/etc/X11/xorg.conf
+${RM}						/etc/X11/Xmodmap
+${LN} ${SETUP_DIR}/xorg/Xmodmap			/etc/X11/Xmodmap
+${RM}						/etc/X11/xorg.conf
+#>>>${LN} ${SETUP_DIR}/xorg/xorg.conf		/etc/X11/xorg.conf
 
 ########################################
 
-${MKDIR}				/.runit
-setconf ${SETCONF_DIR}/runit		/.runit
+${MKDIR}					${RUNIT_DIR}
+setconf ${SETCONF_DIR}/runit			${RUNIT_DIR}
 
 if [[ ${1} == -r ]]; then
-	(cd /.runit;			./_build.sh)
+	(cd ${RUNIT_DIR};			./_build.sh)
 fi
 
 exit 0
