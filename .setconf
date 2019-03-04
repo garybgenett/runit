@@ -52,7 +52,7 @@ do
 	${MKDIR}				${SETUP_DIR}/${DIR}
 	setconf ${SETCONF_DIR}/${DIR}		${SETUP_DIR}/${DIR}
 done
-
+j
 ########################################
 
 chown -vR root:root				${SETUP_DIR}
@@ -207,6 +207,20 @@ setconf ${SETCONF_DIR}/runit			${RUNIT_DIR}
 if [[ ${1} == -r ]]; then
 	(cd ${RUNIT_DIR};			./_build.sh)
 fi
+
+################################################################################
+
+echo -en "\n"
+
+${LL} -d $(find \
+		${SETUP_DIR}	\
+		/etc		\
+	-type f			\
+|
+	${GREP} "(ssl|ssh)"			|
+	${GREP} -v "/etc/ssl/(certs|misc)"	|
+	sort
+)
 
 exit 0
 ################################################################################
