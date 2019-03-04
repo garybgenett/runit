@@ -13,8 +13,8 @@ if [ ! -d ${TASKDDATA} ]; then
 	/usr/bin/taskd add --debug --data "${TASKDDATA}" group local group
 	/usr/bin/taskd add --debug --data "${TASKDDATA}" user local user
 	touch "${TASKDDATA}/orgs/local/groups/group/config"
-	exit 0
 fi
+cat /dev/null >"${TASKDDATA}/config"
 killall -v -9 taskd
 rm -frv ${TASKD_PID}
 exec /usr/bin/taskd \
