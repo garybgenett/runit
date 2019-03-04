@@ -8,10 +8,10 @@ export TASKD_LOG="/dev/stdout"
 export TASKD_SRV="0.0.0.0:53589"
 if [ ! -d ${TASKDDATA} ]; then
 	mkdir -pv ${TASKDDATA}
-	/usr/bin/taskd init --debug --data "${TASKDDATA}"
-	/usr/bin/taskd add --debug --data "${TASKDDATA}" org local
-	/usr/bin/taskd add --debug --data "${TASKDDATA}" group local group
-	/usr/bin/taskd add --debug --data "${TASKDDATA}" user local user
+	/usr/bin/taskd init --debug --data="${TASKDDATA}"
+	/usr/bin/taskd add --debug --data="${TASKDDATA}" org local
+	/usr/bin/taskd add --debug --data="${TASKDDATA}" group local group
+	/usr/bin/taskd add --debug --data="${TASKDDATA}" user local user
 	touch "${TASKDDATA}/orgs/local/groups/group/config"
 fi
 cat /dev/null >"${TASKDDATA}/config"
@@ -20,7 +20,8 @@ rm -frv ${TASKD_PID}
 exec /usr/bin/taskd \
 	server \
 	--debug \
-	--data "${TASKDDATA}" \
+	--data="${TASKDDATA}" \
+		--verbose="on" \
 		--debug="on" \
 		--ip.log="on" \
 		--log="${TASKD_LOG}" \
@@ -35,5 +36,7 @@ exec /usr/bin/taskd \
 		--debug.tls="1" \
 		--trust="strict" \
 		--client.allow="^taskd,^task" \
+		--confirmation="on" \
+		--queue.size="1" \
 		--request.limit="16777216" # (2^20)*(2^8) = 268435456 / (2^20)*(2^4) = 16777216 / default: (2^20) = 1048576
 # end of file
