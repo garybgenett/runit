@@ -35,5 +35,5 @@ exec /usr/bin/taskd \
 		--debug.tls="1" \
 		--trust="strict" \
 		--client.allow="^taskd,^task" \
-		--request.limit=16777216 # 2^24 = 16777216 / default: 2^20 = 1048576
+		--request.limit="16777216" # (2^20)*(2^8) = 268435456 / (2^20)*(2^4) = 16777216 / default: (2^20) = 1048576
 # end of file
