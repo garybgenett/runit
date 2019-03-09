@@ -7,12 +7,16 @@ declare RUNLEVELS="./_runlevels.txt"
 ################################################################################
 
 ${RM} /etc/runit
+${RM} /etc/service
+${RM} /etc/sv
 ${RM} /service
 ${RM} /var/service
 
-${LN} /.runit		/etc/runit
-${LN} /.runit/services	/service
-${LN} /.runit/services	/var/service
+${LN} /.runit			/etc/runit
+${LN} /.runit/runsvdir/current	/etc/service
+${LN} /.runit/services		/etc/sv
+${LN} /.runit/services		/service
+${LN} /.runit/runsvdir/current	/var/service
 
 ########################################
 
