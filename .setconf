@@ -35,7 +35,6 @@ for DIR in \
 	grub		\
 	hostapd		\
 	libvirt		\
-	linux		\
 	minicom		\
 	nginx		\
 	ntp		\
@@ -129,8 +128,6 @@ ${RM}						/etc/libvirt/storage
 ${LN} ${LIBVIRT_DIR}/storage			/etc/libvirt/storage
 ${RM}						/var/lib/libvirt/qemu
 ${LN} ${LIBVIRT_DIR}/qemu.lib			/var/lib/libvirt/qemu
-
-# linux
 
 # minicom
 ${RM}						/etc/minicom
