@@ -35,6 +35,7 @@ for DIR in \
 	grub		\
 	hostapd		\
 	libvirt		\
+	locales		\
 	minicom		\
 	nginx		\
 	ntp		\
@@ -128,6 +129,12 @@ ${RM}						/etc/libvirt/storage
 ${LN} ${LIBVIRT_DIR}/storage			/etc/libvirt/storage
 ${RM}						/var/lib/libvirt/qemu
 ${LN} ${LIBVIRT_DIR}/qemu.lib			/var/lib/libvirt/qemu
+
+# locales
+for FILE in ${SETUP_DIR}/locales/*; do
+	${RM}					/usr/share/i18n/locales/$(basename ${FILE})
+	${LN} ${FILE}				/usr/share/i18n/locales/$(basename ${FILE})
+done
 
 # minicom
 ${RM}						/etc/minicom
