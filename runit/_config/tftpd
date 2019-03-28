@@ -6,6 +6,7 @@ killall -v -9 in.tftpd
 exec in.tftpd \
 	--foreground \
 	--verbose \
+	--port-range 1069:1069 \
 	--user nobody \
 	--secure \
 	/.g/_data/.store
