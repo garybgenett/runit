@@ -78,14 +78,16 @@ report_status sync
 ########################################
 
 print_msg "Unmounting data filesystems..."
-{
-	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdc"		;
-	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sdb"		;
-	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x sda"		;
-} || {
+ROOT="`cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g"`"
+FAIL="false"
+#>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sdc"		#>>> || FAIL="true"
+#>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sdb"		#>>> || FAIL="true"
+#>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sda"		#>>> || FAIL="true"
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	${ROOT}"	|| FAIL="true"
+if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely unmounted !!!"	;
 	sleep 10									;
-}
+fi
 
 ########################################
 
