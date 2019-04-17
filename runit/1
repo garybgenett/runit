@@ -153,10 +153,15 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g sda" || {
+ROOT="`cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g"`"
+FAIL="false"
+#>>>	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount .	${ROOT}"	|| FAIL="true"
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g	${ROOT}"	|| FAIL="true"
+#>>>	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount media	sdb"		#>>> || FAIL="true"
+if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
-}
+fi
 
 SETCONF="`cat /proc/cmdline | grep -E -o "setconf=([^ ]+)" | sed -r "s/^.+=//g"`"
 if [ -n "${SETCONF}" ]; then
