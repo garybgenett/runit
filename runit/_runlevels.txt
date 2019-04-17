@@ -28,7 +28,6 @@ apache		station                           server server_v server_r default media
 dhcpd		station             maint maint_x server server_v server_r default media custom
 dovecot		station                           server server_v server_r default media custom
 named		station             maint maint_x server server_v          default media custom
-nfsd		station                           server server_v server_r default media custom
 qemu.windows	station                                                    default media custom
 smbd		station                           server server_v server_r default media custom
 tftpd		station                           server server_v server_r default media custom
@@ -51,6 +50,7 @@ hald
 htc
 hts
 libvirtd
+nfsd
 nginx
 tor
 vlc
