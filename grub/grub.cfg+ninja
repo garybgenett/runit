@@ -2,6 +2,10 @@
 # grub configuration file
 ################################################################################
 
+set debug=linux
+
+################################################################################
+
 serial --unit=0 --speed=9600 --word=8 --parity=no --stop=1
 terminal_input console serial
 terminal_output console serial
