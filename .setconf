@@ -10,6 +10,7 @@ declare RUNIT_DIR="/.runit"
 
 ########################################
 
+declare ISSUE_FILE="/.g/_data/zactive/coding/gary-os/_artifacts/issue"
 declare LIBVIRT_DIR="/.g/_data/_systems/libvirt"
 
 ################################################################################
@@ -96,6 +97,9 @@ ${LN} ${SETUP_DIR}/dovecot			/etc/dovecot
 
 # etc
 ${RM}						/etc/resolv.conf.*
+if [[ -f ${ISSUE_FILE} ]]; then
+${CP} ${ISSUE_FILE}				${SETUP_DIR}/etc/issue
+fi
 for FILE in ${SETUP_DIR}/etc/*; do
 	${RM}					/etc/$(basename ${FILE})
 	${LN} ${FILE}				/etc/$(basename ${FILE})
