@@ -98,7 +98,7 @@ if [ -f /etc/modules ]; then
 fi
 
 print_msg "Setting hostname..."
-HOST="`cat /proc/cmdline | grep -E -o "hostname=([^ ]+)" | sed -r "s/^.+=//g"`"
+HOST="`cat /proc/cmdline | sed -r -n "s|^.*hostname=([^ ]+).*|\1|gp"`"
 [ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="$(hostname)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="localhost"
@@ -113,7 +113,7 @@ report_status setterm -powerdown 30
 report_status setterm -powersave off
 
 print_msg "Checking and mounting root filesystem..."
-ROOT="`cat /proc/cmdline | grep -E -o "root=([^ ]+)" | sed -r "s/^.+=//g"`"
+ROOT="`cat /proc/cmdline | sed -r -n "s|^.*root=([^ ]+).*|\1|gp"`"
 report_status mount -n -o remount,ro	/			|| emergency_shell
 report_status fsck -p -C -V		${ROOT}			|| emergency_shell
 report_status mount -n -o remount,rw	/			|| emergency_shell
@@ -163,7 +163,7 @@ if ${FAIL}; then
 	sleep 10									;
 fi
 
-SETCONF="`cat /proc/cmdline | grep -E -o "setconf=([^ ]+)" | sed -r "s/^.+=//g"`"
+SETCONF="`cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*|\1|gp"`"
 if [ -n "${SETCONF}" ]; then
 	print_msg "Copying configurations..."
 	report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf -r"
