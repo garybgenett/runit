@@ -11,6 +11,10 @@ declare RUNIT_DIR="/.runit"
 ########################################
 
 declare ISSUE_FILE="/.g/_data/zactive/coding/gary-os/_artifacts/issue"
+if [[ -f ${ISSUE_FILE} ]]; then
+	ISSUE_FILE="/.gary-os/_artifacts/issue"
+fi
+
 declare LIBVIRT_DIR="/.g/_data/_systems/libvirt"
 
 ################################################################################
