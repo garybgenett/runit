@@ -14,6 +14,7 @@ END_OF_CONF
 exec dhcpcd \
 	--nobackground \
 	--debug \
+	--timeout 0 \
 	--config /dev/null \
 	--require dhcp_server_identifier \
 	--option dhcp_server_identifier \
@@ -25,7 +26,6 @@ exec dhcpcd \
 	--nooption host_name \
 	--nohook lookup-hostname \
 	--nohook hostname \
-	--hostname "" \
-	--timeout 0 \
+	--hostname \
 	eth0
 # end of file
