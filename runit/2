@@ -10,7 +10,14 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 rm -frv /.runit/runsvdir/current
 ln -fsv maint /.runit/runsvdir/current
 
-runsvchdir /.runit/runsvdir/system
+HOST="$(hostname)"
+MODE="system"
+if [ ${HOST} = spider	]; then MODE="maint"	; fi
+if [ ${HOST} = ninja	]; then MODE="server_r"	; fi
+if [ ${HOST} = maniac	]; then MODE="host"	; fi
+if [ ${HOST} = rogue	]; then MODE="host"	; fi
+
+runsvchdir /.runit/runsvdir/${MODE}
 exec env - PATH="${PATH}" \
 	runsvdir -P /.runit/runsvdir/current ................................................................................................................................................................................................................................................................
 
