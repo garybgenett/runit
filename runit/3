@@ -3,7 +3,7 @@
 # runit stage 3 script
 ################################################################################
 
-export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 
 ########################################
 
@@ -48,11 +48,11 @@ countdown() {
 print_msg "Saving clock..."
 report_status hwclock --debug --utc --systohc
 
-if [ -x "$(which alsamixer)" ]; then
+if [ -x $(which alsamixer) ]; then
 	print_msg "Storing alsa state..."
 	store_alsa_state() {
 		RESULT="$(alsactl store -f /var/lib/alsa/asound.state)"
-		if [ -n "${RESULT}" ]; then
+		if [ -n ${RESULT} ]; then
 			echo "${RESULT}"
 			return 1
 		fi
@@ -78,7 +78,7 @@ report_status sync
 ########################################
 
 print_msg "Unmounting data filesystems..."
-ROOT="`cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g"`"
+ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
 #>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sdc"		#>>> || FAIL="true"
 #>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sdb"		#>>> || FAIL="true"
