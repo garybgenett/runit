@@ -2,7 +2,7 @@
 source ${HOME}/.bashrc
 ################################################################################
 
-declare SETCONF_DIR="/.g/_data/zactive/.setup"
+declare SETCONF_DIR="${SETUP:-/.g/_data/zactive/.setup}"
 declare SETUP_DIR="/.setup"
 declare SETCONF=".setconf"
 
