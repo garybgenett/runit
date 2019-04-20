@@ -3,7 +3,7 @@
 # runit stage 1 script
 ################################################################################
 
-export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 
 ########################################
 
@@ -98,7 +98,7 @@ if [ -f /etc/modules ]; then
 fi
 
 print_msg "Setting hostname..."
-HOST="`cat /proc/cmdline | sed -r -n "s|^.*hostname=([^ ]+).*|\1|gp"`"
+HOST="$(cat /proc/cmdline | sed -r -n "s|^.*hostname=([^ ]+).*|\1|gp")"
 [ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="$(hostname)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="localhost"
@@ -113,7 +113,7 @@ report_status setterm -powerdown 30
 report_status setterm -powersave off
 
 print_msg "Checking and mounting root filesystem..."
-ROOT="`cat /proc/cmdline | sed -r -n "s|^.*root=([^ ]+).*|\1|gp"`"
+ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=([^ ]+).*|\1|gp")"
 report_status mount -n -o remount,ro	/			|| emergency_shell
 report_status fsck -p -C -V		${ROOT}			|| emergency_shell
 report_status mount -n -o remount,rw	/			|| emergency_shell
@@ -133,12 +133,12 @@ report_status eval "touch /var/run/utmp"
 report_status chown root:root /var/{log,run}/[uw]tmp
 report_status chmod 644 /var/{log,run}/[uw]tmp
 
-if [ -x "$(which alsamixer)" ] &&
+if [ -x $(which alsamixer) ] &&
    [ -f /var/lib/alsa/asound.state ]; then
 	print_msg "Restoring alsa state..."
 	restore_alsa_state() {
 		RESULT="$(alsactl restore -f /var/lib/alsa/asound.state)"
-		if [ -n "${RESULT}" ]; then
+		if [ -n ${RESULT} ]; then
 			echo "${RESULT}"
 			return 1
 		fi
@@ -153,7 +153,7 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-ROOT="`cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g"`"
+ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
 #>>>	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount .	${ROOT}"	|| FAIL="true"
 	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g	${ROOT}"	|| FAIL="true"
@@ -163,8 +163,8 @@ if ${FAIL}; then
 	sleep 10									;
 fi
 
-SETCONF="`cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*|\1|gp"`"
-if [ -n "${SETCONF}" ]; then
+SETCONF="$(cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*|\1|gp")"
+if [ -n ${SETCONF} ]; then
 	print_msg "Copying configurations..."
 	report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf -r"
 fi
