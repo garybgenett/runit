@@ -98,7 +98,7 @@ ${LN} ${SETUP_DIR}/dovecot			/etc/dovecot
 # etc
 ${RM}						/etc/resolv.conf.*
 if [[ -f ${ISSUE_FILE} ]]; then
-${CP} ${ISSUE_FILE}				${SETUP_DIR}/etc/issue
+	${CP} ${ISSUE_FILE}			${SETUP_DIR}/etc/issue
 fi
 for FILE in ${SETUP_DIR}/etc/*; do
 	${RM}					/etc/$(basename ${FILE})
@@ -108,10 +108,10 @@ done
 # gentoo
 declare OVERLAY="${SETUP_DIR}/gentoo/_overlay/overlay.conf"
 for FILE in ${SETUP_DIR}/gentoo/*; do
-${RM}						/etc/portage/$(basename ${FILE})
-${LN} ${FILE}					/etc/portage/$(basename ${FILE})
-${RM}						/etc/portage/repos.conf/$(basename ${OVERLAY})
-${LN} ${OVERLAY}				/etc/portage/repos.conf/$(basename ${OVERLAY})
+	${RM}					/etc/portage/$(basename ${FILE})
+	${LN} ${FILE}				/etc/portage/$(basename ${FILE})
+	${RM}					/etc/portage/repos.conf/$(basename ${OVERLAY})
+	${LN} ${OVERLAY}			/etc/portage/repos.conf/$(basename ${OVERLAY})
 done
 
 # grub
