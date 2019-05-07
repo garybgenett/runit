@@ -52,7 +52,7 @@ if [ -x $(which alsamixer) ]; then
 	print_msg "Storing alsa state..."
 	store_alsa_state() {
 		RESULT="$(alsactl store -f /var/lib/alsa/asound.state)"
-		if [ -n ${RESULT} ]; then
+		if [ -n "${RESULT}" ]; then
 			echo "${RESULT}"
 			return 1
 		fi

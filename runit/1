@@ -138,7 +138,7 @@ if [ -x $(which alsamixer) ] &&
 	print_msg "Restoring alsa state..."
 	restore_alsa_state() {
 		RESULT="$(alsactl restore -f /var/lib/alsa/asound.state)"
-		if [ -n ${RESULT} ]; then
+		if [ -n "${RESULT}" ]; then
 			echo "${RESULT}"
 			return 1
 		fi
@@ -164,7 +164,7 @@ if ${FAIL}; then
 fi
 
 SETCONF="$(cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*|\1|gp")"
-if [ -n ${SETCONF} ]; then
+if [ -n "${SETCONF}" ]; then
 	print_msg "Copying configurations..."
 	report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf -r"
 fi
