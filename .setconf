@@ -11,7 +11,7 @@ declare RUNIT_DIR="/.runit"
 ########################################
 
 declare ISSUE_FILE="/.g/_data/zactive/coding/gary-os/_artifacts/issue"
-if [[ -f ${ISSUE_FILE} ]]; then
+if [[ ! -f ${ISSUE_FILE} ]]; then
 	ISSUE_FILE="/.gary-os/_artifacts/issue"
 fi
 
