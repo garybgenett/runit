@@ -4,7 +4,9 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 killall -v -9 dhcpcd
 rm -frv /var/lib/dhcp/*
-cat >/etc/resolv.conf.head <<END_OF_CONF
+rm -frv /var/run/resolvconf/interfaces/*
+rm -frv /etc/resolv.conf*
+cat >/etc/resolv.conf.tail <<END_OF_CONF
 search		example.net
 nameserver	127.0.0.1
 nameserver	10.255.255.254

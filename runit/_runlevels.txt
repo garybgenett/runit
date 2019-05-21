@@ -17,7 +17,7 @@ ulogd		station system host maint maint_x server server_v server_r default media 
 #-------------------------------------------------------------------------------
 _sync		station system                    server server_v server_r default media custom
 autossh		station system host                               server_r
-dhclient	station system host
+dhcpcd		station system host
 lxde		               host
 openvpn		station system      maint maint_x server server_v          default media custom
 wpa_supplicant	station system host
@@ -45,7 +45,7 @@ xsession.null	                                                                  
 firefox		                                                                         custom
 ################################################################################
 bluetoothd
-dhcpcd
+dhclient
 hald
 htc
 hts
