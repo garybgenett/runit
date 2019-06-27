@@ -15,6 +15,8 @@ dark_color="\\033[1;30m"	# dark gray
 good_color="\\033[1;32m"	# light green
 fail_color="\\033[1;31m"	# red
 
+########################################
+
 print_msg() {
 	echo -e "${msg_color}${*}${def_color}"
 	return 0
@@ -68,11 +70,11 @@ make_devices() {
 	return 0
 }
 report_status make_devices
-report_status mount -n -t devpts	-o noexec,nosuid,gid=5	none /dev/pts
-OPT="-o size=50%,mode=1777"
-report_status mount -n -t tmpfs ${OPT}	-o nodev,noexec,nosuid	none /dev/shm
 
 print_msg "Mounting kernel filesystems..."
+DSHM="-o size=50%,mode=1777"
+report_status mount -n -t devpts	-o noexec,nosuid,gid=5	none /dev/pts
+report_status mount -n -t tmpfs ${DSHM}	-o nodev,noexec,nosuid	none /dev/shm
 report_status mount -n -t proc		-o nodev,noexec,nosuid	none /proc
 report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
 
@@ -81,9 +83,6 @@ report_status eval "echo >/proc/sys/kernel/hotplug"
 report_status /sbin/udevd --daemon
 report_status udevadm trigger
 report_status udevadm settle --timeout=10
-
-print_msg "Setting clock..."
-report_status hwclock --debug --utc --hctosys
 
 if [ -f /etc/sysctl.conf ]; then
 	print_msg "Setting kernel variables..."
@@ -96,6 +95,11 @@ if [ -f /etc/modules ]; then
 		report_status modprobe -v ${MODULE}
 	done
 fi
+
+########################################
+
+print_msg "Setting clock..."
+report_status hwclock --debug --utc --hctosys
 
 print_msg "Setting hostname..."
 HOST="$(cat /proc/cmdline | sed -r -n "s|^.*hostname=([^ ]+).*|\1|gp")"
@@ -111,6 +115,8 @@ report_status unicode_start
 report_status setterm -blank 10
 report_status setterm -powerdown 30
 report_status setterm -powersave off
+
+########################################
 
 print_msg "Checking and mounting root filesystem..."
 ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=([^ ]+).*|\1|gp")"
@@ -133,13 +139,15 @@ report_status eval "touch /var/run/utmp"
 report_status chown root:root /var/{log,run}/[uw]tmp
 report_status chmod 644 /var/{log,run}/[uw]tmp
 
+########################################
+
 if [ -x $(which alsamixer) ] &&
    [ -f /var/lib/alsa/asound.state ]; then
 	print_msg "Restoring alsa state..."
 	restore_alsa_state() {
-		RESULT="$(alsactl restore -f /var/lib/alsa/asound.state)"
-		if [ -n "${RESULT}" ]; then
-			echo "${RESULT}"
+		ALSA="$(alsactl restore -f /var/lib/alsa/asound.state)"
+		if [ -n "${ALSA}" ]; then
+			echo "${ALSA}"
 			return 1
 		fi
 		return 0
@@ -148,6 +156,12 @@ if [ -x $(which alsamixer) ] &&
 fi
 
 ########################################
+
+CONF="$(cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*|\1|gp")"
+if [ -n "${CONF}" ]; then
+	print_msg "Copying configurations..."
+	report_status eval "HOME=/.g/.home SETUP=/.g/.home/setup /.g/.home/setup/.setconf -r"
+fi
 
 print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
@@ -161,12 +175,6 @@ FAIL="false"
 if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
-fi
-
-SETCONF="$(cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*|\1|gp")"
-if [ -n "${SETCONF}" ]; then
-	print_msg "Copying configurations..."
-	report_status eval "HOME=/.g/.home /.g/.home/setup/.setconf -r"
 fi
 
 ########################################
