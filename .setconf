@@ -103,6 +103,10 @@ ${LN} ${SETUP_DIR}/dovecot			/etc/dovecot
 ${RM}						/etc/resolv.conf.*
 if [[ -f ${ISSUE_FILE} ]]; then
 	${CP} ${ISSUE_FILE}			${SETUP_DIR}/etc/issue
+	${SED} \
+		-e "s|[\]e[[]([0-9]+[;])?[0-9]+[;][0-9]+m||g" \
+		-e "/^[\][a-z]/d" \
+						${SETUP_DIR}/etc/issue >${SETUP_DIR}/etc/motd
 fi
 for FILE in ${SETUP_DIR}/etc/*; do
 	${RM}					/etc/$(basename ${FILE})
