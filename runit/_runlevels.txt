@@ -6,17 +6,15 @@ ntpd		station system host maint maint_x server default media
 sshd		station system host maint maint_x server default media
 syslogd		station system host maint maint_x server default media
 taskd		station system host maint maint_x server default media
-tcpdump		station system host maint maint_x server default media
 tty1		station system host maint maint_x server default media
 tty2		station system host maint maint_x server default media
 tty3		station system host maint maint_x server default media
 tty4		station system host maint maint_x server default media
-ttyS0		station system host maint maint_x server default media
 udevd		station system host maint maint_x server default media
 ulogd		station system host maint maint_x server default media
 #-------------------------------------------------------------------------------
 _sync		station system                    server default media
-autossh		station system host                      
+autossh		station system host
 dhcpcd		station system host
 lxde		               host
 openvpn		station system      maint maint_x server default media
@@ -30,9 +28,7 @@ dovecot		station                           server default media
 named		station             maint maint_x server default media
 qemu.windows	station                                  default media
 smbd		station                           server default media
-tftpd		station                           server default media
 #-------------------------------------------------------------------------------
-cupsd		                                         default media
 hostapd		                    maint maint_x server default media
 proftpd		                                  server default media
 #-------------------------------------------------------------------------------
@@ -44,6 +40,7 @@ xorg.null	                                                 media
 xsession.null	                                                 media
 ################################################################################
 bluetoothd
+cupsd
 dhclient
 hald
 htc
@@ -51,7 +48,10 @@ hts
 libvirtd
 nfsd
 nginx
+tcpdump
+tftpd
 tor
+ttyS0
 vlc
 xbmc
 xdm
