@@ -1,47 +1,47 @@
 ################################################################################
-# service	station system host maint maint_x server server_r default media
+# service	station system host maint maint_x server default media
 ################################################################################
-klogd		station system host maint maint_x server server_r default media
-ntpd		station system host maint maint_x server server_r default media
-sshd		station system host maint maint_x server server_r default media
-syslogd		station system host maint maint_x server server_r default media
-taskd		station system host maint maint_x server server_r default media
-tcpdump		station system host maint maint_x server server_r default media
-tty1		station system host maint maint_x server server_r default media
-tty2		station system host maint maint_x server server_r default media
-tty3		station system host maint maint_x server server_r default media
-tty4		station system host maint maint_x server server_r default media
-ttyS0		station system host maint maint_x server server_r default media
-udevd		station system host maint maint_x server server_r default media
-ulogd		station system host maint maint_x server server_r default media
+klogd		station system host maint maint_x server default media
+ntpd		station system host maint maint_x server default media
+sshd		station system host maint maint_x server default media
+syslogd		station system host maint maint_x server default media
+taskd		station system host maint maint_x server default media
+tcpdump		station system host maint maint_x server default media
+tty1		station system host maint maint_x server default media
+tty2		station system host maint maint_x server default media
+tty3		station system host maint maint_x server default media
+tty4		station system host maint maint_x server default media
+ttyS0		station system host maint maint_x server default media
+udevd		station system host maint maint_x server default media
+ulogd		station system host maint maint_x server default media
 #-------------------------------------------------------------------------------
-_sync		station system                    server server_r default media
-autossh		station system host                      server_r
+_sync		station system                    server default media
+autossh		station system host                      
 dhcpcd		station system host
 lxde		               host
-openvpn		station system      maint maint_x server          default media
+openvpn		station system      maint maint_x server default media
 wpa_supplicant	station system host
-xorg		station system            maint_x                 default media
-xsession	station system            maint_x                 default media
+xorg		station system            maint_x        default media
+xsession	station system            maint_x        default media
 #-------------------------------------------------------------------------------
-apache		station                           server server_r default media
-dhcpd		station             maint maint_x server server_r default media
-dovecot		station                           server server_r default media
-named		station             maint maint_x server          default media
-qemu.windows	station                                           default media
-smbd		station                           server server_r default media
-tftpd		station                           server server_r default media
+apache		station                           server default media
+dhcpd		station             maint maint_x server default media
+dovecot		station                           server default media
+named		station             maint maint_x server default media
+qemu.windows	station                                  default media
+smbd		station                           server default media
+tftpd		station                           server default media
 #-------------------------------------------------------------------------------
-cupsd		                                                  default media
-hostapd		                    maint maint_x server          default media
-proftpd		                                  server server_r default media
+cupsd		                                         default media
+hostapd		                    maint maint_x server default media
+proftpd		                                  server default media
 #-------------------------------------------------------------------------------
-dbus		                                                          media
-firefox		                                                          media
-pavucontrol	                                                          media
-pulseaudio	                                                          media
-xorg.null	                                                          media
-xsession.null	                                                          media
+dbus		                                                 media
+firefox		                                                 media
+pavucontrol	                                                 media
+pulseaudio	                                                 media
+xorg.null	                                                 media
+xsession.null	                                                 media
 ################################################################################
 bluetoothd
 dhclient
