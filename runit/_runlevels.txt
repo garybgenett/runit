@@ -16,7 +16,6 @@ ulogd		station system host maint maint_x server default media
 _sync		station system                    server default media
 autossh		station system host
 dhcpcd		station system host
-lxde		               host
 openvpn		station system      maint maint_x server default media
 wpa_supplicant	station system host
 xorg		station system            maint_x        default media
@@ -28,6 +27,8 @@ dovecot		station                           server default media
 named		station             maint maint_x server default media
 qemu.windows	station                                  default media
 smbd		station                           server default media
+#-------------------------------------------------------------------------------
+lxde		               host
 #-------------------------------------------------------------------------------
 hostapd		                    maint maint_x server default media
 proftpd		                                  server default media
