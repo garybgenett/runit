@@ -1,48 +1,47 @@
 ################################################################################
-# service	station system host maint maint_x server server_v server_r default media custom
+# service	station system host maint maint_x server server_v server_r default media
 ################################################################################
-klogd		station system host maint maint_x server server_v server_r default media custom
-ntpd		station system host maint maint_x server server_v server_r default media custom
-sshd		station system host maint maint_x server server_v server_r default media custom
-syslogd		station system host maint maint_x server server_v server_r default media custom
-taskd		station system host maint maint_x server server_v server_r default media custom
-tcpdump		station system host maint maint_x server server_v server_r default media custom
-tty1		station system host maint maint_x server server_v server_r default media custom
-tty2		station system host maint maint_x server server_v server_r default media custom
-tty3		station system host maint maint_x server server_v server_r default media custom
-tty4		station system host maint maint_x server server_v server_r default media custom
-ttyS0		station system host maint maint_x server server_v server_r default media custom
-udevd		station system host maint maint_x server server_v server_r default media custom
-ulogd		station system host maint maint_x server server_v server_r default media custom
+klogd		station system host maint maint_x server server_v server_r default media
+ntpd		station system host maint maint_x server server_v server_r default media
+sshd		station system host maint maint_x server server_v server_r default media
+syslogd		station system host maint maint_x server server_v server_r default media
+taskd		station system host maint maint_x server server_v server_r default media
+tcpdump		station system host maint maint_x server server_v server_r default media
+tty1		station system host maint maint_x server server_v server_r default media
+tty2		station system host maint maint_x server server_v server_r default media
+tty3		station system host maint maint_x server server_v server_r default media
+tty4		station system host maint maint_x server server_v server_r default media
+ttyS0		station system host maint maint_x server server_v server_r default media
+udevd		station system host maint maint_x server server_v server_r default media
+ulogd		station system host maint maint_x server server_v server_r default media
 #-------------------------------------------------------------------------------
-_sync		station system                    server server_v server_r default media custom
+_sync		station system                    server server_v server_r default media
 autossh		station system host                               server_r
 dhcpcd		station system host
 lxde		               host
-openvpn		station system      maint maint_x server server_v          default media custom
+openvpn		station system      maint maint_x server server_v          default media
 wpa_supplicant	station system host
-xorg		station system            maint_x                          default media custom
-xsession	station system            maint_x                          default media custom
+xorg		station system            maint_x                          default media
+xsession	station system            maint_x                          default media
 #-------------------------------------------------------------------------------
-apache		station                           server server_v server_r default media custom
-dhcpd		station             maint maint_x server server_v server_r default media custom
-dovecot		station                           server server_v server_r default media custom
-named		station             maint maint_x server server_v          default media custom
-qemu.windows	station                                                    default media custom
-smbd		station                           server server_v server_r default media custom
-tftpd		station                           server server_v server_r default media custom
+apache		station                           server server_v server_r default media
+dhcpd		station             maint maint_x server server_v server_r default media
+dovecot		station                           server server_v server_r default media
+named		station             maint maint_x server server_v          default media
+qemu.windows	station                                                    default media
+smbd		station                           server server_v server_r default media
+tftpd		station                           server server_v server_r default media
 #-------------------------------------------------------------------------------
-cupsd		                                                           default media custom
-hostapd		                    maint maint_x server                   default media custom
-proftpd		                                  server server_v server_r default media custom
+cupsd		                                                           default media
+hostapd		                    maint maint_x server                   default media
+proftpd		                                  server server_v server_r default media
 #-------------------------------------------------------------------------------
-dbus		                                                                   media custom
-pavucontrol	                                                                   media custom
-pulseaudio	                                                                   media custom
-xorg.null	                                                                   media custom
-xsession.null	                                                                   media custom
-#-------------------------------------------------------------------------------
-firefox		                                                                         custom
+dbus		                                                                   media
+firefox		                                                                   media
+pavucontrol	                                                                   media
+pulseaudio	                                                                   media
+xorg.null	                                                                   media
+xsession.null	                                                                   media
 ################################################################################
 bluetoothd
 dhclient
