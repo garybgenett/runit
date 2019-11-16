@@ -13,8 +13,6 @@ rm -frv ${HOME}/.mozilla
 mkdir -pv ${HOME}/.mozilla/plugins
 rsync -avv --delete --copy-links ${HOME_SRC}/.mozilla/plugins/ ${HOME}/.mozilla/plugins
 chown -vR null:null ${HOME}/.mozilla
-exec sudo \
-	-H \
-	-u null \
+exec sudo -H -u null \
 	${FIREFOX_CMD}
 # end of file

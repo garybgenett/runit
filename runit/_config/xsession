@@ -6,8 +6,6 @@ sv start /.runit/services/xorg		|| exit 1
 export HOME="/.g/_data/zactive/.home"
 export SHELL="/bin/bash"
 export DISPLAY=":0"
-exec sudo \
-	-H \
-	-u \#1000 \
+exec sudo -H -u \#1000 \
 	${HOME}/.xsession
 # end of file
