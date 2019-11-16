@@ -37,9 +37,7 @@ END_OF_MENU
 xset -dpms
 xset b off
 xset s off
-exec sudo \
-	-H \
-	-u null \
+exec sudo -H -u null \
 	PATH="${PATH}" \
 	${WM_CMD}
 # end of file
