@@ -1,0 +1,8 @@
+#!/bin/sh
+exec 2>&1
+killall -v -9 gpm
+exec gpm \
+	-D \
+	-m /dev/input/mice \
+	-t ps2
+# end of file
