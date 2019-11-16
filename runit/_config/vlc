@@ -15,9 +15,7 @@ for DIR in .config/vlc .local/share/vlc; do
 	rsync -avv --delete --copy-links ${HOME_SRC}/${DIR}/ ${HOME}/${DIR}
 	chown -vR null:null ${HOME}/${DIR}
 done
-exec sudo \
-	-H \
-	-u null \
+exec sudo -H -u null \
 	${VLC_CMD} \
 		-I dummy \
 		${HOME_SRC}/setup/_misc/playlist.m3u

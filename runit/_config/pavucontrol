@@ -11,8 +11,6 @@ if [ -n "`pgrep -f "Xorg :9"`" ]; then
 else
 	export DISPLAY=":0"
 fi
-exec sudo \
-	-H			\
-	-u \#1000		\
+exec sudo -H -u \#1000 \
 	pavucontrol
 # end of file

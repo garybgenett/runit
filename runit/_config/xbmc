@@ -9,8 +9,6 @@ killall -v -9 xbmc.bin
 export DISPLAY=":9"
 export LC_NUMERIC="C"
 export XBMC_CMD="$(which xbmc)"
-exec sudo \
-	-H \
-	-u \#1000 \
+exec sudo -H -u \#1000 \
 	${XBMC_CMD}
 # end of file

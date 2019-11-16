@@ -19,9 +19,7 @@ cat >/etc/dbus-1/system.d/pulseaudio.conf <<END_OF_CONF
 </policy>
 </busconfig>
 END_OF_CONF
-exec sudo \
-	-H \
-	-u \#1000 \
+exec sudo -H -u \#1000 \
 	pulseaudio \
 		--start \
 		--daemonize=no \
