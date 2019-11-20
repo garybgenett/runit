@@ -114,7 +114,7 @@ for FILE in ${SETUP_DIR}/etc/*; do
 done
 
 # gentoo
-declare OVERLAY="${SETUP_DIR}/gentoo/_overlay/overlay.conf"
+declare OVERLAY="${SETUP_DIR}/gentoo/overlay/overlay.conf"
 for FILE in ${SETUP_DIR}/gentoo/*; do
 	${RM}					/etc/portage/$(basename ${FILE})
 	${LN} ${FILE}				/etc/portage/$(basename ${FILE})
