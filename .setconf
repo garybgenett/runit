@@ -57,7 +57,7 @@ do
 	${MKDIR}				${SETUP_DIR}/${DIR}
 	setconf ${SETCONF_DIR}/${DIR}		${SETUP_DIR}/${DIR}
 done
-j
+
 ########################################
 
 chown -vR root:root				${SETUP_DIR}
