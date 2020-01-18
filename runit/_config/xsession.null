@@ -4,6 +4,7 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/dbus		|| exit 1
 sv start /.runit/services/xorg.null	|| exit 1
+sleep 2
 export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export PATH="${HOME}/commands:${HOME}/scripts:${PATH}"
