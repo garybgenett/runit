@@ -84,7 +84,7 @@ report_status sync
 ########################################
 
 print_msg "Unmounting data filesystems..."
-ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*|\1|gp" | sed -r "s|[0-9]*$||g")"
+ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
 #>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sdc"		#>>> || FAIL="true"
 #>>>	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x	sdb"		#>>> || FAIL="true"
