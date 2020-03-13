@@ -33,6 +33,7 @@ dovecot		                                  server default media
 hostapd		                    maint maint_x server default media
 proftpd		                                  server default media
 taskd		                                  server default media
+tftpd		                                  server default media
 #-------------------------------------------------------------------------------
 dbus		                                                 media
 firefox		                                                 media
@@ -51,7 +52,6 @@ libvirtd
 nfsd
 nginx
 tcpdump
-tftpd
 tor
 ttyS0
 vlc
