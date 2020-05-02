@@ -171,7 +171,7 @@ ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*$|\1|gp" | sed -r
 FAIL="false"
 #>>>	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount .	${ROOT}"	|| FAIL="true"
 	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g	${ROOT}"	|| FAIL="true"
-#>>>	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount media	sdb"		#>>> || FAIL="true"
+#>>>	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount -0 media	sdb"		#>>> || FAIL="true"
 if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"	;
 	sleep 10									;
