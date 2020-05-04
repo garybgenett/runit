@@ -63,7 +63,7 @@ fi
 ########################################
 
 print_msg "Saving clock..."
-report_status hwclock --debug --utc --systohc
+report_status hwclock --verbose --utc --systohc
 
 ########################################
 
