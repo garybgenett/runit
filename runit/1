@@ -99,7 +99,7 @@ fi
 ########################################
 
 print_msg "Setting clock..."
-report_status hwclock --debug --utc --hctosys
+report_status hwclock --verbose --utc --hctosys
 
 print_msg "Setting hostname..."
 HOST="$(cat /proc/cmdline | sed -r -n "s|^.*hostname=([^ ]+).*$|\1|gp")"
