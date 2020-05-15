@@ -8,5 +8,5 @@ exec autossh \
 	-F ${HOME}/.ssh/config.batch \
 	-i ${HOME}/.ssh/remote_id \
 	-R 65533:127.0.0.1:22 \
-	plastic@me.garybgenett.net
+	plastic@server.garybgenett.net
 # end of file
