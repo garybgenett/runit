@@ -5,7 +5,7 @@ sv start /.runit/services/klogd		|| exit 1
 killall -v -9 htc
 htc \
 	--forward-port 8889 \
-	me.garybgenett.net:8888
+	server.garybgenett.net:8888
 PID=$(pidof -s htc)
 while [ "$(pidof -s htc)" -eq "${PID}" ]; do
 	sleep 10
