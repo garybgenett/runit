@@ -115,12 +115,12 @@ done
 
 # gentoo
 declare OVERLAY="${SETUP_DIR}/gentoo/overlay/overlay.conf"
-for FILE in ${SETUP_DIR}/gentoo/*; do
+for FILE in ${SETUP_DIR}/gentoo/[a-z]*; do
 	${RM}					/etc/portage/$(basename ${FILE})
 	${LN} ${FILE}				/etc/portage/$(basename ${FILE})
-	${RM}					/etc/portage/repos.conf/$(basename ${OVERLAY})
-	${LN} ${OVERLAY}			/etc/portage/repos.conf/$(basename ${OVERLAY})
 done
+${RM}						/etc/portage/repos.conf/$(basename ${OVERLAY})
+${LN} ${OVERLAY}				/etc/portage/repos.conf/$(basename ${OVERLAY})
 
 # grub
 ${RM}						/boot/grub/grub.cfg
