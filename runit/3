@@ -84,8 +84,8 @@ report_status sync
 ########################################
 
 print_msg "Unmounting data filesystems..."
-GROT="$(cat /proc/cmdline | sed -r -n "s|^.*groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
-GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GROT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
 if [ -n "${GDAT}" ]; then
 	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x ${GDAT}" || FAIL="true"
