@@ -102,7 +102,7 @@ print_msg "Setting clock..."
 report_status hwclock --verbose --utc --hctosys
 
 print_msg "Setting hostname..."
-HOST="$(cat /proc/cmdline | sed -r -n "s|^.*hostname=([^ ]+).*$|\1|gp")"
+HOST="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]hostname=([^ ]+).*$|\1|gp")"
 [ -f /etc/hostname ]	&& HOSTNAME="$(cat /etc/hostname 2>/dev/null)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="$(hostname)"
 [ -z "${HOSTNAME}" ]	&& HOSTNAME="localhost"
@@ -119,7 +119,7 @@ report_status setterm -powersave off
 ########################################
 
 print_msg "Checking and mounting root filesystem..."
-ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=([^ ]+).*$|\1|gp")"
+ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]root=([^ ]+).*$|\1|gp")"
 report_status mount -n -o remount,ro	/			|| emergency_shell
 report_status fsck -p -C -V		${ROOT}			|| emergency_shell
 report_status mount -n -o remount,rw	/			|| emergency_shell
@@ -157,7 +157,7 @@ fi
 
 ########################################
 
-CONF="$(cat /proc/cmdline | sed -r -n "s|^.*setconf=([^ ]+).*$|\1|gp")"
+CONF="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]setconf=([^ ]+).*$|\1|gp")"
 if [ -n "${CONF}" ]; then
 	print_msg "Copying configurations..."
 	report_status eval "HOME=/.g/.home SETUP=/.g/.home/setup /.g/.home/setup/.setconf -r"
@@ -167,8 +167,8 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-GROT="$(cat /proc/cmdline | sed -r -n "s|^.*groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
-GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GROT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
 if [ -n "${GROT}" ] && [ -n "${GDAT}" ]; then
 	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount . ${GROT}" || FAIL="true"
