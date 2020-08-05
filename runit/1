@@ -167,14 +167,14 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
-DATA="$(cat /proc/cmdline | sed -r -n "s|^.*toor=/dev/([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GROT="$(cat /proc/cmdline | sed -r -n "s|^.*groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
-if [ -n "${ROOT}" ] && [ -n "${DATA}" ]; then
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount . ${ROOT}" || FAIL="true"
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g ${DATA}" || FAIL="true"
-elif [ -n "${ROOT}" ]; then
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 60 /.g/.home/scripts/_sync mount g ${ROOT}" || FAIL="true"
+if [ -n "${GROT}" ] && [ -n "${GDAT}" ]; then
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount . ${GROT}" || FAIL="true"
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount g ${GDAT}" || FAIL="true"
+elif [ -n "${GROT}" ]; then
+	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount g ${GROT}" || FAIL="true"
 fi
 if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"
