@@ -4,12 +4,19 @@
 
 set debug=linux
 
+########################################
+
 set _boot=/dev/sda
 set _disk=/dev/sdb
 
 set groot=${_boot}
 set gdata=
 set gopts=
+
+########################################
+
+set default=3
+set timeout=5
 
 ################################################################################
 
@@ -36,9 +43,6 @@ terminal_output gfxterm
 set menu_color_normal=light-gray/black
 set menu_color_highlight=black/light-gray
 
-set default=3
-set timeout=5
-
 ########################################
 
 menuentry "Main" {
@@ -46,17 +50,17 @@ configfile (hd0,1)/boot/grub.cfg
 }
 
 menuentry "Boot (Root)" {
-linux (hd0,1)/boot.sys/_cur root=${_boot}2 toor=${_boot}4 ${gopts} rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
+linux (hd0,1)/boot.sys/_cur root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
 }
 menuentry "Boot (Toor)" {
-linux (hd0,1)/boot.sys/_cur root=${_boot}3 toor=${_boot}4 ${gopts} rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
+linux (hd0,1)/boot.sys/_cur root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
 }
 
 menuentry "Drive (Root)" {
-linux (hd0,2)/boot/_cur root=${_disk}2 toor=${_disk}4 ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
+linux (hd0,2)/boot/_cur root=${_disk}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
 }
 menuentry "Drive (Toor)" {
-linux (hd0,3)/boot/_cur root=${_disk}3 toor=${_disk}4 ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
+linux (hd0,3)/boot/_cur root=${_disk}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
 }
 
 ########################################
@@ -66,32 +70,32 @@ chainloader (hd0,2)+1
 }
 
 menuentry "Root: Current" {
-linux (hd0,2)/boot/_cur root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init
+linux (hd0,2)/boot/_cur root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init
 }
 menuentry "Root: Current (console)" {
-linux (hd0,2)/boot/_cur root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,2)/boot/_cur root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: New" {
-linux (hd0,2)/boot/_new root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init
+linux (hd0,2)/boot/_new root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init
 }
 menuentry "Root: New (console)" {
-linux (hd0,2)/boot/_new root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,2)/boot/_new root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Old" {
-linux (hd0,2)/boot/_old root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init
+linux (hd0,2)/boot/_old root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init
 }
 menuentry "Root: Old (console)" {
-linux (hd0,2)/boot/_old root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,2)/boot/_old root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Root: Rescue" {
-linux (hd0,2)/boot/_kernel root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/init
+linux (hd0,2)/boot/_kernel root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/init
 initrd (hd0,2)/boot/_initrd
 }
 menuentry "Root: Rescue (console)" {
-linux (hd0,2)/boot/_kernel root=${groot}2 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/init console=ttyS0,9600n8
+linux (hd0,2)/boot/_kernel root=${_boot}2 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/init console=ttyS0,9600n8
 initrd (hd0,2)/boot/_initrd
 }
 
@@ -102,32 +106,32 @@ chainloader (hd0,3)+1
 }
 
 menuentry "Toor: Current" {
-linux (hd0,3)/boot/_cur root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init
+linux (hd0,3)/boot/_cur root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init
 }
 menuentry "Toor: Current (console)" {
-linux (hd0,3)/boot/_cur root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,3)/boot/_cur root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: New" {
-linux (hd0,3)/boot/_new root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init
+linux (hd0,3)/boot/_new root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init
 }
 menuentry "Toor: New (console)" {
-linux (hd0,3)/boot/_new root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,3)/boot/_new root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: Old" {
-linux (hd0,3)/boot/_old root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init
+linux (hd0,3)/boot/_old root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init
 }
 menuentry "Toor: Old (console)" {
-linux (hd0,3)/boot/_old root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
+linux (hd0,3)/boot/_old root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/runit-init console=ttyS0,9600n8
 }
 
 menuentry "Toor: Rescue" {
-linux (hd0,3)/boot/_kernel root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/init
+linux (hd0,3)/boot/_kernel root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/init
 initrd (hd0,3)/boot/_initrd
 }
 menuentry "Toor: Rescue (console)" {
-linux (hd0,3)/boot/_kernel root=${groot}3 toor=${gdata}4 ${gopts} rootwait ro init=/sbin/init console=ttyS0,9600n8
+linux (hd0,3)/boot/_kernel root=${_boot}3 groot=${groot} gdata=${gdata} ${gopts} rootwait ro init=/sbin/init console=ttyS0,9600n8
 initrd (hd0,3)/boot/_initrd
 }
 

@@ -84,14 +84,14 @@ report_status sync
 ########################################
 
 print_msg "Unmounting data filesystems..."
-ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*root=/dev/([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
-DATA="$(cat /proc/cmdline | sed -r -n "s|^.*toor=/dev/([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GROT="$(cat /proc/cmdline | sed -r -n "s|^.*groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
 FAIL="false"
-if [ -n "${DATA}" ]; then
-	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x ${DATA}" || FAIL="true"
+if [ -n "${GDAT}" ]; then
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x ${GDAT}" || FAIL="true"
 fi
-if [ -n "${ROOT}" ]; then
-	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x ${ROOT}" || FAIL="true"
+if [ -n "${GROT}" ]; then
+	report_status eval "HOME=/.g/.home /.g/.home/scripts/_sync mount x ${GROT}" || FAIL="true"
 fi
 if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely unmounted !!!"
