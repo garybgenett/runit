@@ -49,7 +49,7 @@ emergency_shell() {
 ################################################################################
 
 print_msg "Creating device directory..."
-#>>>report_status mount -n -t tmpfs				none /dev
+report_status mount -n -t devtmpfs				none /dev
 make_devices() {
 	[ ! -d /dev/.udev   ] && mkdir -m 0755 /dev/.udev
 	[ ! -d /dev/pts     ] && mkdir -m 0755 /dev/pts
