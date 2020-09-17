@@ -7,15 +7,15 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
 
 ################################################################################
 
+MODE="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]gmode=([^ ]+).*$|\1|gp")"
+if [ -z "${MODE}" ]; then
+	MODE="system"
+fi
+
+########################################
+
 rm -frv /.runit/runsvdir/current
 ln -fsv maint /.runit/runsvdir/current
-
-HOST="$(hostname)"
-MODE="system"
-if [ ${HOST} = spider	]; then MODE="maint"	; fi
-if [ ${HOST} = ninja	]; then MODE="server_r"	; fi
-if [ ${HOST} = maniac	]; then MODE="host"	; fi
-if [ ${HOST} = rogue	]; then MODE="host"	; fi
 
 runsvchdir /.runit/runsvdir/${MODE}
 exec env - PATH="${PATH}" \
