@@ -22,21 +22,20 @@ serial --unit=0 --speed=9600 --word=8 --parity=no --stop=1
 terminal_input console serial
 terminal_output console serial
 
+insmod all_video
+
 insmod part_gpt
 insmod part_msdos
 
-insmod efi_gop
-insmod efi_uga
-insmod vbe
-insmod vga
+insmod fat
+insmod exfat
+insmod ext2
+insmod net
 
-insmod font
-loadfont unicode
-
-insmod gfxterm
-set gfxmode=1280x1024,1024x768,auto
-set gfxpayload=1280x1024,1024x768,keep,text
-terminal_output gfxterm
+insmod search
+insmod configfile
+insmod linux
+insmod chain
 
 set menu_color_normal=light-gray/black
 set menu_color_highlight=black/light-gray
