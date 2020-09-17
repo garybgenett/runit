@@ -6,8 +6,6 @@ set debug=linux
 
 ########################################
 
-set _disk=/dev/sdb
-
 set groot=/dev/nvme0n1p
 set gdata=
 set gmode=
@@ -15,7 +13,7 @@ set gopts=video=eDP-1 video=DP-1
 
 ########################################
 
-set default=6
+set default=4
 set timeout=5
 
 ################################################################################
@@ -49,18 +47,13 @@ menuentry "Main" {
 configfile (hd0,1)/boot/grub.cfg
 }
 
-menuentry "Boot (Root)" {
-linux (hd0,1)/boot.sys/_cur root=${groot}2 groot=${groot} gdata=${gdata} gmode=${gmode} ${gopts} rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
-}
-menuentry "Boot (Toor)" {
-linux (hd0,1)/boot.sys/_cur root=${groot}3 groot=${groot} gdata=${gdata} gmode=${gmode} ${gopts} rootwait ro init=/sbin/runit-init setconf=true hostname=bastion
-}
-
 menuentry "Drive (Root)" {
-linux (hd0,2)/boot/_cur root=${_disk}2 groot=${groot} gdata=${gdata} gmode=${gmode} ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
+set groot=/dev/sdb
+linux (hd0,2)/boot/_cur root=${groot}2 groot=${groot} gdata=${gdata} gmode=${gmode} ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
 }
 menuentry "Drive (Toor)" {
-linux (hd0,3)/boot/_cur root=${_disk}3 groot=${groot} gdata=${gdata} gmode=${gmode} ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
+set groot=/dev/sdb
+linux (hd0,3)/boot/_cur root=${groot}3 groot=${groot} gdata=${gdata} gmode=${gmode} ${gopts} rootwait ro init=/sbin/runit-init rootdelay=5 setconf=true hostname=tarantula
 }
 
 ########################################
