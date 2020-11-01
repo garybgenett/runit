@@ -126,8 +126,7 @@ report_status mount -n -o remount,rw	/			|| emergency_shell
 
 print_msg "Creating new mtab..."
 report_status rm -frv /etc/mtab
-#>>>report_status mount -f /
-report_status eval "grep -vE \"^(rootfs|/dev/root)\" /proc/mounts >>/etc/mtab"
+report_status ln -fsv /proc/mounts /etc/mtab
 
 print_msg "Checking and mounting remaining filesystems..."
 report_status fsck -p -A -C -R -V				|| emergency_shell
