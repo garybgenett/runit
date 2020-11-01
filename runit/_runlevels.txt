@@ -35,11 +35,12 @@ proftpd		                                  server default media
 taskd		                                  server default media
 tftpd		                                  server default media
 #-------------------------------------------------------------------------------
-dbus		                                                 media
+dbus		station system host                      default media
+pulseaudio	station system host                      default media
+#-------------------------------------------------------------------------------
 firefox		                                                 media
 pavucontrol	                                                 media
 projectm	                                                 media
-pulseaudio	                                                 media
 synaesthesia	                                                 media
 xorg.null	                                                 media
 xsession.null	                                                 media
