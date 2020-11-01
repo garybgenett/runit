@@ -38,6 +38,7 @@ tftpd		                                  server default media
 dbus		                                                 media
 firefox		                                                 media
 pavucontrol	                                                 media
+projectm	                                                 media
 pulseaudio	                                                 media
 synaesthesia	                                                 media
 xorg.null	                                                 media
