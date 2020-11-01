@@ -9,6 +9,7 @@ if [ -n "`pgrep -f "Xorg :9"`" ]; then
 	sv start /.runit/services/xorg.null	|| exit 1
 	export DISPLAY=":9"
 else
+	sv start /.runit/services/xorg		|| exit 1
 	export DISPLAY=":0"
 fi
 exec sudo -H -u \#1000 \
