@@ -2,7 +2,6 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
-sv start /.runit/services/dbus		|| exit 1
 killall -9 pulseaudio
 chmod -v 755 /usr/bin/pulseaudio
 sed -i -r \
@@ -24,5 +23,7 @@ exec sudo -H -u \#1000 \
 		--start \
 		--daemonize=no \
 		--log-level=debug \
-		--log-target=stderr
+		--log-target=stderr \
+		--load="module-alsa-sink device=dmix" \
+		--load="module-alsa-source device=dsnoop"
 # end of file
