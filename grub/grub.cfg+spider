@@ -7,6 +7,7 @@ set debug=linux
 ########################################
 
 set groot=/dev/disk/by-path/pci-0000:06:00.0-usb-0:1:1.0-scsi-0:0:0:0-part
+#>>>      /dev/disk/by-path/pci-0000:06:00.0-usb-0:2:1.0-scsi-0:0:0:0-part
 set gdata=
 set gmode=maint
 set gopts=
