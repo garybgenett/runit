@@ -35,7 +35,6 @@ proftpd		                                  server default media
 taskd		                                  server default media
 tftpd		                                  server default media
 #-------------------------------------------------------------------------------
-dbus		station system host                      default media
 pulseaudio	station system host                      default media
 #-------------------------------------------------------------------------------
 firefox		                                                 media
@@ -47,6 +46,7 @@ xsession.null	                                                 media
 ################################################################################
 bluetoothd
 cupsd
+dbus
 dhclient
 hald
 htc
