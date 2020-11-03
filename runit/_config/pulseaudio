@@ -23,7 +23,5 @@ exec sudo -H -u \#1000 \
 		--start \
 		--daemonize=no \
 		--log-level=debug \
-		--log-target=stderr \
-		--load="module-alsa-sink device=dmix" \
-		--load="module-alsa-source device=dsnoop"
+		--log-target=stderr
 # end of file
