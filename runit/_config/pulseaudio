@@ -18,10 +18,12 @@ cat >/etc/dbus-1/system.d/pulseaudio.conf <<END_OF_CONF
 </policy>
 </busconfig>
 END_OF_CONF
+# https://wiki.archlinux.org/index.php/PulseAudio/Examples#Allowing_multiple_users_to_use_PulseAudio_at_the_same_time
 exec sudo -H -u \#1000 \
 	pulseaudio \
 		--start \
 		--daemonize=no \
 		--log-level=debug \
-		--log-target=stderr
+		--log-target=stderr \
+		--load="module-native-protocol-unix auth-anonymous=1 socket=/tmp/pulseaudio"
 # end of file
