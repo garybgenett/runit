@@ -98,6 +98,18 @@ fi
 
 ########################################
 
+if [ -f /tmp/ups.powerdown ] &&
+   [ `cat /sys/class/power_supply/BAT*/status 2>/dev/null` == Discharging ]; then
+	print_msg "${fail_color}### Running on battery after UPS shutdown ###"
+	sleep 60
+	echo -e "${fail_color}Restarting system...${def_color}"
+	touch /.runit/reboot
+	chmod 100 /.runit/reboot
+	exit 100
+fi
+
+########################################
+
 print_msg "Setting clock..."
 report_status hwclock --verbose --utc --hctosys
 
