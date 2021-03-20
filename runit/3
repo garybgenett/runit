@@ -109,7 +109,13 @@ report_status eval "ps -ef | grep -vE \"[]]$\""
 report_status cat /proc/mounts
 
 print_msg "${fail_color}### System is down ###"
-sleep 10
+if [ -f /tmp/ups.powerdown ]; then
+	print_msg "${fail_color}### Powering off UPS ###"
+	upsdrvctl shutdown
+	sleep 60
+else
+	sleep 10
+fi
 
 ########################################
 

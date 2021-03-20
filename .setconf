@@ -44,6 +44,7 @@ for DIR in \
 	minicom		\
 	nginx		\
 	ntp		\
+	nut		\
 	openvpn		\
 	proftpd		\
 	samba		\
@@ -163,6 +164,12 @@ ${RM}						/etc/ntp-servers.conf
 ${LN} ${SETUP_DIR}/ntp/ntp-servers.conf		/etc/ntp-servers.conf
 ${RM}						/etc/ntp.conf
 ${LN} ${SETUP_DIR}/ntp/ntp.conf			/etc/ntp.conf
+
+# nut
+${RM}						/etc/nut
+${LN} ${SETUP_DIR}/nut				/etc/nut
+chown -vR root:nut				${SETUP_DIR}/nut
+chmod -vR 750					${SETUP_DIR}/nut
 
 # openvpn
 ${RM}						/etc/openvpn

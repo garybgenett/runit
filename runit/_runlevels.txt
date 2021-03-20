@@ -34,6 +34,8 @@ hostapd		                    maint maint_x server default media
 proftpd		                                  server default media
 taskd		                                  server default media
 tftpd		                                  server default media
+upsd		                    maint maint_x server default media
+upsmon		                    maint maint_x server default media
 #-------------------------------------------------------------------------------
 pulseaudio	station system host                      default media
 #-------------------------------------------------------------------------------
