@@ -32,7 +32,7 @@ apache		                                  server default media
 dovecot		                                  server default media
 hostapd		                    maint maint_x server default media
 proftpd		                                  server default media
-taskd		                                  server default media
+taskd		                    maint maint_x server default media
 tftpd		                                  server default media
 upsd		                    maint maint_x server default media
 upsmon		                    maint maint_x server default media
