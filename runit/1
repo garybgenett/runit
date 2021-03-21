@@ -98,13 +98,19 @@ fi
 
 ########################################
 
+BATT="10"
 if [ -f /tmp/ups.powerdown ] &&
    [ `cat /sys/class/power_supply/BAT*/status 2>/dev/null` == Discharging ]; then
 	print_msg "${fail_color}### Running on battery after UPS shutdown ###"
 	sleep 60
-	echo -e "${fail_color}Restarting system...${def_color}"
-	touch /.runit/reboot
-	chmod 100 /.runit/reboot
+	if [ `cat /sys/class/power_supply/BAT*/capacity 2>/dev/null` -lt ${BATT} ]; then
+		print_msg "${fail_color}Halting system..."
+		rm -frv /.runit/reboot
+	else
+		print_msg "${fail_color}Restarting system..."
+		touch /.runit/reboot
+		chmod 100 /.runit/reboot
+	fi
 	exit 100
 fi
 
