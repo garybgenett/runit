@@ -5,6 +5,6 @@ sv start /.runit/services/klogd		|| exit 1
 #>>>sv start /.runit/services/upsd		|| exit 1
 killall -v -9 upsmon
 exec upsmon \
-	-DD \
+	-D \
 	-u nut
 # end of file
