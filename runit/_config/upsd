@@ -10,6 +10,6 @@ chown -vR nut:nut /var/lib/nut
 usermod -a -G usb nut
 upsdrvctl start
 exec upsd \
-	-DD \
+	-D \
 	-u nut
 # end of file
