@@ -9,7 +9,7 @@ set debug=linux
 set groot=/dev/nvme0n1p
 set gdata=
 set gmode=
-set gopts=video=eDP-1 video=DP-1
+set gopts=""
 
 ########################################
 
