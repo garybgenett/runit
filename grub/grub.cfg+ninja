@@ -9,7 +9,7 @@ set debug=linux
 set groot=/dev/sda
 set gdata=
 set gmode=server_r
-set gopts=
+set gopts=""
 
 ########################################
 
