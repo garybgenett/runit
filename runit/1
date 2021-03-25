@@ -91,7 +91,7 @@ fi
 
 if [ -f /etc/modules ]; then
 	print_msg "Loading kernel modules..."
-	for MODULE in $(grep -vE "^#" /etc/modules 2>/dev/null); do
+	grep -vE -e "^#" -e "^$" /etc/modules 2>/dev/null | while read -r MODULE; do
 		report_status modprobe -v ${MODULE}
 	done
 fi
