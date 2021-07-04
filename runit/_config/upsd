@@ -2,6 +2,8 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
+sv stop upsmon
+killall -v -9 upsmon .nutmon.sh
 upsdrvctl stop
 killall -v -9 usbhid-ups
 killall -v -9 upsd
@@ -10,6 +12,7 @@ mkdir -pv /var/lib/nut
 chown -vR nut:nut /var/lib/nut
 usermod -a -G usb nut
 upsdrvctl start
+sv restart upsmon
 exec upsd \
 	-D \
 	-u nut
