@@ -10,9 +10,9 @@ declare RUNIT_DIR="/.runit"
 
 ########################################
 
-declare ISSUE_FILE="/.g/_data/zactive/coding/gary-os/artifacts/issue"
+declare ISSUE_FILE="/.g/_data/zactive/coding/gary-os/artifacts/files/issue"
 if [[ ! -f ${ISSUE_FILE} ]]; then
-	ISSUE_FILE="/.gary-os/artifacts/issue"
+	ISSUE_FILE="/.gary-os/artifacts/files/issue"
 fi
 
 declare LIBVIRT_DIR="/.g/_data/_systems/libvirt"
