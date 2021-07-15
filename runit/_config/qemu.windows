@@ -9,7 +9,7 @@ sv start /.runit/services/xorg		|| exit 1
 export HOME="/.g/_data/zactive/.home"
 export SHELL="/bin/bash"
 export DISPLAY=":0"
-exec ${HOME}/scripts/qemu-windows.bsh 0 \
+exec ${HOME}/scripts/qemu-windows.bsh 0 ALT \
 	-no-shutdown \
 	-display none
 # end of file
