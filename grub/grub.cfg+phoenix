@@ -38,8 +38,8 @@ serial --unit=0 --speed=9600 --word=8 --parity=no --stop=1
 terminal_input console serial
 terminal_output console serial
 
-set menu_color_normal=light-gray/black
-set menu_color_highlight=black/light-gray
+set menu_color_normal=white/black
+set menu_color_highlight=black/green
 
 ################################################################################
 
