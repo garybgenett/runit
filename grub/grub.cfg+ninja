@@ -10,7 +10,7 @@ set gopts=""
 ################################################################################
 
 set debug=linux
-set default=5
+set default=7
 set timeout=5
 
 ########################################
@@ -44,6 +44,13 @@ set menu_color_highlight=black/green
 menuentry "Main" {
 	configfile (hd0,1)/boot/grub.cfg
 }
+menuentry "---" {
+	set pager=1
+	set
+	set pager=0
+}
+
+########################################
 
 menuentry "Drive (Root)" {
 	set groot=/dev/sdb
@@ -56,6 +63,11 @@ menuentry "Drive (Toor)" {
 
 ########################################
 
+menuentry "---" {
+	set pager=1
+	set
+	set pager=0
+}
 menuentry "Root: Chainload" {
 	chainloader (hd0,2)+1
 }
@@ -92,6 +104,11 @@ menuentry "Root: Rescue (console)" {
 
 ########################################
 
+menuentry "---" {
+	set pager=1
+	set
+	set pager=0
+}
 menuentry "Toor: Chainload" {
 	chainloader (hd0,3)+1
 }
