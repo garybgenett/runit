@@ -1,4 +1,4 @@
-#!/bin/busybox
+#!/bin/busybox sh
 ################################################################################
 # runit stage 3 script
 ################################################################################
@@ -63,7 +63,8 @@ fi
 ########################################
 
 print_msg "Saving clock..."
-report_status hwclock --verbose --utc --systohc
+#>>>report_status hwclock --verbose --utc --systohc
+report_status hwclock -u -w
 
 ########################################
 
