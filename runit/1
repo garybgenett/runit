@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/busybox
 ################################################################################
 # runit stage 1 script
 ################################################################################
@@ -39,7 +39,8 @@ report_status() {
 emergency_shell() {
 	echo -e "${fail_color}Starting emergency shell...${def_color}"
 #>>>	sulogin
-	HOME=/.g/.home /bin/bash
+#>>>	HOME=/.g/.home /bin/bash
+	/bin/busybox sh
 	echo -e "${fail_color}Restarting system...${def_color}"
 	touch /.runit/reboot
 	chmod 100 /.runit/reboot
