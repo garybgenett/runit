@@ -78,6 +78,7 @@ report_status mount -n -t devpts	-o noexec,nosuid,gid=5	none /dev/pts
 report_status mount -n -t tmpfs ${DSHM}	-o nodev,noexec,nosuid	none /dev/shm
 report_status mount -n -t proc		-o nodev,noexec,nosuid	none /proc
 report_status mount -n -t sysfs		-o nodev,noexec,nosuid	none /sys
+report_status mount -n -t cgroup	-o nodev,noexec,nosuid	none /sys/fs/cgroup
 
 print_msg "Starting udev..."
 report_status eval "echo >/proc/sys/kernel/hotplug"
