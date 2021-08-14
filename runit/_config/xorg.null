@@ -11,5 +11,6 @@ exec ${XORG_CMD} \
 	tty6 \
 	-keeptty \
 	-logfile /dev/stderr \
-	-nolisten tcp
+	-nolisten tcp \
+	-retro
 # end of file

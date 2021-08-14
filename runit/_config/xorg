@@ -10,5 +10,6 @@ exec ${XORG_CMD} \
 	tty5 \
 	-keeptty \
 	-logfile /dev/stderr \
-	-nolisten tcp
+	-nolisten tcp \
+	-retro
 # end of file
