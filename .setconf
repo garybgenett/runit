@@ -125,7 +125,7 @@ ${LN} ${OVERLAY}				/etc/portage/repos.conf/$(basename ${OVERLAY})
 
 # grub
 cat ${SETUP_DIR}/grub/grub.defaults.cfg		>>${SETUP_DIR}/grub/grub.cfg
-cat ${SETUP_DIR}/grub/grub.menu.cfg		>>${SETUP_DIR}/grub/grub.cfg
+cat ${SETUP_DIR}/grub/grub.menu.main.cfg	>>${SETUP_DIR}/grub/grub.cfg
 ${RM}						/boot/grub/grub.cfg
 ${LN} ${SETUP_DIR}/grub/grub.cfg		/boot/grub/grub.cfg
 
