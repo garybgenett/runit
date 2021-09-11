@@ -5,11 +5,11 @@
 set groot=/dev/sda
 set gdata=
 set gmode=server_r
-set gopts=""
+set gopts="console=ttyS0,38400"
 
 ########################################
 
-set default=7
+set default=6
 
 ################################################################################
 # end of file
