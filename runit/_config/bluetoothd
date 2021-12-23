@@ -3,7 +3,10 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/klogd		|| exit 1
 sv start /.runit/services/dbus		|| exit 1
+sv start /.runit/services/pulseaudio	|| exit 1
 killall -v -9 bluetoothd
+mkdir -pv /var/lib/bluetooth
+rm -frv /var/lib/bluetooth/*
 cat >/etc/bluetooth/main.conf <<END_OF_CONF
 [General]
 Name=Unknown Device
