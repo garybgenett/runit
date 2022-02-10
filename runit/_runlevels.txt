@@ -38,6 +38,7 @@ upsmon		                    maint maint_x server default media
 pulseaudio	station system host                      default media
 #-------------------------------------------------------------------------------
 firefox		                                                 media
+firefox.null	                                                 media
 pavucontrol	                                                 media
 projectm	                                                 media
 synaesthesia	                                                 media
