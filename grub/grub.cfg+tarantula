@@ -2,7 +2,7 @@
 # grub configuration file
 ################################################################################
 
-set groot=/dev/sda
+set groot=/dev/sdb
 set gdata=
 set gmode=
 set gopts=""

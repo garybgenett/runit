@@ -2,30 +2,32 @@
 source ${HOME}/.bashrc
 ################################################################################
 
+declare ROOT_DST="${ROOT_DST:-}"
+
 declare RUNLEVELS="./_runlevels.txt"
 
 ################################################################################
 
-${RM} /etc/runit
-${RM} /etc/service
-${RM} /etc/sv
-${RM} /service
-${RM} /var/service
+${RM} ${ROOT_DST}/etc/runit
+${RM} ${ROOT_DST}/etc/service
+${RM} ${ROOT_DST}/etc/sv
+${RM} ${ROOT_DST}/service
+${RM} ${ROOT_DST}/var/service
 
-${LN} /.runit			/etc/runit
-${LN} /.runit/runsvdir/current	/etc/service
-${LN} /.runit/services		/etc/sv
-${LN} /.runit/services		/service
-${LN} /.runit/runsvdir/current	/var/service
+${LN} /.runit			${ROOT_DST}/etc/runit
+${LN} /.runit/runsvdir/current	${ROOT_DST}/etc/service
+${LN} /.runit/services		${ROOT_DST}/etc/sv
+${LN} /.runit/services		${ROOT_DST}/service
+${LN} /.runit/runsvdir/current	${ROOT_DST}/var/service
 
 ########################################
 
-#>>>${MKDIR} /etc/init.d
+#>>>${MKDIR} ${ROOT_DST}/etc/init.d
 
 #>>>declare SV_CMD="$(which sv)"
 #>>>for SVC in $(ls ./_config); do
-#>>>	${RM} /etc/init.d/${SVC}
-#>>>	${LN} ${SV_CMD} /etc/init.d/${SVC}
+#>>>	${RM} ${ROOT_DST}/etc/init.d/${SVC}
+#>>>	${LN} ${SV_CMD} ${ROOT_DST}/etc/init.d/${SVC}
 #>>>done
 
 ########################################
