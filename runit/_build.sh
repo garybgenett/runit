@@ -14,11 +14,12 @@ ${RM} ${ROOT_DST}/etc/sv
 ${RM} ${ROOT_DST}/service
 ${RM} ${ROOT_DST}/var/service
 
-${LN} /.runit			${ROOT_DST}/etc/runit
-${LN} /.runit/runsvdir/current	${ROOT_DST}/etc/service
-${LN} /.runit/services		${ROOT_DST}/etc/sv
-${LN} /.runit/services		${ROOT_DST}/service
-${LN} /.runit/runsvdir/current	${ROOT_DST}/var/service
+${LN} -r ${PWD}				${ROOT_DST}/etc/runit
+${LN} -r ${PWD}/services		${ROOT_DST}/etc/sv
+${LN} -r ${PWD}/services		${ROOT_DST}/service
+
+${LN} $(realpath --no-symlink --relative-to=${ROOT_DST}/etc ${PWD}/runsvdir/current) ${ROOT_DST}/etc/service
+${LN} $(realpath --no-symlink --relative-to=${ROOT_DST}/var ${PWD}/runsvdir/current) ${ROOT_DST}/var/service
 
 ########################################
 
@@ -27,7 +28,7 @@ ${LN} /.runit/runsvdir/current	${ROOT_DST}/var/service
 #>>>declare SV_CMD="$(which sv)"
 #>>>for SVC in $(ls ./_config); do
 #>>>	${RM} ${ROOT_DST}/etc/init.d/${SVC}
-#>>>	${LN} ${SV_CMD} ${ROOT_DST}/etc/init.d/${SVC}
+#>>>	${LN} -r ${ROOT_DST}${SV_CMD} ${ROOT_DST}/etc/init.d/${SVC}
 #>>>done
 
 ########################################
@@ -38,23 +39,22 @@ ${RM} ./log/*
 declare SVC=
 for SVC in $(ls ./_config | ${GREP} -v "^tty"); do
 	${MKDIR} ./services/${SVC}/log
-	${LN} ../services/${SVC}/log/current	./log/${SVC}
-	${LN} ../../../_config/.log_config	./services/${SVC}/log/config
-	${LN} ../../../_config/.log_run		./services/${SVC}/log/run
+	${LN} -r ./services/${SVC}/log/current	./log/${SVC}
+	${LN} -r ./_config/.log_config		./services/${SVC}/log/config
+	${LN} -r ./_config/.log_run		./services/${SVC}/log/run
 done
-
-${LN} ../../../_config/.log_config_capture	./services/syslogd/log/config
+${LN} -r ./_config/.log_config_capture		./services/syslogd/log/config
 
 for SVC in syslogd tcpdump; do
 	${RM} ./.${SVC}
-	${LN} ./services/${SVC}/log	./.${SVC}
+	${LN} -r ./services/${SVC}/log ./.${SVC}
 done
 
 ########################################
 
 for SVC in $(ls ./_config); do
 	${MKDIR} ./services/${SVC}
-	${LN} ../../_config/${SVC}	./services/${SVC}/run
+	${LN} -r ./_config/${SVC} ./services/${SVC}/run
 done
 
 ########################################
@@ -68,7 +68,7 @@ ${GREP} -v "^[#]" ${RUNLEVELS} | while read -r LINE; do
 	for LEVEL in ${LINE}; do
 		if ${SVC_SET}; then
 			${MKDIR} ./runsvdir/${LEVEL}
-			${LN} ../../services/${SVC} ./runsvdir/${LEVEL}/${SVC}
+			${LN} -r ./services/${SVC} ./runsvdir/${LEVEL}/${SVC}
 		else
 			SVC="${LEVEL}"
 			SVC_SET="true"

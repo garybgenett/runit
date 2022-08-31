@@ -17,7 +17,7 @@ fi
 rm -frv /.runit/runsvdir/current
 ln -fsv maint /.runit/runsvdir/current
 
-runsvchdir /.runit/runsvdir/${MODE}
+runsvchdir ${MODE}
 exec env - PATH="${PATH}" \
 	runsvdir -P /.runit/runsvdir/current ................................................................................................................................................................................................................................................................
 
