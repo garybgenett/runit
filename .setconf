@@ -5,10 +5,10 @@ source ${HOME}/.bashrc
 declare ROOT_DST="${ROOT_DST:-}"
 
 declare SETCONF_DIR="${SETUP:-/.g/_data/zactive/.setup}"
-declare SETUP_DIR="/.setup"
+declare SETUP_DIR="${ROOT_DST}/.setup"
 declare SETCONF=".setconf"
 
-declare RUNIT_DIR="/.runit"
+declare RUNIT_DIR="${ROOT_DST}/.runit"
 
 ########################################
 
@@ -21,10 +21,10 @@ declare LIBVIRT_DIR="/.g/_data/_systems/libvirt"
 
 ################################################################################
 
-${RM}						${ROOT_DST}/etc/localtime
-${LN} /usr/share/zoneinfo/US/Pacific		${ROOT_DST}/etc/localtime
-${RM}						${ROOT_DST}/run/udev
-${LN} /dev/.udev				${ROOT_DST}/run/udev
+${RM}							${ROOT_DST}/etc/localtime
+${LN} -r ${ROOT_DST}/usr/share/zoneinfo/US/Pacific	${ROOT_DST}/etc/localtime
+${RM}							${ROOT_DST}/run/udev
+${LN} -r ${ROOT_DST}/dev/.udev				${ROOT_DST}/run/udev
 
 ########################################
 
@@ -57,91 +57,91 @@ for DIR in \
 	wpa_supplicant	\
 	xorg
 do
-	${MKDIR}				${ROOT_DST}${SETUP_DIR}/${DIR}
-	setconf ${SETCONF_DIR}/${DIR}		${ROOT_DST}${SETUP_DIR}/${DIR}
+	${MKDIR}				${SETUP_DIR}/${DIR}
+	setconf ${SETCONF_DIR}/${DIR}		${SETUP_DIR}/${DIR}
 done
 
 ########################################
 
-chown -vR root:root				${ROOT_DST}${SETUP_DIR}
-chmod -vR 755					${ROOT_DST}${SETUP_DIR}
+chown -vR root:root				${SETUP_DIR}
+chmod -vR 755					${SETUP_DIR}
 
-${RM}						${ROOT_DST}${SETUP_DIR}/${SETCONF}
-${LN} ${SETCONF_DIR}/${SETCONF}			${ROOT_DST}${SETUP_DIR}/${SETCONF}
+${RM}						${SETUP_DIR}/${SETCONF}
+${LN} ${SETCONF_DIR}/${SETCONF}			${SETUP_DIR}/${SETCONF}
 
 ########################################
 
 # apache
 ${RM}						${ROOT_DST}/etc/apache2
-${LN} ${SETUP_DIR}/apache			${ROOT_DST}/etc/apache2
+${LN} -r ${SETUP_DIR}/apache			${ROOT_DST}/etc/apache2
 
 # awstats
 ${RM}						${ROOT_DST}/etc/awstats
-${LN} ${SETUP_DIR}/awstats			${ROOT_DST}/etc/awstats
+${LN} -r ${SETUP_DIR}/awstats			${ROOT_DST}/etc/awstats
 
 # bind
-chown -vR nobody:root				${ROOT_DST}${SETUP_DIR}/bind
+chown -vR nobody:root				${SETUP_DIR}/bind
 ${RM}						${ROOT_DST}/etc/bind
-${LN} ${SETUP_DIR}/bind				${ROOT_DST}/etc/bind
+${LN} -r ${SETUP_DIR}/bind			${ROOT_DST}/etc/bind
 ${RM}						${ROOT_DST}/etc/named.conf
-${LN} ${SETUP_DIR}/bind/named.conf		${ROOT_DST}/etc/named.conf
+${LN} -r ${SETUP_DIR}/bind/named.conf		${ROOT_DST}/etc/named.conf
 
 # cups
-${RM}						${ROOT_DST}${SETUP_DIR}/cups/mime.*
-${LN} /usr/share/cups/mime/mime.*		${ROOT_DST}${SETUP_DIR}/cups
+${RM}						${SETUP_DIR}/cups/mime.*
+${LN} -r ${ROOT_DST}/usr/share/cups/mime/mime.*	${SETUP_DIR}/cups
 ${RM}						${ROOT_DST}/etc/cups
-${LN} ${SETUP_DIR}/cups				${ROOT_DST}/etc/cups
+${LN} -r ${SETUP_DIR}/cups			${ROOT_DST}/etc/cups
 
 # dhcpd
 ${RM}						${ROOT_DST}/etc/dhcp/dhcpd.conf
-${LN} ${SETUP_DIR}/dhcpd/dhcpd.conf		${ROOT_DST}/etc/dhcp/dhcpd.conf
+${LN} -r ${SETUP_DIR}/dhcpd/dhcpd.conf		${ROOT_DST}/etc/dhcp/dhcpd.conf
 ${RM}						${ROOT_DST}/etc/dhcpd.conf
-${LN} ${SETUP_DIR}/dhcpd/dhcpd.conf		${ROOT_DST}/etc/dhcpd.conf
+${LN} -r ${SETUP_DIR}/dhcpd/dhcpd.conf		${ROOT_DST}/etc/dhcpd.conf
 
 # dovecot
 ${RM}						${ROOT_DST}/etc/dovecot
-${LN} ${SETUP_DIR}/dovecot			${ROOT_DST}/etc/dovecot
+${LN} -r ${SETUP_DIR}/dovecot			${ROOT_DST}/etc/dovecot
 
 # etc
 ${RM}						${ROOT_DST}/etc/resolv.conf.*
 if [[ -f ${ISSUE_FILE} ]]; then
-	${CP} ${ISSUE_FILE}			${ROOT_DST}${SETUP_DIR}/etc/issue
+	${CP} ${ISSUE_FILE}			${SETUP_DIR}/etc/issue
 	${SED} \
 		-e "s|[\]e[[]([0-9]+[;])?[0-9]+[;][0-9]+m||g" \
 		-e "/^[\][a-z]/d" \
-						${ROOT_DST}${SETUP_DIR}/etc/issue >${SETUP_DIR}/etc/motd
+						${SETUP_DIR}/etc/issue >${SETUP_DIR}/etc/motd
 fi
 for FILE in ${SETUP_DIR}/etc/*; do
 	${RM}					${ROOT_DST}/etc/$(basename ${FILE})
-	${LN} ${FILE}				${ROOT_DST}/etc/$(basename ${FILE})
+	${LN} -r ${FILE}			${ROOT_DST}/etc/$(basename ${FILE})
 done
 
 # gentoo
 declare OVERLAY="${SETUP_DIR}/gentoo/overlay/overlay.conf"
 for FILE in ${SETUP_DIR}/gentoo/[a-z]*; do
 	${RM}					${ROOT_DST}/etc/portage/$(basename ${FILE})
-	${LN} ${FILE}				${ROOT_DST}/etc/portage/$(basename ${FILE})
+	${LN} -r ${FILE}			${ROOT_DST}/etc/portage/$(basename ${FILE})
 done
 ${RM}						${ROOT_DST}/etc/portage/repos.conf/$(basename ${OVERLAY})
-${LN} ${OVERLAY}				${ROOT_DST}/etc/portage/repos.conf/$(basename ${OVERLAY})
+${LN} -r ${OVERLAY}				${ROOT_DST}/etc/portage/repos.conf/$(basename ${OVERLAY})
 
 # grub
-cat ${SETUP_DIR}/grub/grub.defaults.cfg		>>${ROOT_DST}${SETUP_DIR}/grub/grub.cfg
-cat ${SETUP_DIR}/grub/grub.menu.main.cfg	>>${ROOT_DST}${SETUP_DIR}/grub/grub.cfg
-cat ${SETUP_DIR}/grub/grub.menu.windows.cfg	>>${ROOT_DST}${SETUP_DIR}/grub/grub.cfg
+cat ${SETUP_DIR}/grub/grub.defaults.cfg		>>${SETUP_DIR}/grub/grub.cfg
+cat ${SETUP_DIR}/grub/grub.menu.main.cfg	>>${SETUP_DIR}/grub/grub.cfg
+cat ${SETUP_DIR}/grub/grub.menu.windows.cfg	>>${SETUP_DIR}/grub/grub.cfg
 ${MKDIR}					${ROOT_DST}/boot/grub
 ${RM}						${ROOT_DST}/boot/grub/grub.cfg
-${LN} ${SETUP_DIR}/grub/grub.cfg		${ROOT_DST}/boot/grub/grub.cfg
+${LN} -r ${SETUP_DIR}/grub/grub.cfg		${ROOT_DST}/boot/grub/grub.cfg
 
 # hostapd
 ${RM}						${ROOT_DST}/etc/hostapd/hostapd.conf
-${LN} ${SETUP_DIR}/hostapd/hostapd.conf		${ROOT_DST}/etc/hostapd/hostapd.conf
+${LN} -r ${SETUP_DIR}/hostapd/hostapd.conf	${ROOT_DST}/etc/hostapd/hostapd.conf
 
 # libvirt
 ${RM}						${ROOT_DST}/etc/libvirt/libvirt.conf
-${LN} ${SETUP_DIR}/libvirt/libvirt.conf		${ROOT_DST}/etc/libvirt/libvirt.conf
+${LN} -r ${SETUP_DIR}/libvirt/libvirt.conf	${ROOT_DST}/etc/libvirt/libvirt.conf
 ${RM}						${ROOT_DST}/etc/libvirt/libvirtd.conf
-${LN} ${SETUP_DIR}/libvirt/libvirtd.conf	${ROOT_DST}/etc/libvirt/libvirtd.conf
+${LN} -r ${SETUP_DIR}/libvirt/libvirtd.conf	${ROOT_DST}/etc/libvirt/libvirtd.conf
 ${RM}						${ROOT_DST}/etc/libvirt/qemu
 ${LN} ${LIBVIRT_DIR}/qemu			${ROOT_DST}/etc/libvirt/qemu
 ${RM}						${ROOT_DST}/etc/libvirt/storage
@@ -152,89 +152,89 @@ ${LN} ${LIBVIRT_DIR}/qemu.lib			${ROOT_DST}/var/lib/libvirt/qemu
 # locales
 for FILE in ${SETUP_DIR}/locales/*; do
 	${RM}					${ROOT_DST}/usr/share/i18n/locales/$(basename ${FILE})
-	${LN} ${FILE}				${ROOT_DST}/usr/share/i18n/locales/$(basename ${FILE})
+	${LN} -r ${FILE}			${ROOT_DST}/usr/share/i18n/locales/$(basename ${FILE})
 done
 
 # minicom
 ${RM}						${ROOT_DST}/etc/minicom
-${LN} ${SETUP_DIR}/minicom			${ROOT_DST}/etc/minicom
+${LN} -r ${SETUP_DIR}/minicom			${ROOT_DST}/etc/minicom
 ${RM}						${ROOT_DST}/etc/minirc.dfl
-${LN} ${SETUP_DIR}/minicom/minirc.dfl		${ROOT_DST}/etc/minirc.dfl
+${LN} -r ${SETUP_DIR}/minicom/minirc.dfl	${ROOT_DST}/etc/minirc.dfl
 
 # nginx
 ${RM}						${ROOT_DST}/etc/nginx
-${LN} ${SETUP_DIR}/nginx			${ROOT_DST}/etc/nginx
+${LN} -r ${SETUP_DIR}/nginx			${ROOT_DST}/etc/nginx
 
 # ntp
 ${RM}						${ROOT_DST}/etc/ntp-servers.conf
-${LN} ${SETUP_DIR}/ntp/ntp-servers.conf		${ROOT_DST}/etc/ntp-servers.conf
+${LN} -r ${SETUP_DIR}/ntp/ntp-servers.conf	${ROOT_DST}/etc/ntp-servers.conf
 ${RM}						${ROOT_DST}/etc/ntp.conf
-${LN} ${SETUP_DIR}/ntp/ntp.conf			${ROOT_DST}/etc/ntp.conf
+${LN} -r ${SETUP_DIR}/ntp/ntp.conf		${ROOT_DST}/etc/ntp.conf
 
 # nut
 ${RM}						${ROOT_DST}/etc/nut
-${LN} ${SETUP_DIR}/nut				${ROOT_DST}/etc/nut
+${LN} -r ${SETUP_DIR}/nut			${ROOT_DST}/etc/nut
 chown -vR root:nut				${ROOT_DST}${SETUP_DIR}/nut
 chmod -vR 750					${ROOT_DST}${SETUP_DIR}/nut
 
 # openvpn
 ${RM}						${ROOT_DST}/etc/openvpn
-${LN} ${SETUP_DIR}/openvpn			${ROOT_DST}/etc/openvpn
+${LN} -r ${SETUP_DIR}/openvpn			${ROOT_DST}/etc/openvpn
 
 # proftpd
 ${RM}						${ROOT_DST}/etc/proftpd/proftpd.conf
-${LN} ${SETUP_DIR}/proftpd/proftpd.conf		${ROOT_DST}/etc/proftpd/proftpd.conf
+${LN} -r ${SETUP_DIR}/proftpd/proftpd.conf	${ROOT_DST}/etc/proftpd/proftpd.conf
 
 # samba
-${MKDIR}					${ROOT_DST}${SETUP_DIR}/samba/private/msg.sock
-chmod -v 700					${ROOT_DST}${SETUP_DIR}/samba/private{,/msg.sock}
-chmod -v 600					${ROOT_DST}${SETUP_DIR}/samba/private/*.tdb
+${MKDIR}					${SETUP_DIR}/samba/private/msg.sock
+chmod -v 700					${SETUP_DIR}/samba/private{,/msg.sock}
+chmod -v 600					${SETUP_DIR}/samba/private/*.tdb
 ${RM}						${ROOT_DST}/etc/samba
-${LN} ${SETUP_DIR}/samba			${ROOT_DST}/etc/samba
+${LN} -r ${SETUP_DIR}/samba			${ROOT_DST}/etc/samba
 ${RM}						${ROOT_DST}/var/lib/samba/private
-${LN} ${SETUP_DIR}/samba/private		${ROOT_DST}/var/lib/samba/private
+${LN} -r ${SETUP_DIR}/samba/private		${ROOT_DST}/var/lib/samba/private
 echo "create /var/lib/samba/winbindd_idmap.tdb" | chroot ${ROOT_DST:-/} tdbtool
 
 # ssh
-chmod -v 400					${ROOT_DST}${SETUP_DIR}/ssh/ssh_host_*
+chmod -v 400					${SETUP_DIR}/ssh/ssh_host_*
 ${RM}						${ROOT_DST}/etc/ssh
-${LN} ${SETUP_DIR}/ssh				${ROOT_DST}/etc/ssh
+${LN} -r ${SETUP_DIR}/ssh			${ROOT_DST}/etc/ssh
 
 # udev
 ${RM}						${ROOT_DST}/etc/udev/rules.d
-${LN} ${SETUP_DIR}/udev/rules.d			${ROOT_DST}/etc/udev/rules.d
+${LN} -r ${SETUP_DIR}/udev/rules.d		${ROOT_DST}/etc/udev/rules.d
 
 # ulogd
 ${RM}						${ROOT_DST}/etc/ulogd.conf
-${LN} ${SETUP_DIR}/ulogd/ulogd.conf		${ROOT_DST}/etc/ulogd.conf
+${LN} -r ${SETUP_DIR}/ulogd/ulogd.conf		${ROOT_DST}/etc/ulogd.conf
 
 # vmware
-chown -vR plastic:root				${ROOT_DST}${SETUP_DIR}/vmware
+chown -vR plastic:root				${SETUP_DIR}/vmware
 ${RM}						${ROOT_DST}/etc/vmware
-${LN} ${SETUP_DIR}/vmware			${ROOT_DST}/etc/vmware
+${LN} -r ${SETUP_DIR}/vmware			${ROOT_DST}/etc/vmware
 ${RM}						${ROOT_DST}/etc/vmware-tools
-${LN} ${SETUP_DIR}/vmware/etc			${ROOT_DST}/etc/vmware-tools
+${LN} -r ${SETUP_DIR}/vmware/etc		${ROOT_DST}/etc/vmware-tools
 ${RM}						${ROOT_DST}/opt/vmware-tools
-${LN} ${SETUP_DIR}/vmware/opt			${ROOT_DST}/opt/vmware-tools
+${LN} -r ${SETUP_DIR}/vmware/opt		${ROOT_DST}/opt/vmware-tools
 
 # wpa_supplicant
 declare WPA_SOURCE="${SETUP_DIR}/wpa_supplicant/wpa_supplicant.source.conf"
 ${RM}						${ROOT_DST}/etc/wpa_supplicant/$(basename ${WPA_SOURCE})
-${LN} ${WPA_SOURCE}				${ROOT_DST}/etc/wpa_supplicant/$(basename ${WPA_SOURCE})
+${LN} -r ${WPA_SOURCE}				${ROOT_DST}/etc/wpa_supplicant/$(basename ${WPA_SOURCE})
 
 # xorg
 ${RM}						${ROOT_DST}/etc/X11/Xmodmap
-${LN} ${SETUP_DIR}/xorg/Xmodmap			${ROOT_DST}/etc/X11/Xmodmap
+${LN} -r ${SETUP_DIR}/xorg/Xmodmap		${ROOT_DST}/etc/X11/Xmodmap
 ${RM}						${ROOT_DST}/etc/X11/xorg.conf
-#>>>${LN} ${SETUP_DIR}/xorg/xorg.conf		${ROOT_DST}/etc/X11/xorg.conf
+#>>>${LN} -r ${SETUP_DIR}/xorg/xorg.conf	${ROOT_DST}/etc/X11/xorg.conf
 
 ########################################
 
-${MKDIR}					${ROOT_DST}${RUNIT_DIR}
-setconf ${SETCONF_DIR}/runit			${ROOT_DST}${RUNIT_DIR}
+${MKDIR}					${RUNIT_DIR}
+setconf ${SETCONF_DIR}/runit			${RUNIT_DIR}
 
 if [[ ${1} == -r ]]; then
-	(cd ${ROOT_DST}${RUNIT_DIR};		ROOT_DST="${ROOT_DST}" ./_build.sh)
+	(cd ${RUNIT_DIR};			ROOT_DST="${ROOT_DST}" ./_build.sh)
 fi
 
 ################################################################################
@@ -242,7 +242,7 @@ fi
 echo -en "\n"
 
 ${LL} -d $(find \
-		${ROOT_DST}${SETUP_DIR}		\
+		${SETUP_DIR}			\
 		${ROOT_DST}/etc			\
 	-type f					\
 |
