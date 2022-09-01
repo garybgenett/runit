@@ -18,8 +18,8 @@ ${LN} -r ${PWD}				${ROOT_DST}/etc/runit
 ${LN} -r ${PWD}/services		${ROOT_DST}/etc/sv
 ${LN} -r ${PWD}/services		${ROOT_DST}/service
 
-${LN} $(realpath --no-symlink --relative-to=${ROOT_DST}/etc ${PWD}/runsvdir/current) ${ROOT_DST}/etc/service
-${LN} $(realpath --no-symlink --relative-to=${ROOT_DST}/var ${PWD}/runsvdir/current) ${ROOT_DST}/var/service
+${LN} $(realpath --no-symlink --canonicalize-missing --relative-to=${ROOT_DST}/etc ${PWD}/runsvdir/current) ${ROOT_DST}/etc/service
+${LN} $(realpath --no-symlink --canonicalize-missing --relative-to=${ROOT_DST}/var ${PWD}/runsvdir/current) ${ROOT_DST}/var/service
 
 ########################################
 
