@@ -141,16 +141,16 @@ report_status setterm -powersave off
 
 print_msg "Checking and mounting root filesystem..."
 ROOT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]root=([^ ]+).*$|\1|gp")"
-report_status mount -n -o remount,ro	/			|| emergency_shell
-report_status fsck -p -C -V		${ROOT}			|| emergency_shell
-report_status mount -n -o remount,rw	/			|| emergency_shell
+report_status mount -n -o remount,ro	${ROOT} /		|| emergency_shell
+report_status fsck -p -C 1 -V		${ROOT}			|| emergency_shell
+report_status mount -n -o remount,rw	${ROOT} /		|| emergency_shell
 
 print_msg "Creating new mtab..."
 report_status rm -frv /etc/mtab
 report_status ln -fsv /proc/mounts /etc/mtab
 
 print_msg "Checking and mounting remaining filesystems..."
-report_status fsck -p -A -C -R -V				|| emergency_shell
+report_status fsck -p -A -C 1 -R -V				|| emergency_shell
 report_status mount -a -t nodevpts,noproc,nosysfs,notmpfs	|| emergency_shell
 
 print_msg "Managing important files..."
