@@ -9,7 +9,9 @@ cat >/tmp/syslog.conf <<END_OF_CONF
 *.emerg		*
 END_OF_CONF
 exec syslogd \
-	-n \
+	-F \
 	-f /tmp/syslog.conf \
+	-s -s \
+	-n \
 	-m 0
 # end of file
