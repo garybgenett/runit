@@ -8,6 +8,5 @@ mkdir -pv /var/run/samba
 mkdir -pv /var/spool/samba
 exec smbd \
 	-F \
-	-S \
 	-d 2
 # end of file
