@@ -84,6 +84,13 @@ report_status sync
 
 ########################################
 
+print_msg "Replacing udev..."
+UBIN="/sbin/udevd"
+if [ ! -x ${UBIN} ]; then
+	UBIN="/lib/systemd/systemd-udevd"
+fi
+report_status ${UBIN} --daemon
+
 print_msg "Unmounting data filesystems..."
 GROT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
 GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"

@@ -1,7 +1,6 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-sv start /.runit/services/klogd		|| exit 1
 export TASKDDATA="/.g/_data/zactive/_pim/taskd"
 export TASKD_PID="/var/run/taskd.pid"
 export TASKD_LOG="/dev/stdout"

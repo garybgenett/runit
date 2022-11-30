@@ -1,7 +1,6 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd		|| exit 1
-sv start /.runit/services/klogd			|| exit 1
 sv start /.runit/services/pulseaudio		|| exit 1
 killall -9 pavucontrol
 if [ -n "`pgrep -f "Xorg :9"`" ]; then

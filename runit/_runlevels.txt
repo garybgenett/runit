@@ -2,7 +2,6 @@
 # service	station system host maint maint_x server default media
 ################################################################################
 gpm		station system host maint maint_x server default media
-klogd		station system host maint maint_x server default media
 ntpd		station system host maint maint_x server default media
 sshd		station system host maint maint_x server default media
 syslogd		station system host maint maint_x server default media
@@ -52,6 +51,7 @@ dovecot
 hald
 htc
 hts
+klogd
 libvirtd
 nfsd
 nginx
