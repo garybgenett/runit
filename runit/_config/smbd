@@ -1,6 +1,7 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
+killall -v -9 samba-bgqd
 killall -v -9 smbd
 rm -frv /var/run/samba/smbd.pid
 mkdir -pv /var/lib/samba/printers
