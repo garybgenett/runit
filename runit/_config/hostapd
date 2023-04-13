@@ -1,7 +1,7 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd		|| exit 1
-sv start /.runit/services/wpa_supplicant	&& exit 1
+sv stop /.runit/services/wpa_supplicant		|| exit 1
 killall -v -9 hostapd
 mkdir -pv /var/run/hostapd
 chown -vR root:root /var/run/hostapd
