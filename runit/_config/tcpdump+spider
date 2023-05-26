@@ -3,10 +3,12 @@ exec 2>&1
 killall -v -9 tcpdump
 export TCPDUMP_DIR="/.runit/services/tcpdump/log"
 export TCPDUMP_INT="eth0"
+export TCPDUMP_FLT=""
 exec tcpdump \
 	-i ${TCPDUMP_INT} \
 	-w ${TCPDUMP_DIR}/tcpdump.${TCPDUMP_INT}. \
 	-C 10 \
 	-W 100 \
-	-s 0
+	-s 0 \
+	${TCPDUMP_FLT}
 # end of file
