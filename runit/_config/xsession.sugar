@@ -2,7 +2,6 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/xorg.null	|| exit 1
-sleep 2
 export HOME="/.g/.home"
 export DISPLAY=":9"
 ${HOME}/scripts/sugar.sh run
