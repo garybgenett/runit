@@ -3,7 +3,6 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 kill -9 $(pgrep -f "Xorg :0")
 rm -frv /tmp/.X0-lock /tmp/.X11-unix/X0
-sleep 10
 export XORG_CMD="$(which Xorg)"
 exec ${XORG_CMD} \
 	:0 \
