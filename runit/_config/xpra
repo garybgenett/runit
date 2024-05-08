@@ -1,0 +1,27 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+killall -v -9 xpra
+export HOME="/.g/_data/zactive/.home"
+export SHELL="/bin/bash"
+export XPRA_CMD="$(which xpra)"
+exec sudo -H -u \#1000 \
+	${XPRA_CMD} \
+		start \
+		--daemon=no \
+		--chdir=/tmp/xpra \
+		--socket-dir=/tmp/xpra \
+		--remote-logging=no \
+		--desktop-scaling=auto \
+		--window-close=disconnect \
+		--html=off \
+		--xsettings=no \
+		--system-tray=no \
+		--tray=yes \
+		--bell=no \
+		--clipboard=yes \
+		--clipboard-direction=both \
+		--file-transfer=off \
+		--pulseaudio=no \
+		:1
+# end of file
