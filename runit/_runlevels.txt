@@ -32,6 +32,7 @@ taskd		                    maint maint_x server default media
 tftpd		                                  server default media
 upsd		                    maint maint_x server default media
 upsmon		                    maint maint_x server default media
+xpra		                                  server default media
 #-------------------------------------------------------------------------------
 firefox		                                                 media
 pavucontrol	                                                 media
