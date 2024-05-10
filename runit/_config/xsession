@@ -6,5 +6,5 @@ export HOME="/.g/_data/zactive/.home"
 export SHELL="/bin/bash"
 export DISPLAY=":0"
 exec sudo -H -u \#1000 \
-	${HOME}/.xsession
+	${HOME}/.xsession -
 # end of file
