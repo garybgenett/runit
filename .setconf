@@ -30,9 +30,9 @@ ${LN} -r ${ROOT_DST}/dev/.udev				${ROOT_DST}/run/udev
 
 declare FILE=
 declare DIR=
+#>>>	awstats		\
 for DIR in \
 	apache		\
-	awstats		\
 	bind		\
 	cups		\
 	dhcpd		\
@@ -76,8 +76,8 @@ ${RM}						${ROOT_DST}/etc/apache2
 ${LN} -r ${SETUP_DIR}/apache			${ROOT_DST}/etc/apache2
 
 # awstats
-${RM}						${ROOT_DST}/etc/awstats
-${LN} -r ${SETUP_DIR}/awstats			${ROOT_DST}/etc/awstats
+#>>>${RM}					${ROOT_DST}/etc/awstats
+#>>>${LN} -r ${SETUP_DIR}/awstats		${ROOT_DST}/etc/awstats
 
 # bind
 chown -vR nobody:root				${SETUP_DIR}/bind
