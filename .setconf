@@ -32,6 +32,7 @@ declare FILE=
 declare DIR=
 #>>>	awstats		\
 #>>>	nginx		\
+#>>>	vmware		\
 for DIR in \
 	apache		\
 	bind		\
@@ -53,7 +54,6 @@ for DIR in \
 	ssh		\
 	udev		\
 	ulogd		\
-	vmware		\
 	wpa_supplicant	\
 	xorg
 do
@@ -209,13 +209,13 @@ ${RM}						${ROOT_DST}/etc/ulogd.conf
 ${LN} -r ${SETUP_DIR}/ulogd/ulogd.conf		${ROOT_DST}/etc/ulogd.conf
 
 # vmware
-chown -vR plastic:root				${SETUP_DIR}/vmware
-${RM}						${ROOT_DST}/etc/vmware
-${LN} -r ${SETUP_DIR}/vmware			${ROOT_DST}/etc/vmware
-${RM}						${ROOT_DST}/etc/vmware-tools
-${LN} -r ${SETUP_DIR}/vmware/etc		${ROOT_DST}/etc/vmware-tools
-${RM}						${ROOT_DST}/opt/vmware-tools
-${LN} -r ${SETUP_DIR}/vmware/opt		${ROOT_DST}/opt/vmware-tools
+#>>>chown -vR plastic:root			${SETUP_DIR}/vmware
+#>>>${RM}					${ROOT_DST}/etc/vmware
+#>>>${LN} -r ${SETUP_DIR}/vmware		${ROOT_DST}/etc/vmware
+#>>>${RM}					${ROOT_DST}/etc/vmware-tools
+#>>>${LN} -r ${SETUP_DIR}/vmware/etc		${ROOT_DST}/etc/vmware-tools
+#>>>${RM}					${ROOT_DST}/opt/vmware-tools
+#>>>${LN} -r ${SETUP_DIR}/vmware/opt		${ROOT_DST}/opt/vmware-tools
 
 # wpa_supplicant
 declare WPA_SOURCE="${SETUP_DIR}/wpa_supplicant/wpa_supplicant.source.conf"
