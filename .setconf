@@ -31,6 +31,7 @@ ${LN} -r ${ROOT_DST}/dev/.udev				${ROOT_DST}/run/udev
 declare FILE=
 declare DIR=
 #>>>	awstats		\
+#>>>	nginx		\
 for DIR in \
 	apache		\
 	bind		\
@@ -44,7 +45,6 @@ for DIR in \
 	libvirt		\
 	locales		\
 	minicom		\
-	nginx		\
 	ntp		\
 	nut		\
 	openvpn		\
@@ -162,8 +162,8 @@ ${RM}						${ROOT_DST}/etc/minirc.dfl
 ${LN} -r ${SETUP_DIR}/minicom/minirc.dfl	${ROOT_DST}/etc/minirc.dfl
 
 # nginx
-${RM}						${ROOT_DST}/etc/nginx
-${LN} -r ${SETUP_DIR}/nginx			${ROOT_DST}/etc/nginx
+#>>>${RM}					${ROOT_DST}/etc/nginx
+#>>>${LN} -r ${SETUP_DIR}/nginx			${ROOT_DST}/etc/nginx
 
 # ntp
 ${RM}						${ROOT_DST}/etc/ntp-servers.conf
