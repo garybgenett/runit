@@ -9,19 +9,25 @@ exec sudo -H -u \#1000 \
 	${XPRA_CMD} \
 		start \
 		--daemon=no \
+		--debug=server+keyboard \
 		--chdir=/tmp/xpra \
 		--socket-dir=/tmp/xpra \
 		--remote-logging=no \
 		--desktop-scaling=auto \
 		--window-close=disconnect \
+		--exit-ssh=yes \
 		--html=off \
 		--xsettings=no \
 		--system-tray=no \
 		--tray=yes \
 		--bell=no \
+		--input-method=xim \
+		--keyboard-sync=no \
 		--clipboard=yes \
 		--clipboard-direction=both \
 		--file-transfer=off \
 		--pulseaudio=no \
+		--speaker=off \
+		--microphone=off \
 		:1
 # end of file
