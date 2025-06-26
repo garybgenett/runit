@@ -117,13 +117,16 @@ for FILE in ${SETUP_DIR}/etc/*; do
 done
 
 # gentoo
-declare OVERLAY="${SETUP_DIR}/gentoo/overlay/overlay.conf"
+declare GENTOO="${SETUP_DIR}/gentoo"
 for FILE in ${SETUP_DIR}/gentoo/[a-z]*; do
 	${RM}					${ROOT_DST}/etc/portage/$(basename ${FILE})
 	${LN} -r ${FILE}			${ROOT_DST}/etc/portage/$(basename ${FILE})
 done
-${RM}						${ROOT_DST}/etc/portage/repos.conf/$(basename ${OVERLAY})
-${LN} -r ${OVERLAY}				${ROOT_DST}/etc/portage/repos.conf/$(basename ${OVERLAY})
+${MKDIR}					${ROOT_DST}/etc/portage/repos.conf
+for FILE in overlay torbrowser; do
+	${RM}					${ROOT_DST}/etc/portage/repos.conf/$(basename ${FILE}).conf
+	${LN} -r ${GENTOO}/${FILE}/${FILE}.conf	${ROOT_DST}/etc/portage/repos.conf/$(basename ${FILE}).conf
+done
 
 # grub
 cat ${SETUP_DIR}/grub/grub.defaults.cfg		>>${SETUP_DIR}/grub/grub.cfg
