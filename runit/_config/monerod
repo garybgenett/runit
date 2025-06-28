@@ -1,0 +1,54 @@
+#!/bin/sh
+exec 2>&1
+sv start /.runit/services/syslogd	|| exit 1
+export MONERODATA="/.g/_data/source/monero"
+export MONEROADDR=""
+export MONERO_CFG="${MONERODATA}/bitmonero.conf"
+export MONERO_LOG="${MONERODATA}/bitmonero.log"
+export MONERO_SIZ="1073741824"	# 2^30
+export MONERO_PID="/var/run/monerod.pid"
+export MONERO_PXY="127.0.0.1"
+export MONERO_MOD="fastest"
+export MONERO_BLK="10"
+export MONERO_CON="0"
+export MONERO_RAT="-1"
+export MONERO_CPU="50"
+export MONERO_CMD="`which monerod`"
+export MONERO_MNG=
+if [ -n "${MONEROADDR}" ]; then
+	MONERO_MNG="\
+		--start-mining=${MONEROADDR} \
+		--bg-mining-enable \
+		--bg-mining-ignore-battery \
+		--bg-mining-miner-target=${MONERO_CPU} \
+		--mining-threads=${MONERO_CON} \
+	"
+fi
+cat /dev/null >"${MONERO_CFG}"
+cat /dev/null >"${MONERO_LOG}"
+killall -v -9 monerod
+rm -frv ${MONERO_PID}
+#>>>		--bootstrap-daemon-address="auto" \
+exec ${MONERO_CMD} \
+	--pidfile="${MONERO_PID}" \
+	--log-file="${MONERO_LOG}" \
+	--log-level="0" \
+	--max-log-files="0" \
+	--max-log-file-size="${MONERO_SIZ}" \
+	--data-dir="${MONERODATA}" \
+	--config-file="${MONERODATA}/bitmonero.conf" \
+		--check-updates="disabled" \
+		--tx-proxy="i2p,${MONERO_PXY}:4444,disable_noise" \
+		--tx-proxy="tor,${MONERO_PXY}:9050,disable_noise" \
+		--no-igd \
+		--hide-my-port \
+		--pad-transactions \
+		--prune-blockchain \
+		--db-sync-mode="${MONERO_MOD}" \
+		--block-sync-size="${MONERO_BLK}" \
+		--max-concurrency="${MONERO_CON}" \
+		--limit-rate="${MONERO_RAT}" \
+		--limit-rate-down="${MONERO_RAT}" \
+		--limit-rate-up="${MONERO_RAT}" \
+		${MONERO_MNG}
+# end of file
