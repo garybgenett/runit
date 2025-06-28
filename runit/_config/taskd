@@ -13,10 +13,10 @@ export TASKD_SRV="0.0.0.0:53589"
 export TASKD_CMD="`which taskd`"
 if [ ! -d ${TASKDDATA} ]; then
 	mkdir -pv ${TASKDDATA}
-	/usr/bin/taskd init --debug --data="${TASKDDATA}"
-	/usr/bin/taskd add --debug --data="${TASKDDATA}" org local
-	/usr/bin/taskd add --debug --data="${TASKDDATA}" group local group
-	/usr/bin/taskd add --debug --data="${TASKDDATA}" user local user
+	${TASKD_CMD} init --debug --data="${TASKDDATA}"
+	${TASKD_CMD} add --debug --data="${TASKDDATA}" org local
+	${TASKD_CMD} add --debug --data="${TASKDDATA}" group local group
+	${TASKD_CMD} add --debug --data="${TASKDDATA}" user local user
 	touch "${TASKDDATA}/orgs/local/groups/group/config"
 fi
 cat /dev/null >"${TASKDDATA}/config"

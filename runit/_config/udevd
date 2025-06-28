@@ -1,14 +1,14 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-UBAS="udevd"
-UBIN="/sbin/${UBAS}"
-if [ ! -x ${UBIN} ]; then
-	UBAS="systemd-udevd"
-	UBIN="/lib/systemd/${UBAS}"
+export UDEVD_BIN="udevd"
+export UDEVD_CMD="`which ${UDEVD_BIN}`"
+if [ ! -x "${UDEVD_CMD}" ]; then
+	UDEVD_BIN="systemd-udevd"
+	UDEVD_CMD="/lib/systemd/${UDEVD_BIN}"
 fi
-killall -v -9 ${UBAS}
+killall -v -9 ${UDEVD_BIN}
 mkdir -pv -m 0755 /dev/.udev
-exec ${UBIN} \
+exec ${UDEVD_CMD} \
 	--debug
 # end of file
