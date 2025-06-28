@@ -10,19 +10,18 @@ export TASKD_CCR="${TASKD_SSL}/client-ca.garybgenett.net.crt"
 export TASKD_PID="/var/run/taskd.pid"
 export TASKD_LOG="/dev/stdout"
 export TASKD_SRV="0.0.0.0:53589"
-export TASKD_CMD="`which taskd`"
 if [ ! -d ${TASKDDATA} ]; then
 	mkdir -pv ${TASKDDATA}
-	${TASKD_CMD} init --debug --data="${TASKDDATA}"
-	${TASKD_CMD} add --debug --data="${TASKDDATA}" org local
-	${TASKD_CMD} add --debug --data="${TASKDDATA}" group local group
-	${TASKD_CMD} add --debug --data="${TASKDDATA}" user local user
+	taskd init --debug --data="${TASKDDATA}"
+	taskd add --debug --data="${TASKDDATA}" org local
+	taskd add --debug --data="${TASKDDATA}" group local group
+	taskd add --debug --data="${TASKDDATA}" user local user
 	touch "${TASKDDATA}/orgs/local/groups/group/config"
 fi
 cat /dev/null >"${TASKDDATA}/config"
 killall -v -9 taskd
 rm -frv ${TASKD_PID}
-exec ${TASKD_CMD} \
+exec taskd \
 	server \
 	--debug \
 	--pid.file="${TASKD_PID}" \

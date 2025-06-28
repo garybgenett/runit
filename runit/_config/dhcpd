@@ -3,8 +3,8 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 killall -v -9 dhcpd
 mkdir -pv /var/run/dhcp
-rm -frv /var/run/dhcp/dhcpd.pid
 mkdir -pv /var/lib/dhcp
+rm -frv /var/run/dhcp/dhcpd.pid
 rm -frv /var/lib/dhcp/*
 touch /var/lib/dhcp/dhcpd.leases
 exec dhcpd \

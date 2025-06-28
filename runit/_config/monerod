@@ -13,7 +13,6 @@ export MONERO_BLK="10"
 export MONERO_CON="0"
 export MONERO_RAT="-1"
 export MONERO_CPU="50"
-export MONERO_CMD="`which monerod`"
 export MONERO_MNG=
 if [ -n "${MONEROADDR}" ]; then
 	MONERO_MNG="\
@@ -24,12 +23,12 @@ if [ -n "${MONEROADDR}" ]; then
 		--mining-threads=${MONERO_CON} \
 	"
 fi
-cat /dev/null >"${MONERO_CFG}"
-cat /dev/null >"${MONERO_LOG}"
+cat /dev/null >${MONERO_CFG}
+cat /dev/null >${MONERO_LOG}
 killall -v -9 monerod
 rm -frv ${MONERO_PID}
 #>>>		--bootstrap-daemon-address="auto" \
-exec ${MONERO_CMD} \
+exec monerod \
 	--pidfile="${MONERO_PID}" \
 	--log-file="${MONERO_LOG}" \
 	--log-level="0" \

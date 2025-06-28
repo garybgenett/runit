@@ -1,10 +1,6 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-killall -v -9 dhcpcd
-rm -frv /var/lib/dhcp/*
-rm -frv /var/run/resolvconf/interfaces/*
-rm -frv /etc/resolv.conf*
 cat >/etc/resolv.conf.tail <<END_OF_CONF
 search		example.net
 nameserver	127.0.0.1
@@ -14,6 +10,10 @@ nameserver	1.0.0.1
 #>>>nameserver	208.67.222.222
 #>>>nameserver	208.67.220.220
 END_OF_CONF
+killall -v -9 dhcpcd
+rm -frv /var/lib/dhcp/*
+rm -frv /var/run/resolvconf/interfaces/*
+rm -frv /etc/resolv.conf*
 exec dhcpcd \
 	--nobackground \
 	--debug \

@@ -1,7 +1,7 @@
 #!/bin/sh
 exec 2>&1
-killall -v -9 autossh
 export HOME="/.g/.home"
+killall -v -9 autossh
 exec autossh \
 	-M 0 \
 	-T \

@@ -1,15 +1,15 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-killall -v -9 wpa_supplicant
 export WPA_CONF="/etc/wpa_supplicant/wpa_supplicant.conf"
 cat /dev/null >${WPA_CONF}
-if [ -e		/etc/wpa_supplicant/wpa_supplicant.source.conf ]; then
-	cat	/etc/wpa_supplicant/wpa_supplicant.source.conf >>${WPA_CONF}
+if [ -e /etc/wpa_supplicant/wpa_supplicant.source.conf ]; then
+	cat /etc/wpa_supplicant/wpa_supplicant.source.conf >>${WPA_CONF}
 fi
-if [ -e		/tmp/.wpa_supplicant.conf ]; then
-	cat	/tmp/.wpa_supplicant.conf >>${WPA_CONF}
+if [ -e /tmp/.wpa_supplicant.conf ]; then
+	cat /tmp/.wpa_supplicant.conf >>${WPA_CONF}
 fi
+killall -v -9 wpa_supplicant
 exec wpa_supplicant \
 	-d \
 	-t \

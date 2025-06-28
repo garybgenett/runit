@@ -1,15 +1,13 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-export DBUS_CMD="`which dbus-daemon`"
-export DBUS_LNC="`which dbus-launch`"
+chmod -v 755 `which dbus-daemon`
+chmod -v 755 `which dbus-launch`
 killall -v -9 dbus-daemon
 #>>>killall -v -9 dbus-launch
 mkdir -pv /var/run/dbus
 rm -frv /var/run/dbus.pid
-chmod -v 755 ${DBUS_CMD}
-chmod -v 755 ${DBUS_LNC}
-exec $(DBUS_CMD} \
+exec dbus-daemon \
 	--nofork \
 	--system
 # end of file

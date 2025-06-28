@@ -4,8 +4,7 @@ sv start /.runit/services/syslogd	|| exit 1
 sv start /.runit/services/xorg		|| exit 1
 kill -9 `pgrep -f "Xorg :9"`
 rm -frv /tmp/.X9-lock /tmp/.X11-unix/X9
-export XORG_CMD="`which Xorg`"
-exec ${XORG_CMD} \
+exec Xorg \
 	:9 \
 	tty6 \
 	-keeptty \
