@@ -6,8 +6,8 @@ killall -v -9 upsmon .nutmon.sh
 upsdrvctl stop
 killall -v -9 usbhid-ups
 killall -v -9 upsd
-rm -frv /var/lib/nut/upsd.pid
 mkdir -pv /var/lib/nut
+rm -frv /var/lib/nut/upsd.pid
 chown -vR nut:nut /var/lib/nut
 usermod -a -G usb nut
 upsdrvctl start

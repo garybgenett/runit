@@ -1,13 +1,12 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-export SSHD_CMD="`which sshd`"
 if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then
-	`which ssh-keygen` -N "" -t ecdsa -b 521 -f /etc/ssh/ssh_host_ecdsa_key
+	ssh-keygen -N "" -t ecdsa -b 521 -f /etc/ssh/ssh_host_ecdsa_key
 fi
 killall -v -9 sshd
 rm -frv /var/run/sshd.pid
-exec ${SSHD_CMD} \
+exec sshd \
 	-D \
 	-e
 # end of file

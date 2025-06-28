@@ -3,10 +3,10 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 killall -v -9 samba-bgqd
 killall -v -9 smbd
-rm -frv /var/run/samba/smbd.pid
 mkdir -pv /var/lib/samba/printers
 mkdir -pv /var/run/samba
 mkdir -pv /var/spool/samba
+rm -frv /var/run/samba/smbd.pid
 exec smbd \
 	-F \
 	-d 2

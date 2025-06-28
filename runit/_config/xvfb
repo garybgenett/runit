@@ -1,17 +1,15 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-killall -v -9 Xvfb
 export HOME="/.g/_data/zactive/.home"
-export XINIT_CMD="`which xinit`"
-export XVFB_CMD="`which Xvfb`"
+killall -v -9 Xvfb
+#>>>			-screen 0 1366x768x24
 exec sudo -H -u \#1000 \
-	${XINIT_CMD} \
+	xinit \
 		${HOME}/.xsession \
 		-- \
-		${XVFB_CMD} \
+		Xvfb \
 			:1 \
 			-nolisten tcp \
 			-screen 0 1280x1024x24
-#>>>			-screen 0 1366x768x24
 # end of file
