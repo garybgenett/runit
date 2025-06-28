@@ -123,7 +123,7 @@ for FILE in ${SETUP_DIR}/gentoo/[a-z]*; do
 	${LN} -r ${FILE}			${ROOT_DST}/etc/portage/$(basename ${FILE})
 done
 ${MKDIR}					${ROOT_DST}/etc/portage/repos.conf
-for FILE in overlay torbrowser; do
+for FILE in overlay guru torbrowser; do
 	${RM}					${ROOT_DST}/etc/portage/repos.conf/$(basename ${FILE}).conf
 	${LN} -r ${GENTOO}/${FILE}/${FILE}.conf	${ROOT_DST}/etc/portage/repos.conf/$(basename ${FILE}).conf
 done
