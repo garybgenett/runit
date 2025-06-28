@@ -5,8 +5,8 @@ killall -v -9 hts
 hts \
 	--forward-port 127.0.0.1:22 \
 	8888
-PID=$(pidof -s hts)
-while [ "$(pidof -s hts)" -eq "${PID}" ]; do
+PID="`pidof -s hts`"
+while [ "`pidof -s hts`" -eq "${PID}" ]; do
 	sleep 10
 done
 # end of file

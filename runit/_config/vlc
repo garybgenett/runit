@@ -7,7 +7,7 @@ sv start /.runit/services/xsession.null	|| exit 1
 export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export DISPLAY=":9"
-export VLC_CMD="$(which vlc)"
+export VLC_CMD="`which vlc`"
 for DIR in .config/vlc .local/share/vlc; do
 	rm -frv ${HOME}/${DIR}
 	mkdir -pv ${HOME}/${DIR}

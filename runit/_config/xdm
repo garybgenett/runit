@@ -3,7 +3,7 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 killall -v -9 xdm
 rm -frv /var/run/xdm.pid
-export X_CMD="$(which X)"
+export X_CMD="`which X`"
 exec xdm \
 	-nodaemon \
 	-error /dev/stderr \

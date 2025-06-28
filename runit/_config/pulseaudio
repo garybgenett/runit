@@ -1,8 +1,7 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-killall -9 pulseaudio
-chmod -v 755 /usr/bin/pulseaudio
+export PULSE_CMD="`which pulseaudio`"
 sed -i -r \
 	-e 's|^(load-module[ ]module-console-kit)|#\1|;' \
 	/etc/pulse/default.pa
@@ -17,9 +16,11 @@ cat >/etc/dbus-1/system.d/pulseaudio.conf <<END_OF_CONF
 </policy>
 </busconfig>
 END_OF_CONF
+killall -9 pulseaudio
+chmod -v 755 ${PULSE_CMD}
 # https://wiki.archlinux.org/index.php/PulseAudio/Examples#Allowing_multiple_users_to_use_PulseAudio_at_the_same_time
 exec sudo -H -u \#1000 \
-	pulseaudio \
+	${PULSE_CMD} \
 		--start \
 		--daemonize=no \
 		--log-level=debug \
