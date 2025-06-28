@@ -7,7 +7,7 @@ sv start /.runit/services/xsession.null	|| exit 1
 export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export DISPLAY=":9"
-export FIREFOX_CMD="$(which firefox)"
+export FIREFOX_CMD="`which firefox`"
 rm -frv ${HOME}/.mozilla
 mkdir -pv ${HOME}/.mozilla/plugins
 rsync -avv --delete --copy-links ${HOME_SRC}/.mozilla/plugins/ ${HOME}/.mozilla/plugins

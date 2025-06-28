@@ -2,9 +2,15 @@
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 export TASKDDATA="/.g/_data/zactive/_pim/taskd"
+export TASKD_SSL="/.g/_data/zactive/.home/.openssl"
+export TASKD_SCR="${TASKD_SSL}/server.garybgenett.net.crt"
+export TASKD_SKY="${TASKD_SSL}/server.garybgenett.net.key"
+export TASKD_SRL="${TASKD_SSL}/server-ca.garybgenett.net.crl"
+export TASKD_CCR="${TASKD_SSL}/client-ca.garybgenett.net.crt"
 export TASKD_PID="/var/run/taskd.pid"
 export TASKD_LOG="/dev/stdout"
 export TASKD_SRV="0.0.0.0:53589"
+export TASKD_CMD="`which taskd`"
 if [ ! -d ${TASKDDATA} ]; then
 	mkdir -pv ${TASKDDATA}
 	/usr/bin/taskd init --debug --data="${TASKDDATA}"
@@ -16,22 +22,22 @@ fi
 cat /dev/null >"${TASKDDATA}/config"
 killall -v -9 taskd
 rm -frv ${TASKD_PID}
-exec /usr/bin/taskd \
+exec ${TASKD_CMD} \
 	server \
 	--debug \
+	--pid.file="${TASKD_PID}" \
+	--log="${TASKD_LOG}" \
 	--data="${TASKDDATA}" \
 		--verbose="on" \
 		--debug="on" \
 		--ip.log="on" \
-		--log="${TASKD_LOG}" \
 		--root="${TASKDDATA}" \
-		--pid.file="${TASKD_PID}" \
 		--extensions="${TASKDDATA}" \
 		--server="${TASKD_SRV}" \
-		--server.cert="/.g/_data/zactive/.home/.openssl/server.garybgenett.net.crt" \
-		--server.key="/.g/_data/zactive/.home/.openssl/server.garybgenett.net.key" \
-		--server.crl="/.g/_data/zactive/.home/.openssl/server-ca.garybgenett.net.crl" \
-		--ca.cert="/.g/_data/zactive/.home/.openssl/client-ca.garybgenett.net.crt" \
+		--server.cert="${TASKD_SCR}" \
+		--server.key="${TASKD_SKY}" \
+		--server.crl="${TASKD_SRL}" \
+		--ca.cert="${TASKD_CCR}" \
 		--debug.tls="1" \
 		--trust="strict" \
 		--client.allow="^taskd,^task" \

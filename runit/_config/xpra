@@ -3,8 +3,7 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 killall -v -9 xpra
 export HOME="/.g/_data/zactive/.home"
-export SHELL="/bin/bash"
-export XPRA_CMD="$(which xpra)"
+export XPRA_CMD="`which xpra`"
 exec sudo -H -u \#1000 \
 	${XPRA_CMD} \
 		start \

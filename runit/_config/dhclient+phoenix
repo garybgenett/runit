@@ -7,7 +7,7 @@ rm -frv /var/lib/dhcp/*
 cat >/etc/dhclient.conf <<END_OF_CONF
 timeout 0;
 interface "eth0" {
-	send host-name "$(hostname)";
+	send host-name "`hostname`";
 	supersede domain-name "example.net";
 	prepend domain-name-servers 127.0.0.1, 10.255.255.254, 1.1.1.1, 1.0.0.1; #>>>, 208.67.222.222, 208.67.220.220;
 	request dhcp-server-identifier, host-name, subnet-mask, broadcast-address, routers, domain-name-servers, domain-name, domain-search, ntp-servers, time-offset, interface-mtu;

@@ -6,10 +6,10 @@ export HOME="/tmp/.null"
 export HOME_SRC="/.g/_data/zactive/.home"
 export PATH="${HOME}/commands:${HOME}/scripts:${PATH}"
 export DISPLAY=":9"
-#>>>export WM_CMD="$(which dwm)"
-export WM_CMD="$(which openbox) --replace"
-#>>>export WM_CMD="$(which enlightenment_start)"
-#>>>export WM_CMD="$(which e16)"
+#>>>export WM_CMD="`which dwm`"
+export WM_CMD="`which openbox` --replace"
+#>>>export WM_CMD="`which enlightenment_start`"
+#>>>export WM_CMD="`which e16`"
 rm -frv ${HOME}
 mkdir -pv ${HOME}/.config/openbox
 rsync -avv --delete --copy-links ${HOME_SRC}/{.bashrc,commands,scripts}	${HOME}/
