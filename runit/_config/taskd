@@ -10,6 +10,7 @@ export TASKD_CCR="${TASKD_SSL}/client-ca.garybgenett.net.crt"
 export TASKD_PID="/var/run/taskd.pid"
 export TASKD_LOG="/dev/stdout"
 export TASKD_SRV="0.0.0.0:53589"
+export TASKD_LIM="16777216"	# (2^20)*(2^8) = 268435456 / (2^20)*(2^4) = 16777216 / default: (2^20) = 1048576
 if [ ! -d ${TASKDDATA} ]; then
 	mkdir -pv ${TASKDDATA}
 	taskd init --debug --data="${TASKDDATA}"
@@ -42,5 +43,5 @@ exec taskd \
 		--client.allow="^taskd,^task" \
 		--confirmation="on" \
 		--queue.size="1" \
-		--request.limit="16777216" # (2^20)*(2^8) = 268435456 / (2^20)*(2^4) = 16777216 / default: (2^20) = 1048576
+		--request.limit="${TASKD_LIM}"
 # end of file
