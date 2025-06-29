@@ -3,10 +3,11 @@ exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
 export MONERODATA="/.g/_data/source/monero"
 export MONEROADDR=""
+export MONERO_PID="/var/run/monerod.pid"
 export MONERO_CFG="${MONERODATA}/bitmonero.conf"
 export MONERO_LOG="${MONERODATA}/bitmonero.log"
+export MONERO_LVL="0"
 export MONERO_SIZ="1073741824"	# 2^30
-export MONERO_PID="/var/run/monerod.pid"
 export MONERO_PXY="127.0.0.1"
 export MONERO_MOD="fastest"
 export MONERO_BLK="10"
@@ -31,7 +32,7 @@ rm -frv ${MONERO_PID}
 exec monerod \
 	--pidfile="${MONERO_PID}" \
 	--log-file="${MONERO_LOG}" \
-	--log-level="0" \
+	--log-level="${MONERO_LVL}" \
 	--max-log-files="0" \
 	--max-log-file-size="${MONERO_SIZ}" \
 	--data-dir="${MONERODATA}" \
