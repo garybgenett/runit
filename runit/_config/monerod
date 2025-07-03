@@ -29,6 +29,8 @@ cat /dev/null >${MONERO_LOG}
 killall -v -9 monerod
 rm -frv ${MONERO_PID}
 #>>>		--bootstrap-daemon-address="auto" \
+#>>>		--tx-proxy="i2p,${MONERO_PXY}:4444,disable_noise" \
+#>>>		--tx-proxy="tor,${MONERO_PXY}:9050,disable_noise" \
 exec monerod \
 	--pidfile="${MONERO_PID}" \
 	--log-file="${MONERO_LOG}" \
@@ -38,8 +40,6 @@ exec monerod \
 	--data-dir="${MONERODATA}" \
 	--config-file="${MONERODATA}/bitmonero.conf" \
 		--check-updates="disabled" \
-		--tx-proxy="i2p,${MONERO_PXY}:4444,disable_noise" \
-		--tx-proxy="tor,${MONERO_PXY}:9050,disable_noise" \
 		--no-igd \
 		--hide-my-port \
 		--pad-transactions \
