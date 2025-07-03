@@ -10,7 +10,8 @@ export MONERO_LVL="0"
 export MONERO_SIZ="1073741824"	# 2^30
 export MONERO_PXY="127.0.0.1"
 export MONERO_MOD="fastest"
-export MONERO_BLK="10"
+export MONERO_BLK="64"
+export MONERO_FST="1"
 export MONERO_CON="0"
 export MONERO_RAT="-1"
 export MONERO_CPU="50"
@@ -44,8 +45,10 @@ exec monerod \
 		--hide-my-port \
 		--pad-transactions \
 		--prune-blockchain \
+		--sync-pruned-blocks \
 		--db-sync-mode="${MONERO_MOD}" \
 		--block-sync-size="${MONERO_BLK}" \
+		--fast-block-sync="${MONERO_FST}" \
 		--max-concurrency="${MONERO_CON}" \
 		--limit-rate="${MONERO_RAT}" \
 		--limit-rate-down="${MONERO_RAT}" \
