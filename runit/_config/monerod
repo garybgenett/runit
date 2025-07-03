@@ -16,7 +16,9 @@ export MONERO_CON="0"
 export MONERO_RAT="-1"
 export MONERO_CPU="50"
 export MONERO_MNG=
+export MONERO_RANDOMX_FULL_MEM=
 if [ -n "${MONEROADDR}" ]; then
+	export MONERO_RANDOMX_FULL_MEM="1"
 	MONERO_MNG="\
 		--start-mining=${MONEROADDR} \
 		--bg-mining-enable \
