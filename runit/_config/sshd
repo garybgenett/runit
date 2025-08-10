@@ -6,7 +6,7 @@ if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then
 fi
 killall -v -9 sshd
 rm -frv /var/run/sshd.pid
-exec sshd \
+exec `which sshd` \
 	-D \
 	-e
 # end of file
