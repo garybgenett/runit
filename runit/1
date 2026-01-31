@@ -191,14 +191,16 @@ print_msg "Setting up networking..."
 report_status eval "HOME=/.g/.home /.g/.home/scripts/ip-setup"
 
 print_msg "Mounting data filesystems..."
-GROT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]groot=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
-GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]gdata=([^ ]+).*$|\1|gp" | sed -r "s|[0-9]*$||g")"
+ZFST="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]zfs-log=([^ ]+).*$|\1|gp"	| sed -r "s|[0-9]*$||g")"
+ZFSC="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]zfs-conf=([^ ]+).*$|\1|gp"	| sed -r "s|[0-9]*$||g")"
+GROT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]groot=([^ ]+).*$|\1|gp"		| sed -r "s|[0-9]*$||g")"
+GDAT="$(cat /proc/cmdline | sed -r -n "s|^.*[ ]gdata=([^ ]+).*$|\1|gp"		| sed -r "s|[0-9]*$||g")"
 FAIL="false"
 if [ -n "${GROT}" ] && [ -n "${GDAT}" ]; then
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount . ${GROT}" || FAIL="true"
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount g ${GDAT}" || FAIL="true"
+	report_status eval "HOME=/.g/.home ZFS_TRACE="${ZFST}" ZFS_SETUP="${ZFSC}" perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount . ${GROT}" || FAIL="true"
+	report_status eval "HOME=/.g/.home ZFS_TRACE="${ZFST}" ZFS_SETUP="${ZFSC}" perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount g ${GDAT}" || FAIL="true"
 elif [ -n "${GROT}" ]; then
-	report_status eval "HOME=/.g/.home perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount g ${GROT}" || FAIL="true"
+	report_status eval "HOME=/.g/.home ZFS_TRACE="${ZFST}" ZFS_SETUP="${ZFSC}" perl -e 'alarm shift(@ARGV); exec(@ARGV);' 600 /.g/.home/scripts/_sync mount g ${GROT}" || FAIL="true"
 fi
 if ${FAIL}; then
 	print_msg "${fail_color}!!! Data filesystems are not completely mounted !!!"
