@@ -5,6 +5,7 @@
 set groot=/dev/nvme0n1p
 set gdata=/dev/disk/by-path/pci-0000:00:14.0-usb-0:3:1.0-scsi-0:0:0:0-part
 #>>>      /dev/disk/by-path/pci-0000:00:14.0-usb-0:4:1.0-scsi-0:0:0:0-part
+#>>>      /dev/disk/by-path/pci-0000:00:14.0-usb-0:1:1.0-scsi-0:0:0:0-part
 set gmode=maint
 set gopts=""
 
