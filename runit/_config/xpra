@@ -9,6 +9,7 @@ exec sudo -H -u \#1000 \
 		--debug=server+keyboard \
 		--chdir=/tmp/xpra \
 		--socket-dir=/tmp/xpra \
+		--bind-tcp=127.0.0.1:10000 \
 		--remote-logging=no \
 		--desktop-scaling=auto \
 		--window-close=disconnect \
