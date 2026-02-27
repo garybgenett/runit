@@ -1,7 +1,6 @@
 ################################################################################
 # service	station system host maint maint_x server default media
 ################################################################################
-gpm		station system host maint maint_x server default media
 ntpd		station system host maint maint_x server default media
 sshd		station system host maint maint_x server default media
 syslogd		station system host maint maint_x server default media
@@ -29,7 +28,6 @@ smbd		station                           server default media
 apache		                                  server default media
 hostapd		                    maint maint_x server default media
 monerod		                                         default media
-taskd		                    maint maint_x server default media
 tftpd		                                  server default media
 upsd		                    maint maint_x server default media
 upsmon		                    maint maint_x server default media
@@ -49,6 +47,7 @@ cupsd
 dbus
 dhclient
 dovecot
+gpm
 hald
 htc
 hts
@@ -57,6 +56,7 @@ libvirtd
 nfsd
 nginx
 proftpd
+taskd
 tcpdump
 tor
 ttyS0
