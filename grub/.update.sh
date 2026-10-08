@@ -20,7 +20,7 @@ set -e
 
 declare GRUB_BOOT="/.g/_boot"
 declare GRUB_ROOT="/.g/_root"
-declare GRUB_LIVE="/.g/_data/_boot"
+declare GRUB_LIVE="/.g/_data/.boot"
 [[ -d /.g/._boot/boot ]] && GRUB_BOOT="/.g/._boot"
 [[ -d /.g/._root/boot ]] && GRUB_ROOT="/.g/._root"
 
