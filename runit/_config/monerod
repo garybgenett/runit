@@ -1,7 +1,8 @@
 #!/bin/sh
 exec 2>&1
 sv start /.runit/services/syslogd	|| exit 1
-export MONERODATA="/.g/_data/source/monero"
+#>>>export MONERODATA="/.g/_data/source/monero"
+export MONERODATA="/.g/_data/zbackup/data.monero"
 export MONEROADDR=""
 export MONERO_PID="/var/run/monerod.pid"
 export MONERO_CFG="${MONERODATA}/bitmonero.conf"
